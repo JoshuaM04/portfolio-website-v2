@@ -1,2 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
-@import "tailwindcss"
+@import "tailwindcss";
+
+@theme {
+    --font-shareTech: "Share Tech", sans-serif;
+    --animate-border: border ease infinite;
+
+    @keyframes border {
+        0% {
+            border: none;
+        }
+        100% {
+            border: 1px solid black;
+        }
+    }
+}

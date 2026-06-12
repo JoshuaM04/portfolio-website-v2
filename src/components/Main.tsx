@@ -1,3 +1,8 @@
+import {DialogTrigger} from 'react-aria-components/Modal';
+import {Modal} from 'react-aria-components/Modal';
+import {Dialog, Heading} from 'react-aria-components/Modal';
+import {Button} from 'react-aria-components/Modal';
+
 export default function Main() {
     return (
         <main className="bg-orange-100">
@@ -8,9 +13,17 @@ export default function Main() {
                     <p className="text-slate-500">I specialize in crafting interactive, responsive, and accessible applications.</p>
                     
                     <div id="cta-buttons" className="font-semibold flex gap-5">
-                        <button className="text-white uppercase rounded-sm bg-black pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-red-600">Projects</button>
-                        <button className="uppercase border-2 rounded-sm pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-black hover:border-black hover:text-white">Contact</button>
-                        <button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</button>
+                        <a href="#projects" className="text-white uppercase rounded-sm bg-black pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-red-600">Projects</a>
+                        <a href="#contact" className="uppercase border-2 rounded-sm pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-black hover:border-black hover:text-white">Contact</a>
+                        <DialogTrigger>
+                            <Button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</Button>
+                            <Modal className="absolute top-20 w-full">
+                                <Dialog>
+                                    <Heading>Joshua Martinez</Heading>
+                                    <Button slot="close">Close</Button>
+                                </Dialog>
+                            </Modal>
+                        </DialogTrigger>
                     </div>
                 </div>
 
@@ -38,8 +51,10 @@ export default function Main() {
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-5 bg-white border border-red-200 shadow-lg p-5 h-min">
-                        <p className="text-slate-500 font-semibold">Core Competencies</p>
+                    <div className="flex flex-col gap-5 bg-white border border-red-200 rounded-sm shadow-lg p-5 h-min">
+                        <div className="bg-linear-to-b from-orange-200 to-red-200 p-5 -ml-5 -mr-5 -mt-5">
+                            <p className="text-red-900 font-semibold">Core Competencies</p>
+                        </div>
 
                         <div className="flex flex-wrap gap-2">
                             <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
@@ -57,14 +72,98 @@ export default function Main() {
             <section id="projects" className="flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <h2 className="text-6xl font-bold w-270">Projects</h2>
 
-                <div>
-                    <div className="w-150 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
-                        <img src="/loopStudiosDesktop.png" alt="" />
-                        <div className="flex flex-col gap-5 bg-white p-5">
+                <div className="flex flex-wrap gap-10 w-270">
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/loopStudiosDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">LoopStudios Landing Page</p>
                             <p className="text-slate-500">
                                 An animation-driven landing page that showcases VR technology. Crafted with React to organize contents of the page into functional components, Tailwind CSS to enhance type-writer effects via the theme directive, and TypeScript
                                 for static typing.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/tipCalculatorDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">Tip Calculator App</p>
+                            <p className="text-slate-500">
+                                A web application powered by React that uses useState() React hooks to store any active states (e.g. the tip button option that is selected). Furthermore, it utilizes a modular approach to organizing the parts of the webpage into different
+                                functional components.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/contactFormDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">Contact Form</p>
+                            <p className="text-slate-500">
+                                A interative contact form using custom-built regex classifications for user input. This customized approach allows dynamic styling for error states pertaining to input fields. Furthermore, the application is powered by React.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/timeTrackingDashboardDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">Time Tracking Dashboard</p>
+                            <p className="text-slate-500">
+                                A multi-component web application that features a responsive design, allowing the components to be organized differently within a grid. The information showcased is dynamically rendered to the webpage via user input when selecting
+                                an option such as 'Daily', 'Weekly', or 'Monthly' which is fetched from an external data.json file.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/newsHomepageDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">News Homepage</p>
+                            <p className="text-slate-500">
+                                A website application that showcases sections tailored to different types of media. The application applies a unique navigation menu on mobile resolutions which uses a modal pop-up which is activated via user-input and a navigation list on
+                                desktop resolutions.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
+                                <p className="text-red-500 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-sm w-120 shadow-sm hover:-translate-y-2 hover:shadow-xl hover:cursor-pointer">
+                        <img className="rounded-t-sm border-b-2 border-red-400" src="/interactiveRatingComponentDesktop.png" alt="" />
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">Interactive Rating Component</p>
+                            <p className="text-slate-500">
+                                An interactive rating component that uses React to store the rating via user-input. The rating is determined by user-selection amongst
+                                an array of buttons that are rendered via a .map() callback function. Upon submission, the state variable that contains
+                                the rating is then displayed to the user in a pop-over dialog.
                             </p>
 
                             <div className="flex flex-wrap gap-2">
