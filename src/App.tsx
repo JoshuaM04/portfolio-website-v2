@@ -3,7 +3,7 @@ import Main from './components/Main'
 
 export default function App() {
   return (
-    <div className="flex flex-col gap-50 min-h-dvh p-5">
+    <div className="flex flex-col min-h-dvh">
       <Header />
       <Main />
     </div>
