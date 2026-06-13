@@ -34,7 +34,16 @@ h2, .personal-overview-container, .featured-projects-container, .featured-experi
     width: clamp(20rem, 30vw, 38.2rem);
 }
 
-section {
+.featured-section {
     padding-top: clamp(5rem, 15vw, 12.5rem);
     padding-bottom: clamp(5rem, 15vw, 12.5rem);
+}
+
+.modal-pop-up {
+    width: clamp(20rem, 50vw, 35rem);
+    height: clamp(20rem, 200vw, 50rem);
+}
+
+.modal-pop-up::backdrop {
+    background-color: black;
 }

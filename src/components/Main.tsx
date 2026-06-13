@@ -17,8 +17,8 @@ export default function Main() {
                         <a href="#contact" className="uppercase border-2 rounded-sm pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-black hover:border-black hover:text-white">Contact</a>
                         <DialogTrigger>
                             <Button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</Button>
-                            <Modal className="bg-white absolute top-0 bottom-0 left-0 right-0 m-auto p-5 w-150 h-200 font-shareTech rounded-sm animate-modal-fade">
-                                <Dialog>
+                            <Modal className="z-2 fixed left-[50%] top-[50%] translate-[-50%] w-full h-full flex justify-center items-center backdrop-blur-lg bg-black/80">
+                                <Dialog className="modal-pop-up bg-white p-5 font-shareTech rounded-sm animate-modal-fade">
                                     <div className="flex justify-between bg-linear-to-r from-red-200 to-orange-200 p-5 -ml-5 -mr-5 -mt-5">
                                         <div>
                                             <p>Resume</p>
@@ -41,7 +41,7 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="personal-overview" className="flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+            <section id="personal-overview" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <h2 className="text-6xl font-bold">Personal Overview</h2>
 
                 <div className="personal-overview-container flex flex-wrap gap-20">
@@ -78,7 +78,7 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="projects" className="flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+            <section id="projects" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <div className="featured-projects-container flex flex-wrap gap-10">
                     <h2 className="text-6xl font-bold">Featured Projects</h2>
                     
@@ -227,7 +227,7 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="experience" className="flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+            <section id="experience" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <div className="featured-experience-container flex flex-wrap gap-10">
                     <h2 className="text-6xl font-bold">Experience</h2>
 
@@ -259,7 +259,7 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="contact" className="flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+            <section id="contact" className=" featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <div className="contact-information-container flex flex-wrap gap-10">
                     <h2 className="text-6xl font-bold">Contact</h2>
 
