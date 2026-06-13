@@ -3,14 +3,15 @@
 
 @theme {
     --font-shareTech: "Share Tech", sans-serif;
-    --animate-border: border ease infinite;
+    --animate-modal-fade: modal-fade 0.5s ease-in forwards;
+    --breakpoint-special: 70.875rem;
 
-    @keyframes border {
+    @keyframes modal-fade {
         0% {
-            border: none;
+            opacity: 0;
         }
         100% {
-            border: 1px solid black;
+            opacity: 1;
         }
     }
 }
