@@ -15,3 +15,20 @@
         }
     }
 }
+
+.hero-container {
+    padding-top: clamp(5rem, 20vw, 27.5rem);
+    padding-bottom: clamp(5rem, 20vw, 27.5rem);
+}
+
+.featured-project, .featured-experience {
+    width: clamp(20rem, 20vw, 67.5rem);
+}
+
+h2, .personal-overview-container, .featured-projects-container, .featured-experience-container, .contact-information-container {
+    width: clamp(20rem, 65vw, 90rem);
+}
+
+.personal-overview-text, .personal-overview-skills {
+    width: clamp(20rem, 30vw, 90rem);
+}
