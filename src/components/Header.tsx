@@ -9,7 +9,7 @@ export default function Header() {
                         <li><a href="#personal-overview" className="hover:animate-border hover:text-red-900 hover:cursor-pointer">about</a></li>
                         <li><a href="#projects" className="hover:animate-border hover:text-red-900 hover:cursor-pointer">projects</a></li>
                         <li><a href="#experience" className="hover:animate-border hover:text-red-900 hover:cursor-pointer">experience</a></li>
-                        <li><a className="hover:animate-border hover:text-red-900 hover:cursor-pointer">contact</a></li>
+                        <li><a href="#contact" className="hover:animate-border hover:text-red-900 hover:cursor-pointer">contact</a></li>
                     </ul>
 
                     <button className="text-white uppercase rounded-sm bg-black pl-6 pr-6 pt-1 pb-1 hover:cursor-pointer hover:bg-red-600">Resume</button>
