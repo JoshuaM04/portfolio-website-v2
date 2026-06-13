@@ -6,7 +6,7 @@ import {Button} from 'react-aria-components/Modal';
 export default function Main() {
     return (
         <main className="bg-orange-100">
-            <section id="hero" className="hero-container bg-linear-to-b from-orange-100 to-red-300 flex justify-center items-center flex-wrap gap-50 pl-5 pr-5">
+            <section id="hero" className="hero-container bg-linear-to-b from-orange-100 to-red-300 flex justify-center items-center flex-wrap pl-5 pr-5">
                 <div id="career-overview" className="flex flex-col gap-5">
                     <p className="font-semibold text-indigo-400">Software Engineer</p>
                     <h1 className="text-8xl">Joshua Martinez</h1>

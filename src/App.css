@@ -19,6 +19,7 @@
 .hero-container {
     padding-top: clamp(5rem, 20vw, 27.5rem);
     padding-bottom: clamp(5rem, 20vw, 27.5rem);
+    gap: clamp(5rem, 20vw, 12.5rem);
 }
 
 .featured-project, .featured-experience {
