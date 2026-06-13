@@ -22,11 +22,11 @@
 }
 
 .featured-project, .featured-experience {
-    width: clamp(20rem, 20vw, 67.5rem);
+    width: clamp(20rem, 18vw, 65rem);
 }
 
 h2, .personal-overview-container, .featured-projects-container, .featured-experience-container, .contact-information-container {
-    width: clamp(20rem, 65vw, 90rem);
+    width: clamp(20rem, 65vw, 95rem);
 }
 
 .personal-overview-text, .personal-overview-skills {
