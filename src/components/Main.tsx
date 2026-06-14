@@ -18,7 +18,7 @@ export default function Main() {
                         <DialogTrigger>
                             <Button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</Button>
                             <Modal className="z-2 fixed left-[50%] top-[50%] translate-[-50%] w-full h-full flex justify-center items-center backdrop-blur-lg bg-black/80">
-                                <Dialog className="modal-pop-up bg-white flex flex-col gap-5 p-5 font-shareTech rounded-sm animate-modal-fade">
+                                <Dialog className="modal-pop-up bg-white flex flex-col gap-5 p-5 font-shareTech rounded-sm animate-modal-fade h-fit">
                                     <div className="flex justify-between bg-linear-to-r from-red-200 to-orange-200 p-5 -ml-5 -mr-5 -mt-5 rounded-t-sm">
                                         <div>
                                             <p>Resume</p>
