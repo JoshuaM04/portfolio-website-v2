@@ -9,7 +9,7 @@ export default function Main() {
             <section id="hero" className="hero-container bg-linear-to-b from-orange-100 to-red-300 flex justify-center items-center flex-wrap pl-5 pr-5">
                 <div id="career-overview" className="flex flex-col gap-5">
                     <p className="font-semibold text-indigo-400">Software Engineer</p>
-                    <h1 className="text-8xl">Joshua Martinez</h1>
+                    <h1 className="text-8xl max-sm:text-4xl">Joshua Martinez</h1>
                     <p className="text-slate-500">I specialize in crafting interactive, responsive, and accessible applications.</p>
                     
                     <div id="cta-buttons" className="font-semibold flex gap-5">
@@ -18,17 +18,66 @@ export default function Main() {
                         <DialogTrigger>
                             <Button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</Button>
                             <Modal className="z-2 fixed left-[50%] top-[50%] translate-[-50%] w-full h-full flex justify-center items-center backdrop-blur-lg bg-black/80">
-                                <Dialog className="modal-pop-up bg-white p-5 font-shareTech rounded-sm animate-modal-fade">
-                                    <div className="flex justify-between bg-linear-to-r from-red-200 to-orange-200 p-5 -ml-5 -mr-5 -mt-5">
+                                <Dialog className="modal-pop-up bg-white flex flex-col gap-5 p-5 font-shareTech rounded-sm animate-modal-fade">
+                                    <div className="flex justify-between bg-linear-to-r from-red-200 to-orange-200 p-5 -ml-5 -mr-5 -mt-5 rounded-t-sm">
                                         <div>
                                             <p>Resume</p>
                                             <Heading className="text-2xl">Joshua Martinez</Heading>
                                         </div>
                                         <Button slot="close">
-                                            <svg className="bg-orange-300 rounded-full size-6 w-8 h-8 p-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                                            <svg className="bg-white/30 hover:bg-red-500/20 rounded-full size-6 w-8 h-8 p-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
                                             </svg>
                                         </Button>
+                                    </div>
+                                    <div className="flex flex-col gap-10 justify-center">
+                                        <p className="text-xl">Software Engineer - Frontend Developer</p>
+
+                                        <div className="flex flex-col gap-10 p-5 bg-orange-500/10 rounded-sm border border-red-900">
+                                            <div className="flex flex-col gap-2">
+                                                <div>
+                                                    <p className="uppercase">education</p>
+                                                    <hr />
+                                                </div>
+                                                <div className="flex justify-between">
+                                                    <p>B.S. Computer Science @ Texas State University</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-col gap-2">
+                                                <div>
+                                                    <p className="uppercase">experience</p>
+                                                    <hr />
+                                                </div>
+
+                                                <div className="flex justify-between">
+                                                    <p>AI Tester and Validation @ Stellar AI</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-col gap-2">
+                                                <div>
+                                                    <p className="uppercase">core competencies</p>
+                                                    <hr />
+                                                </div>
+
+                                                <div className="flex flex-wrap gap-5">
+                                                    <p>HTML5</p>
+                                                    <p>CSS3</p>
+                                                    <p>TypeScript</p>
+                                                    <p>Tailwind CSS</p>
+                                                    <p>React</p>
+                                                    <p>Figma</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="/Computer Science Resume.pdf" download className="flex justify-center items-center gap-4 text-xl text-white rounded-sm bg-black pl-6 pr-6 pt-1 pb-1 hover:cursor-pointer w-fit hover:bg-red-600">
+                                            Download
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </Dialog>
                             </Modal>
@@ -37,7 +86,7 @@ export default function Main() {
                 </div>
 
                 <div id="portrait">
-                    <img className="rounded-sm" src="/austin-texas.webp" />
+                    <img className="rounded-sm" src="/austin-texas.webp" alt="Downtown Austin" />
                 </div>
             </section>
 
@@ -72,7 +121,6 @@ export default function Main() {
                             <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">Tailwind CSS</p>
                             <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">React</p>
                             <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">Figma</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">PostgreSQL</p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +131,7 @@ export default function Main() {
                     <h2 className="text-6xl font-bold">Featured Projects</h2>
                     
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://loop-studios-landing-page-kohl.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/loopStudiosDesktop.png" alt="" /></a>
+                        <a href="https://loop-studios-landing-page-kohl.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/loopStudiosDesktop.png" alt="LoopStudios Landing Page" /></a>
                         
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">LoopStudios Landing Page</p>
@@ -107,7 +155,7 @@ export default function Main() {
                     </div>
 
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://tip-calculator-app-brown-three.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/tipCalculatorDesktop.png" alt="" /></a>
+                        <a href="https://tip-calculator-app-brown-three.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/tipCalculatorDesktop.png" alt="Tip Calculator App" /></a>
 
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">Tip Calculator App</p>
@@ -131,7 +179,7 @@ export default function Main() {
                     </div>
 
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://contact-form-eosin-psi.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/contactFormDesktop.png" alt="" /></a>
+                        <a href="https://contact-form-eosin-psi.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/contactFormDesktop.png" alt="Contact Form" /></a>
 
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">Contact Form</p>
@@ -154,7 +202,7 @@ export default function Main() {
                     </div>
 
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://time-tracking-dashboard-zeta-plum.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/timeTrackingDashboardDesktop.png" alt="" /></a>
+                        <a href="https://time-tracking-dashboard-zeta-plum.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/timeTrackingDashboardDesktop.png" alt="Time Tracking Dashboard" /></a>
 
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">Time Tracking Dashboard</p>
@@ -178,7 +226,7 @@ export default function Main() {
                     </div>
 
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://news-homepage-seven-sooty.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/newsHomepageDesktop.png" alt="" /></a>
+                        <a href="https://news-homepage-seven-sooty.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/newsHomepageDesktop.png" alt="News Homepage" /></a>
 
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">News Homepage</p>
@@ -201,7 +249,7 @@ export default function Main() {
                     </div>
 
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://interactive-rating-component-azure-seven.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/interactiveRatingComponentDesktop.png" alt="" /></a>
+                        <a href="https://interactive-rating-component-azure-seven.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/interactiveRatingComponentDesktop.png" alt="Interactive Rating Component" /></a>
 
                         <div className="flex flex-col gap-5 p-5">
                             <p className="font-semibold">Interactive Rating Component</p>
@@ -259,24 +307,34 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="contact" className=" featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
-                <div className="contact-information-container flex flex-wrap gap-10">
+            <section id="contact" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+                <div className="contact-information-container flex flex-col gap-10">
                     <h2 className="text-6xl font-bold">Contact</h2>
 
-                    <div className="flex flex-col gap-5">
-                        <div className="flex flex-col gap-5">
-                            <p className="uppercase">Email:</p>
-                            <p className="uppercase">Phone:</p>
-                            <p className="uppercase">Location:</p>
+                    <div className="bg-orange-500/10 p-10 rounded-sm border border-red-500">
+                        <div className="contact-information flex flex-wrap gap-50">
+                            <div>
+                                <p className="uppercase font-bold">email</p>
+                                <p>joshmartinezny08@gmail.com</p>
+                            </div>
+                            <div>
+                                <p className="uppercase font-bold">phone</p>
+                                <p>+1 737-213-6739</p>
+                            </div>
+                            <div>
+                                <p className="uppercase font-bold">location</p>
+                                <p>San Marcos, TX</p>
+                            </div>
                         </div>
-                        <div className="flex gap-5">
-                            <a href="">
-                                <svg fill="#000000" width="40px" height="40px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#000000" strokeWidth="0.00024000000000000003" transform="rotate(0)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.192"></g><g id="SVGRepo_iconCarrier"> <g data-name="Layer 2"> <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect> <path d="M12 1A10.89 10.89 0 0 0 1 11.77 10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11 2.37 2.37 0 0 0 3.2.89 2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91 3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.68 10.68 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77 10.89 10.89 0 0 0 12 1" data-name="github"></path> </g> </g></svg>
-                            </a>
-                            <a href="">
-                                <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z" fill="#000000"></path> </g></svg>
-                            </a>
-                        </div>
+                    </div>
+
+                    <div className="flex gap-5">
+                        <a href="https://github.com/JoshuaM04">
+                            <svg fill="#000000" width="40px" height="40px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#000000" strokeWidth="0.00024000000000000003" transform="rotate(0)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.192"></g><g id="SVGRepo_iconCarrier"> <g data-name="Layer 2"> <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect> <path d="M12 1A10.89 10.89 0 0 0 1 11.77 10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11 2.37 2.37 0 0 0 3.2.89 2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91 3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.68 10.68 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77 10.89 10.89 0 0 0 12 1" data-name="github"></path> </g> </g></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/joshua-martinez-1aa853212/">
+                            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z" fill="#000000"></path> </g></svg>
+                        </a>
                     </div>
                 </div>
             </section>
