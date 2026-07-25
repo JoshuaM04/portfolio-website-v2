@@ -128,7 +128,7 @@ export default function Main() {
 
             <section id="projects" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
                 <div className="featured-projects-container flex flex-wrap gap-10">
-                    <h2 className="text-6xl font-bold">Featured Projects</h2>
+                    <h2 className="text-6xl font-bold">UI/UX Projects</h2>
                     
                     <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
                         <a href="https://loop-studios-landing-page-kohl.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/loopStudiosDesktop.png" alt="LoopStudios Landing Page" /></a>
@@ -269,6 +269,33 @@ export default function Main() {
                                 <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
                                 <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
                                 <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="featured-projects-container pt-50 pb-50 flex flex-col gap-10">
+                    <h2 className="text-6xl font-bold">Full-Stack Apps</h2>
+
+                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
+                        <a href="https://woodwork-creations.com/"><img className="rounded-t-sm border-b-2 border-red-400" src="/woodworkCreations.png" alt="WoodWork Creations" /></a>
+
+                        <div className="flex flex-col gap-5 p-5">
+                            <p className="font-semibold">WoodWork Creations</p>
+
+                            <p className="text-slate-500">
+                                An E-Commerce website utilizing the MERN tech stack. This website hosts a catalog of hand-made furniture items that are apart of a family-run business and utilizes the Stripe API for payment processing.
+                                The backend utilizes dynamic routing for each catalog page to host reviews unique to each catalog item that is stored in the database.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">MongoDB</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Express.JS</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Node.JS</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Stripe API</p>
                             </div>
                         </div>
                     </div>
