@@ -2,6 +2,7 @@ import {DialogTrigger} from 'react-aria-components/Modal';
 import {Modal} from 'react-aria-components/Modal';
 import {Dialog, Heading} from 'react-aria-components/Modal';
 import {Button} from 'react-aria-components/Modal';
+import { projectInformationOne, projectInformationTwo } from '../data';
 
 export default function Main() {
     return (
@@ -126,179 +127,65 @@ export default function Main() {
                 </div>
             </section>
 
-            <section id="projects" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
+            <section id="projects" className="featured-section flex flex-col items-center gap-100 pt-50 pb-50 pl-5 pr-5">
                 <div className="featured-projects-container flex flex-wrap gap-10">
                     <h2 className="text-6xl font-bold">UI/UX Projects</h2>
-                    
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://loop-studios-landing-page-kohl.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/loopStudiosDesktop.png" alt="LoopStudios Landing Page" /></a>
-                        
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">LoopStudios Landing Page</p>
-                            <p className="text-slate-500">
-                                An animation-driven landing page that showcases VR technology. Crafted with React to organize contents of the page into functional components, Tailwind CSS to enhance type-writer effects via the theme directive, and TypeScript
-                                for static typing.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/LoopStudios-Landing-Page" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
+                    {
+                        projectInformationOne.map((item, index) => (
+                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
+                                <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
+                                
+                                <div className="flex flex-col gap-5 p-5">
+                                    <p className="font-semibold">{item.heading}</p>
+                                    <p className="text-slate-500">
+                                        {item.description}
+                                    </p>
+                                    <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
+                                        Source
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                        </svg>
+                                    </a>
 
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://tip-calculator-app-brown-three.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/tipCalculatorDesktop.png" alt="Tip Calculator App" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">Tip Calculator App</p>
-                            <p className="text-slate-500">
-                                A web application powered by React that uses useState() React hooks to store any active states (e.g. the tip button option that is selected). Furthermore, it utilizes a modular approach to organizing the parts of the webpage into different
-                                functional components.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/Tip-Calculator-App" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://contact-form-eosin-psi.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/contactFormDesktop.png" alt="Contact Form" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">Contact Form</p>
-                            <p className="text-slate-500">
-                                A interative contact form using custom-built regex classifications for user input. This customized approach allows dynamic styling for error states pertaining to input fields. Furthermore, the application is powered by React.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/Contact-Form" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://time-tracking-dashboard-zeta-plum.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/timeTrackingDashboardDesktop.png" alt="Time Tracking Dashboard" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">Time Tracking Dashboard</p>
-                            <p className="text-slate-500">
-                                A multi-component web application that features a responsive design, allowing the components to be organized differently within a grid. The information showcased is dynamically rendered to the webpage via user input when selecting
-                                an option such as 'Daily', 'Weekly', or 'Monthly' which is fetched from an external data.json file.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/Time-Tracking-Dashboard" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">JavaScript</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://news-homepage-seven-sooty.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/newsHomepageDesktop.png" alt="News Homepage" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">News Homepage</p>
-                            <p className="text-slate-500">
-                                A website application that showcases sections tailored to different types of media. The application applies a unique navigation menu on mobile resolutions which uses a modal pop-up which is activated via user-input and a navigation list on
-                                desktop resolutions.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/News-Homepage" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">HTML5</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">CSS3</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://interactive-rating-component-azure-seven.vercel.app/"><img className="rounded-t-sm border-b-2 border-red-400" src="/interactiveRatingComponentDesktop.png" alt="Interactive Rating Component" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">Interactive Rating Component</p>
-                            <p className="text-slate-500">
-                                An interactive rating component that uses React to store the rating via user-input. The rating is determined by user-selection amongst
-                                an array of buttons that are rendered via a .map() callback function. Upon submission, the state variable that contains
-                                the rating is then displayed to the user in a pop-over dialog.
-                            </p>
-                            <a href="https://github.com/JoshuaM04/Interactive-Rating-Component" className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                Source
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                </svg>
-                            </a>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                 </div>
 
-                <div className="featured-projects-container pt-50 pb-50 flex flex-col gap-10">
+                <div className="featured-projects-container flex flex-wrap gap-10">
                     <h2 className="text-6xl font-bold">Full-Stack Apps</h2>
+                    {
+                        projectInformationTwo.map((item, index) => (
+                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
+                                <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
+                                
+                                <div className="flex flex-col gap-5 p-5">
+                                    <p className="font-semibold">{item.heading}</p>
+                                    <p className="text-slate-500">
+                                        {item.description}
+                                    </p>
+                                    <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
+                                        Source
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                        </svg>
+                                    </a>
 
-                    <div className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
-                        <a href="https://woodwork-creations.com/"><img className="rounded-t-sm border-b-2 border-red-400" src="/woodworkCreations.png" alt="WoodWork Creations" /></a>
-
-                        <div className="flex flex-col gap-5 p-5">
-                            <p className="font-semibold">WoodWork Creations</p>
-
-                            <p className="text-slate-500">
-                                An E-Commerce website utilizing the MERN tech stack. This website hosts a catalog of hand-made furniture items that are apart of a family-run business and utilizes the Stripe API for payment processing.
-                                The backend utilizes dynamic routing for each catalog page to host reviews unique to each catalog item that is stored in the database.
-                            </p>
-
-                            <div className="flex flex-wrap gap-2">
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">MongoDB</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Express.JS</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Node.JS</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
-                                <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Stripe API</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
+                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                 </div>
             </section>
 
