@@ -76,7 +76,7 @@ export default function Main() {
                                         </p>
                                     </div>
 
-                                    <div className=""></div>
+                                    <div></div>
 
                                     <div className="flex flex-col gap-5 absolute bottom-5">
                                         <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
@@ -116,7 +116,7 @@ export default function Main() {
                                         </p>
                                     </div>
 
-                                    <div className=""></div>
+                                    <div></div>
 
                                     <div className="flex flex-col gap-5 absolute bottom-5">
                                         <p>Tech Stack</p>
