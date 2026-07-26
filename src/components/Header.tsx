@@ -69,7 +69,6 @@ export default function Header() {
                                                     <p>TypeScript</p>
                                                     <p>Tailwind CSS</p>
                                                     <p>React</p>
-                                                    <p>Figma</p>
                                                 </div>
                                             </div>
                                         </div>
