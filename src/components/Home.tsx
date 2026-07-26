@@ -50,8 +50,8 @@ export default function Main() {
 
                         <div className="flex flex-wrap gap-2">
                             {
-                                coreCompentencies.map((item) => (
-                                    <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">{item}</p>
+                                coreCompentencies.map((item, index) => (
+                                    <p key={index} className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">{item}</p>
                                 ))
                             }
                         </div>
@@ -88,8 +88,8 @@ export default function Main() {
 
                                         <div className="flex flex-wrap gap-2">
                                             {
-                                                item.tools.map((tool) => (
-                                                    <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
+                                                item.tools.map((tool, index) => (
+                                                    <p key={index} className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
                                                 ))
                                             }
                                         </div>
@@ -119,17 +119,12 @@ export default function Main() {
                                     <div className=""></div>
 
                                     <div className="flex flex-col gap-5 absolute bottom-5">
-                                        <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                            Source
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                            </svg>
-                                        </a>
+                                        <p>Tech Stack</p>
 
                                         <div className="flex flex-wrap gap-2">
                                             {
-                                                item.tools.map((tool) => (
-                                                    <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
+                                                item.tools.map((tool, index) => (
+                                                    <p key={index} className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
                                                 ))
                                             }
                                         </div>
