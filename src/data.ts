@@ -55,7 +55,6 @@ export const projectInformationTwo = [
         link: 'https://woodwork-creations.com/',
         heading: 'WoodWork Creations',
         description: 'An E-Commerce website utilizing the MERN tech stack. This website hosts a catalog of hand-made furniture items that are apart of a family-run business and utilizes the Stripe API for payment processing. The backend utilizes dynamic routing for each catalog page to host reviews unique to each catalog item that is stored in the database.',
-        source: 'https://github.com/JoshuaM04/carpentry-website',
         tools: ['MongoDB', 'Express.JS', 'React', 'Node.JS', 'TypeScript', 'Tailwind CSS', 'Stripe API']
     }
 ];
