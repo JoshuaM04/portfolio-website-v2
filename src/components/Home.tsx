@@ -1,10 +1,9 @@
-import {DialogTrigger} from 'react-aria-components/Modal';
-import {Modal} from 'react-aria-components/Modal';
-import {Dialog, Heading} from 'react-aria-components/Modal';
-import {Button} from 'react-aria-components/Modal';
+import Resume from './Resume';
 import { projectInformationOne, projectInformationTwo } from '../data';
 
 export default function Main() {
+    const coreCompentencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
+
     return (
         <main className="bg-orange-100">
             <section id="hero" className="hero-container bg-linear-to-b from-orange-100 to-red-300 flex justify-center items-center flex-wrap pl-5 pr-5">
@@ -16,73 +15,8 @@ export default function Main() {
                     <div id="cta-buttons" className="font-semibold flex gap-5">
                         <a href="#projects" className="text-white uppercase rounded-sm bg-black pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-red-600">Projects</a>
                         <a href="#contact" className="uppercase border-2 rounded-sm pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-black hover:border-black hover:text-white">Contact</a>
-                        <DialogTrigger>
-                            <Button className="text-white uppercase rounded-sm bg-indigo-400 pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-indigo-300">Resume</Button>
-                            <Modal className="z-2 fixed left-[50%] top-[50%] translate-[-50%] w-full h-full flex justify-center items-center backdrop-blur-lg bg-black/80">
-                                <Dialog className="modal-pop-up bg-white flex flex-col gap-5 p-5 font-shareTech rounded-sm animate-modal-fade h-fit">
-                                    <div className="flex justify-between bg-linear-to-r from-red-200 to-orange-200 p-5 -ml-5 -mr-5 -mt-5 rounded-t-sm">
-                                        <div>
-                                            <p>Resume</p>
-                                            <Heading className="text-2xl">Joshua Martinez</Heading>
-                                        </div>
-                                        <Button slot="close">
-                                            <svg className="bg-white/30 hover:bg-red-500/20 rounded-full size-6 w-8 h-8 p-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                            </svg>
-                                        </Button>
-                                    </div>
-                                    <div className="flex flex-col gap-10 justify-center">
-                                        <p className="text-xl">Software Engineer - Frontend Developer</p>
-
-                                        <div className="flex flex-col gap-10 p-5 bg-orange-500/10 rounded-sm border border-red-900">
-                                            <div className="flex flex-col gap-2">
-                                                <div>
-                                                    <p className="uppercase">education</p>
-                                                    <hr />
-                                                </div>
-                                                <div className="flex justify-between">
-                                                    <p>B.S. Computer Science @ Texas State University</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex flex-col gap-2">
-                                                <div>
-                                                    <p className="uppercase">experience</p>
-                                                    <hr />
-                                                </div>
-
-                                                <div className="flex justify-between">
-                                                    <p>AI Tester and Validation @ Stellar AI</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="flex flex-col gap-2">
-                                                <div>
-                                                    <p className="uppercase">core competencies</p>
-                                                    <hr />
-                                                </div>
-
-                                                <div className="flex flex-wrap gap-5">
-                                                    <p>HTML5</p>
-                                                    <p>CSS3</p>
-                                                    <p>TypeScript</p>
-                                                    <p>Tailwind CSS</p>
-                                                    <p>React</p>
-                                                    <p>Figma</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <a href="/Computer Science Resume.pdf" download className="flex justify-center items-center gap-4 text-xl text-white rounded-sm bg-black pl-6 pr-6 pt-1 pb-1 hover:cursor-pointer w-fit hover:bg-red-600">
-                                            Download
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-5">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </Dialog>
-                            </Modal>
-                        </DialogTrigger>
+                        
+                        <Resume />
                     </div>
                 </div>
 
@@ -96,15 +30,14 @@ export default function Main() {
 
                 <div className="personal-overview-container flex flex-wrap gap-20">
                     <div className="personal-overview-text flex flex-col gap-5">
-                        <p className="text-slate-500">
+                        <p>
                             I'm a <span className="font-bold">recent graduate</span> Software Engineer specializing in building accessible, responsive web applications using
                             HTML, CSS, TypeScript, React, and Tailwind CSS, with a strong focus on WCAG
                             compliant design.
                         </p>
-                        <p className="text-slate-500">
+                        <p>
                             Experience enhancing AI model accuracy and optimizing development
-                            workflows through testing and validation, alongside working with relational databases in
-                            UNIX-like environments using PostgreSQL, SQL, and Bash. Actively expanding into back
+                            workflows through testing and validation, alongside working with non-relational databases such as MongoDB. Actively expanding into back
                             end and full-stack development while continuously refining technical skills and workflow
                             efficiency.
                         </p>
@@ -116,41 +49,50 @@ export default function Main() {
                         </div>
 
                         <div className="flex flex-wrap gap-2">
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">HTML5</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">CSS3</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">TypeScript</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">Tailwind CSS</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">React</p>
-                            <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">Figma</p>
+                            {
+                                coreCompentencies.map((item) => (
+                                    <p className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">{item}</p>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="projects" className="featured-section flex flex-col items-center gap-100 pt-50 pb-50 pl-5 pr-5">
-                <div className="featured-projects-container flex flex-wrap gap-10">
+            <section id="projects" className="featured-section flex flex-col items-center pt-50 pb-50 pl-5 pr-5">
+                <div className="featured-projects-container flex flex-wrap gap-10 pb-50">
                     <h2 className="text-6xl font-bold">UI/UX Projects</h2>
                     {
                         projectInformationOne.map((item, index) => (
-                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
+                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer relative">
                                 <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
                                 
-                                <div className="flex flex-col gap-5 p-5">
-                                    <p className="font-semibold">{item.heading}</p>
-                                    <p className="text-slate-500">
-                                        {item.description}
-                                    </p>
-                                    <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                        Source
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </a>
+                                <div className="flex flex-col justify-between gap-25 p-5">
+                                    <div className="flex flex-col gap-5">
+                                        <p className="font-semibold">{item.heading}</p>
 
-                                    <div className="flex flex-wrap gap-2">
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                        <p className="text-slate-500">
+                                            {item.description}
+                                        </p>
+                                    </div>
+
+                                    <div className=""></div>
+
+                                    <div className="flex flex-col gap-5 absolute bottom-5">
+                                        <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
+                                            Source
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                            </svg>
+                                        </a>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {
+                                                item.tools.map((tool) => (
+                                                    <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
+                                                ))
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -158,29 +100,39 @@ export default function Main() {
                     }
                 </div>
 
-                <div className="featured-projects-container flex flex-wrap gap-10">
+                <div className="featured-projects-container flex flex-wrap gap-10 pt-50">
                     <h2 className="text-6xl font-bold">Full-Stack Apps</h2>
                     {
                         projectInformationTwo.map((item, index) => (
-                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer">
+                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer relative">
                                 <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
                                 
-                                <div className="flex flex-col gap-5 p-5">
-                                    <p className="font-semibold">{item.heading}</p>
-                                    <p className="text-slate-500">
-                                        {item.description}
-                                    </p>
-                                    <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                        Source
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </a>
+                                <div className="flex flex-col justify-between gap-45 p-5">
+                                    <div className="flex flex-col gap-5">
+                                        <p className="font-semibold">{item.heading}</p>
 
-                                    <div className="flex flex-wrap gap-2">
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">React</p>
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">TypeScript</p>
-                                        <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">Tailwind CSS</p>
+                                        <p className="text-slate-500">
+                                            {item.description}
+                                        </p>
+                                    </div>
+
+                                    <div className=""></div>
+
+                                    <div className="flex flex-col gap-5 absolute bottom-5">
+                                        <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
+                                            Source
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                            </svg>
+                                        </a>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {
+                                                item.tools.map((tool) => (
+                                                    <p className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
+                                                ))
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
