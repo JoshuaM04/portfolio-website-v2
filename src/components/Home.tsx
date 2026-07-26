@@ -135,6 +135,10 @@ export default function Main() {
                                         </div>
                                     </div>
                                 </div>
+
+                                <div id="new-label" className="text-black bg-white border-2 border-black rounded-full p-1 absolute top-1 right-1">
+                                    <p className="text-sm uppercase font-bold">new</p>
+                                </div>
                             </div>
                         ))
                     }
