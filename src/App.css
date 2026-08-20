@@ -57,6 +57,12 @@
         100% { transform: translateX(-50%); }
     }
 
+    @keyframes sheen-sweep {
+        0%   { background-position: -75% -75%, 0 0; }
+        42%  { background-position: 175% 175%, 0 0; }
+        100% { background-position: 175% 175%, 0 0; }
+    }
+
     @keyframes rise {
         0%   { opacity: 0; transform: translateY(0.75rem); }
         100% { opacity: 1; transform: translateY(0); }
@@ -656,23 +662,56 @@
     }
 
     /* The oversized outline statement that overlaps the hero image. */
+    /* Specular sweep, shared by both hero lines.
+       --------------------------------------------------------------------
+       Two background layers are clipped to the glyphs: a narrow bright band
+       on top, and the element's own base fill underneath. Only the band's
+       position animates — the base stays pinned at 0 0 — so the highlight
+       travels diagonally across the letterforms while the fill sits still.
+       The band is oriented at 135deg, perpendicular to its own travel, which
+       is what makes it read as light crossing a surface rather than a
+       gradient sliding sideways.
+
+       The long tail on the keyframes is deliberate: the pass takes about 42%
+       of the cycle and the rest is rest, so it glints occasionally instead of
+       strobing. */
+    .sheen {
+        background-repeat: no-repeat;
+        background-size: 220% 220%, 100% 100%;
+        background-position: -75% -75%, 0 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: sheen-sweep 7s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+    }
+
     /* The headline is painted as a gradient clipped to the glyphs rather than a
        flat fill: near-opaque bone at the top easing to a translucent steel at
        the baseline, so the mesh reads faintly through the lower half and the
        type picks up a sheen instead of sitting on top as a solid slab. Set
        after .display-xl so it wins the colour. */
     .hero-heading {
-        background-image: linear-gradient(
-            170deg,
-            rgba(244, 244, 241, 0.97) 0%,
-            rgba(244, 244, 241, 0.88) 42%,
-            rgba(189, 206, 222, 0.66) 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        background-image:
+            linear-gradient(
+                135deg,
+                rgba(244, 244, 241, 0) 44%,
+                rgba(255, 255, 255, 0.92) 50%,
+                rgba(244, 244, 241, 0) 56%
+            ),
+            linear-gradient(
+                170deg,
+                rgba(244, 244, 241, 0.97) 0%,
+                rgba(244, 244, 241, 0.88) 42%,
+                rgba(189, 206, 222, 0.66) 100%
+            );
     }
 
+    /* Same treatment as the headline, one step dimmer since it sits behind in
+       the hierarchy. The delay is what makes the glint read as one continuous
+       pass: the headline's sweep finishes around 2.9s, so this picks it up just
+       before that and carries it down the composition. Its own translucency is
+       baked into the fill rather than applied with mix-blend-mode, which cannot
+       be combined with a clipped background. */
     .hero-statement {
         font-family: var(--font-display);
         font-weight: 400;
@@ -680,9 +719,20 @@
         line-height: 0.95;
         letter-spacing: -0.03em;
         text-transform: uppercase;
-        color: rgba(244, 244, 241, 0.72);
         text-align: right;
-        mix-blend-mode: screen;
+        background-image:
+            linear-gradient(
+                135deg,
+                rgba(244, 244, 241, 0) 44%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(244, 244, 241, 0) 56%
+            ),
+            linear-gradient(
+                170deg,
+                rgba(244, 244, 241, 0.82) 0%,
+                rgba(189, 206, 222, 0.55) 100%
+            );
+        animation-delay: 2.4s;
     }
 
     /* ==========================================================================

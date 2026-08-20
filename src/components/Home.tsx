@@ -46,7 +46,7 @@ function Hero() {
                         <span className="micro">Software Engineer</span>
                     </div>
 
-                    <h1 className="display-xl hero-heading">
+                    <h1 className="display-xl hero-heading sheen">
                         Building<br />
                         interfaces that<br />
                         move
@@ -56,7 +56,7 @@ function Hero() {
                 {/* Base rail: supporting copy on the left, the overlapping
                     statement on the right. */}
                 <div className="flex flex-col gap-12 pt-20">
-                    <p className="hero-statement ml-auto max-w-3xl">
+                    <p className="hero-statement sheen ml-auto max-w-3xl">
                         Turning complexity<br />into clarity
                     </p>
 
