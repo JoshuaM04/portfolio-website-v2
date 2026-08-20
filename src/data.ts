@@ -6,7 +6,6 @@ export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 
  * there, since repeating them would flatten that distinction.
  */
 export const toolsAndTechnologies = [
-    'JavaScript',
     'Sass',
     'React Router',
     'Node.js',
