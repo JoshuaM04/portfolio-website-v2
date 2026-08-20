@@ -60,22 +60,15 @@ function Hero() {
                         Clear, responsive,<br />and built to last
                     </p>
 
-                    <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
-                        <div className="flex flex-wrap gap-x-12 gap-y-8">
-                            <p className="micro max-w-[22rem] leading-relaxed">
-                                Working across accessibility, responsive design, and frontend
-                                architecture to build applications that communicate clearly.
-                            </p>
-                            <p className="micro max-w-[16rem] leading-relaxed">
-                                Crafting interfaces that feel as intentional as they look.
-                            </p>
-                        </div>
-
-                        <div className="flex flex-wrap gap-3">
-                            <a href="#projects" className="btn-solid">Projects</a>
-                            <a href="#contact" className="btn-outline">Contact</a>
-                            <Resume variant="outline" />
-                        </div>
+                    {/* Right-aligned to sit under the statement above it. The
+                        supporting paragraphs that used to share this row were
+                        removed: they repeated what the overview says at length,
+                        and on narrow screens they stacked into a wall of small
+                        caps directly beneath the headline. */}
+                    <div className="flex flex-wrap justify-end gap-3">
+                        <a href="#projects" className="btn-solid">Projects</a>
+                        <a href="#contact" className="btn-outline">Contact</a>
+                        <Resume variant="outline" />
                     </div>
                 </div>
             </div>
