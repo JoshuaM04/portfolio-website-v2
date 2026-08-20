@@ -48,8 +48,8 @@ function Hero() {
 
                     <h1 className="display-xl hero-heading sheen">
                         Building<br />
-                        interfaces that<br />
-                        move
+                        accessible<br />
+                        interfaces
                     </h1>
                 </div>
 
@@ -57,7 +57,7 @@ function Hero() {
                     statement on the right. */}
                 <div className="flex flex-col gap-12 pt-20">
                     <p className="hero-statement sheen ml-auto max-w-3xl">
-                        Turning complexity<br />into clarity
+                        Clear, responsive,<br />and built to last
                     </p>
 
                     <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
