@@ -273,8 +273,10 @@ function Experience() {
                 <h2 className="display-lg pb-14">Experience</h2>
 
                 {/* Towers wrap into a row as roles are added rather than
-                    stretching to fill the shell. */}
-                <div className="flex flex-wrap gap-6">
+                    stretching to fill the shell. Below md the project grid
+                    drops to a single column, so the capped towers centre to
+                    match it instead of hugging the left edge. */}
+                <div className="flex flex-wrap gap-6 justify-center md:justify-start">
                     {workExperience.map((role, index) => (
                         <article
                             key={index}
