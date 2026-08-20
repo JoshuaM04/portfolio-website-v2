@@ -1,20 +1,17 @@
 import Resume from './Resume';
-import { Marker, SectionLabel, Marquee, Framed } from './Primitives';
+import { Marker, SectionLabel, Framed } from './Primitives';
 import {
     projectInformationOne,
     projectInformationTwo,
     coreCompetencies,
     workExperience,
     contactDetails,
-    socialLinks,
-    marqueeItems,
 } from '../data';
 
 export default function Main() {
     return (
         <main>
             <Hero />
-            <TickerRails />
             <PersonalOverview />
             <Projects />
             <Experience />
@@ -31,7 +28,7 @@ function Hero() {
     return (
         <section id="hero" className="hero">
             <div className="hero-media">
-                <img src="/austin-texas.webp" alt="" aria-hidden="true" />
+                <img src="/hero-image.webp" alt="" aria-hidden="true" />
             </div>
             <div className="hero-veil" aria-hidden="true" />
 
@@ -80,20 +77,6 @@ function Hero() {
     );
 }
 
-/* ==========================================================================
-   TICKER RAILS
-   ========================================================================== */
-
-function TickerRails() {
-    return (
-        <div className="relative overflow-hidden py-12 bg-ink-950" aria-hidden="true">
-            <div className="flex flex-col gap-2">
-                <Marquee items={marqueeItems} angle={-2} duration={38} />
-                <Marquee items={marqueeItems} angle={2} duration={44} reverse />
-            </div>
-        </div>
-    );
-}
 
 /* ==========================================================================
    PERSONAL OVERVIEW
@@ -128,8 +111,6 @@ function PersonalOverview() {
                             MongoDB. Actively expanding into back end and full-stack development while
                             continuously refining technical skills and workflow efficiency.
                         </p>
-
-                        <a href="#contact" className="bracket-link w-fit">Get in touch</a>
                     </div>
 
                     <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">
@@ -148,14 +129,13 @@ function PersonalOverview() {
                             <div className="media-hover overflow-hidden bg-ink-900">
                                 <img
                                     className="media w-full h-64 object-cover"
-                                    src="/austin-texas.webp"
+                                    src="/hero-image.webp"
                                     alt="Downtown Austin, Texas"
                                 />
                             </div>
                         </Framed>
 
                         <div className="flex items-center gap-3">
-                            <Marker small />
                             <span className="micro-sm">Based in San Marcos, Texas</span>
                         </div>
                     </div>
@@ -353,23 +333,6 @@ function Contact() {
                                     )}
                                 </div>
                             ))}
-                        </div>
-
-                        <div className="flex flex-col gap-3">
-                            <span className="micro-sm">Elsewhere</span>
-                            <div className="flex flex-col items-start gap-1">
-                                {socialLinks.map((link, index) => (
-                                    <a
-                                        key={index}
-                                        href={link.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="bracket-link bracket-link-ghost"
-                                    >
-                                        {link.label}
-                                    </a>
-                                ))}
-                            </div>
                         </div>
                     </div>
                 </div>

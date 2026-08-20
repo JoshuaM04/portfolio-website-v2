@@ -22,7 +22,7 @@ export default function Header() {
 
                     <a
                         href="#hero"
-                        className="display-md text-lg md:text-xl lowercase tracking-tight hover:text-haze-300 transition-colors duration-300"
+                        className="display-md text-lg md:text-xl tracking-tight hover:text-haze-300 transition-colors duration-300"
                     >
                         joshua martinez
                     </a>

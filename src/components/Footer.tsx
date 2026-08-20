@@ -1,16 +1,6 @@
 import { Marker } from './Primitives';
 import { socialLinks } from '../data';
 
-const siteLinks = [
-    { href: '#hero', label: 'Home' },
-    { href: '#personal-overview', label: 'About' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
-];
-
-const disciplines = ['Frontend Development', 'Accessible Interfaces', 'Responsive Design', 'Full-Stack Builds'];
-
 export default function Footer() {
     return (
         <footer className="border-t border-rule bg-ink-950 overflow-hidden">
@@ -27,16 +17,7 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col items-start gap-1">
-                        <span className="micro-sm pb-3">Index</span>
-                        {siteLinks.map((link) => (
-                            <a key={link.href} href={link.href} className="bracket-link bracket-link-ghost">
-                                {link.label}
-                            </a>
-                        ))}
-                    </div>
-
-                    <div className="flex flex-col items-start gap-1">
-                        <span className="micro-sm pb-3">Elsewhere</span>
+                        <span className="micro-sm pb-3">Socials</span>
                         {socialLinks.map((link) => (
                             <a
                                 key={link.href}
@@ -50,17 +31,10 @@ export default function Footer() {
                         ))}
                     </div>
                 </div>
-
-                <div className="flex flex-wrap gap-x-6 gap-y-2 pb-10">
-                    {disciplines.map((discipline) => (
-                        <span key={discipline} className="micro-sm">{discipline}</span>
-                    ))}
-                </div>
             </div>
 
             <div className="shell border-t border-rule-soft py-6 flex flex-wrap items-center justify-between gap-4">
-                <span className="micro-sm">&copy; {new Date().getFullYear()} Joshua Martinez</span>
-                <span className="micro-sm">All rights reserved</span>
+                <span className="micro-sm">Joshua Martinez</span>
             </div>
         </footer>
     );
