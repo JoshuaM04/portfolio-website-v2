@@ -265,32 +265,45 @@ function Experience() {
             <div className="shell">
                 <SectionLabel label="Experience" index="03 / 03" />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8">
-                    <h2 className="lg:col-span-4 display-lg">Experience</h2>
+                {/* Laid out like the projects list rather than the two-column
+                    narrative sections: a full-width heading over a stack of
+                    entries. Each entry stays a single column at every width,
+                    with the prose held to a readable measure so the card can
+                    span the shell without the lines running long. */}
+                <h2 className="display-lg pb-14">Experience</h2>
 
-                    <div className="lg:col-span-8 flex flex-col gap-px">
-                        {workExperience.map((role, index) => (
-                            <article key={index} className="border-t border-rule pt-8">
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-8">
-                                    <div className="flex flex-col gap-2">
-                                        <div className="flex items-center gap-3">
-                                            <Marker haze small />
-                                            <span className="index-cell text-sm">{role.company}</span>
-                                        </div>
-                                        <span className="micro-sm">{role.period}</span>
-                                        <span className="micro-sm">{role.location}</span>
-                                    </div>
-
-                                    <div className="md:col-span-2 flex flex-col gap-5">
-                                        <p className="micro text-bone-200">{role.role}</p>
-                                        {role.summary.map((paragraph, paragraphIndex) => (
-                                            <p key={paragraphIndex} className="body-sm">{paragraph}</p>
-                                        ))}
-                                    </div>
+                <div className="flex flex-col gap-6">
+                    {workExperience.map((role, index) => (
+                        <article
+                            key={index}
+                            className="bg-ink-850 border border-rule-soft p-6 md:p-10 flex flex-col gap-8"
+                        >
+                            <div className="flex flex-col gap-4">
+                                <div className="flex items-center gap-3">
+                                    <Marker haze small />
+                                    <span className="index-cell text-sm">{role.company}</span>
                                 </div>
-                            </article>
-                        ))}
-                    </div>
+
+                                <p className="micro text-bone-200">{role.role}</p>
+
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span className="micro-sm">{role.period}</span>
+                                    <span className="micro-sm" aria-hidden="true">&mdash;</span>
+                                    <span className="micro-sm">{role.location}</span>
+                                </div>
+                            </div>
+
+                            {/* body-lg rather than body-sm: at 13px the old 768px
+                                measure ran ~112 characters per line, well past
+                                comfortable. Larger type on a tighter measure
+                                brings it to ~80 and matches the overview prose. */}
+                            <div className="flex flex-col gap-5 max-w-2xl border-t border-rule-soft pt-8">
+                                {role.summary.map((paragraph, paragraphIndex) => (
+                                    <p key={paragraphIndex} className="body-lg">{paragraph}</p>
+                                ))}
+                            </div>
+                        </article>
+                    ))}
                 </div>
             </div>
         </section>
