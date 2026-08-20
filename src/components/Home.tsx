@@ -308,10 +308,7 @@ function Experience() {
                             className="experience-entry bg-ink-850 border border-rule-soft p-6 md:p-8 flex flex-col gap-8"
                         >
                             <div className="flex flex-col gap-4">
-                                <div className="flex items-center gap-3">
-                                    <Marker haze small />
-                                    <span className="index-cell text-sm">{role.company}</span>
-                                </div>
+                                <span className="index-cell text-sm">{role.company}</span>
 
                                 <p className="micro text-bone-200">{role.role}</p>
 

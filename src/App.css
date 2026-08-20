@@ -57,6 +57,11 @@
         100% { transform: translateX(-50%); }
     }
 
+    @keyframes rise {
+        0%   { opacity: 0; transform: translateY(0.75rem); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
     @keyframes badge-orbit {
         to { transform: rotate(1turn); }
     }
@@ -657,6 +662,31 @@
         color: rgba(244, 244, 241, 0.72);
         text-align: right;
         mix-blend-mode: screen;
+    }
+
+    /* ==========================================================================
+       COMPONENT: modal stagger + live marker
+       --------------------------------------------------------------------------
+       Rather than the whole panel fading in as one slab, its blocks rise in
+       sequence. Delays are small and the run is short, so it reads as the panel
+       assembling rather than as a queue of animations.
+       ========================================================================== */
+
+    .modal-stagger > * {
+        opacity: 0;
+        animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .modal-stagger > *:nth-child(1) { animation-delay: 0.08s; }
+    .modal-stagger > *:nth-child(2) { animation-delay: 0.14s; }
+    .modal-stagger > *:nth-child(3) { animation-delay: 0.20s; }
+    .modal-stagger > *:nth-child(4) { animation-delay: 0.26s; }
+    .modal-stagger > *:nth-child(5) { animation-delay: 0.32s; }
+
+    /* Reuses the timeline's pulse so "available" reads the same wherever it
+       appears. Applied to the leading square only. */
+    .marker-pulse span:first-child {
+        animation: timeline-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
     }
 
     /* ==========================================================================
