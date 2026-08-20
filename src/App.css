@@ -695,32 +695,31 @@
        the baseline, so the mesh reads faintly through the lower half and the
        type picks up a sheen instead of sitting on top as a solid slab. Set
        after .display-xl so it wins the colour. */
-    /* Neutral bone throughout — no steel stops. The tinted version read blue
-       against the flat bone headings elsewhere on the page, which is what made
-       it stand out. Legibility now comes from the stroke rather than the fill,
-       so the interior can drop far enough to let the mesh show through.
-       paint-order keeps the stroke behind the fill so it frames the glyph
-       instead of eating into it. */
+    /* Back to flat bone-50 — the same colour .display-xl paints, so the hero
+       headline matches every other heading on the page. No tint, no
+       transparency, no stroke.
+
+       The highlight has to work differently on an opaque near-white fill: a
+       white band on bone-50 can only add about 4% luminance, which is invisible.
+       So the band carries a slight darkening on either side of its bright core.
+       The glyph runs 244 -> 224 -> 252 -> 224 -> 244 as it passes, and it is
+       that dip against the peak that reads as a specular highlight rather than
+       the peak alone. */
     .hero-heading {
         background-image:
             linear-gradient(
                 135deg,
-                rgba(255, 255, 255, 0) 38%,
-                rgba(255, 255, 255, 0.28) 50%,
-                rgba(255, 255, 255, 0) 62%
+                rgba(0, 0, 0, 0) 30%,
+                rgba(0, 0, 0, 0.09) 43%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(0, 0, 0, 0.09) 57%,
+                rgba(0, 0, 0, 0) 70%
             ),
-            /* Fully transparent: the letterforms are hollow, so the mesh shows
-               straight through them and the only thing that ever fills a glyph
-               is the highlight passing over it. Kept as a layer rather than
-               deleted so the two-layer background-position in the keyframes
-               still lines up. */
             linear-gradient(
                 180deg,
-                rgba(244, 244, 241, 0) 0%,
-                rgba(244, 244, 241, 0) 100%
+                rgb(244, 244, 241) 0%,
+                rgb(244, 244, 241) 100%
             );
-        -webkit-text-stroke: 1px rgba(244, 244, 241, 0.9);
-        paint-order: stroke fill;
     }
 
     /* Same treatment as the headline, one step dimmer since it sits behind in
@@ -740,19 +739,21 @@
         background-image:
             linear-gradient(
                 135deg,
-                rgba(255, 255, 255, 0) 38%,
-                rgba(255, 255, 255, 0.24) 50%,
-                rgba(255, 255, 255, 0) 62%
+                rgba(0, 0, 0, 0) 30%,
+                rgba(0, 0, 0, 0.09) 43%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(0, 0, 0, 0.09) 57%,
+                rgba(0, 0, 0, 0) 70%
             ),
+            /* Its original 0.72 bone. This was previously applied as a colour
+               plus mix-blend-mode: screen, which cannot coexist with a clipped
+               background — on this near-black ground the two are all but
+               indistinguishable. */
             linear-gradient(
                 180deg,
-                rgba(244, 244, 241, 0) 0%,
-                rgba(244, 244, 241, 0) 100%
+                rgba(244, 244, 241, 0.72) 0%,
+                rgba(244, 244, 241, 0.72) 100%
             );
-        /* Lighter stroke than the headline — this line sits behind it in the
-           hierarchy and a matching weight would flatten the two together. */
-        -webkit-text-stroke: 0.75px rgba(244, 244, 241, 0.62);
-        paint-order: stroke fill;
         animation-delay: 5.4s;
     }
 
