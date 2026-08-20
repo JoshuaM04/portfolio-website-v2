@@ -31,8 +31,8 @@ const SPEED = 0.05;
 /** Peak opacity of a link at zero distance, and of a node. */
 const LINK_ALPHA = 0.22;
 const NODE_ALPHA = 0.38;
-/** haze-400 and bone-50 from the design tokens. */
-const LINK_RGB = '168, 191, 178';
+/** haze-400 (steel) and bone-50 from the design tokens. */
+const LINK_RGB = '143, 163, 184';
 const NODE_RGB = '244, 244, 241';
 
 export default function MeshBackdrop() {
