@@ -69,8 +69,13 @@
         100% { background-position: -75% -75%, 0 0; }
     }
 
-    @keyframes rise {
-        0%   { opacity: 0; transform: translateY(0.75rem); }
+    /* Settles down from above rather than rising from below. Coming from below
+       pushed each block past the bottom edge of the dialog mid-animation, which
+       extended its scrollable area and flashed a scrollbar for about 300ms on
+       open. Overflow at the block-start edge is unreachable, so a scroll
+       container never grows a scrollbar for it. */
+    @keyframes settle {
+        0%   { opacity: 0; transform: translateY(-0.75rem); }
         100% { opacity: 1; transform: translateY(0); }
     }
 
@@ -761,14 +766,14 @@
     /* ==========================================================================
        COMPONENT: modal stagger
        --------------------------------------------------------------------------
-       Rather than the whole panel fading in as one slab, its blocks rise in
+       Rather than the whole panel fading in as one slab, its blocks settle in
        sequence. Delays are small and the run is short, so it reads as the panel
        assembling rather than as a queue of animations.
        ========================================================================== */
 
     .modal-stagger > * {
         opacity: 0;
-        animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: settle 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .modal-stagger > *:nth-child(1) { animation-delay: 0.08s; }
