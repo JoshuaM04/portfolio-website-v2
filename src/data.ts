@@ -78,7 +78,7 @@ export const projectInformationOne = [
 
 export const projectInformationTwo = [
     {
-        image: '/woodworkCreations.png',
+        image: '/carpentry-hero.webp',
         link: 'https://woodwork-creations.com/',
         heading: 'WoodWork Creations',
         category: 'E-Commerce Platform',
