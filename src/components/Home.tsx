@@ -162,14 +162,13 @@ function PersonalOverview() {
                             continuously refining technical skills and workflow efficiency.
                         </p>
 
-                        {/* Fills the column beneath the prose. From lg the grid
-                            row is as tall as the portrait opposite, so grow +
-                            justify-between spreads the milestones down that
-                            height instead of leaving the column half empty. The
-                            gap is a floor, not the spacing: space-between adds to
-                            it when there is slack, so entries never touch at
-                            widths where the text alone fills the column. */}
-                        <div className="flex flex-col grow pt-6">
+                        {/* The milestones sit on a fixed gap rather than being
+                            spread to fill the column. Stretching them to match
+                            the portrait opposite works until the portrait gets
+                            tall — it scales with column width, so at 1920 it
+                            reached 981px and left 515px of slack to distribute,
+                            pushing the entries 172px apart. */}
+                        <div className="flex flex-col pt-6">
                             <div className="flex items-center gap-3 pb-4 border-b border-rule">
                                 <Marker small />
                                 <span className="micro-sm">Timeline</span>
@@ -177,7 +176,7 @@ function PersonalOverview() {
 
                             <ol
                                 ref={timelineRef}
-                                className={`timeline ${timelineRevealClass} flex flex-col gap-8 lg:gap-6 grow lg:justify-between mt-8`}
+                                className={`timeline ${timelineRevealClass} flex flex-col gap-8 mt-8`}
                             >
                                 {timeline.map((item, index) => (
                                     <li key={index} className="timeline-item flex flex-col gap-1">
