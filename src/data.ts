@@ -107,9 +107,9 @@ export const projectInformationTwo = [
         heading: 'WoodWork Creations',
         category: 'E-Commerce Platform',
         year: '2026',
-        description: 'An E-Commerce website utilizing the MERN tech stack. This website hosts a catalog of hand-made furniture items that are apart of a family-run business and utilizes the Stripe API for payment processing. The backend utilizes dynamic routing for each catalog page to host reviews unique to each catalog item that is stored in the database.',
+        description: 'Engineered a full-stack MERN e-commerce application for a family-run furniture business, with dynamic REST API routing for product-isolated user reviews, Multer and Vercel Blob for cloud-hosted media uploads, and the Stripe Checkout API processing catalog attributes and prices into secure payment sessions. Deployed as a unified monorepo on Vercel with serverless API rewrites, SPA fallback routing, and AI-assisted backend middleware optimization.',
         source: 'https://github.com/JoshuaM04/carpentry-website',
-        tools: ['MongoDB', 'Express.JS', 'React', 'Node.JS', 'TypeScript', 'Tailwind CSS', 'Stripe API']
+        tools: ['MongoDB', 'Express.JS', 'React', 'Node.JS', 'TypeScript', 'Tailwind CSS', 'Stripe API', 'Multer', 'Vercel']
     }
 ];
 
@@ -120,8 +120,9 @@ export const workExperience = [
         period: 'January 2025 — February 2026',
         location: 'Remote',
         summary: [
-            'Executed performance and accuracy evaluations on machine learning models using Python, boosting model accuracy by 15%, and analyzed sample batches to document reproducible scenarios that improved AI-driven GitHub issue resolution speed and accuracy by 20%.',
-            'Authored detailed technical specifications for 10+ GitHub issues, enabling AI models to reliably reproduce complex virtualized-environment bugs and streamline automated troubleshooting workflows.'
+            'Evaluated agentic AI models across multiple test sessions, authoring tailored task instructions and scoring outputs against defined success criteria to raise measured task accuracy by 18%.',
+            'Analyzed sample batches and documented reproducible failure scenarios, improving AI-driven GitHub issue resolution speed and accuracy by 20%.',
+            'Authored technical specifications for 10+ GitHub issues, enabling AI models to reliably reproduce complex virtualized-environment bugs and streamline automated troubleshooting.'
         ]
     }
 ];

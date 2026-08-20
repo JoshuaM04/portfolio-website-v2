@@ -154,27 +154,24 @@ function PersonalOverview() {
                             ))}
                         </div>
 
-                        {/* No fixed height and no object-fit: the box takes the
-                            image's own aspect ratio, so the full portrait shows
-                            at every width instead of being cropped to a band. */}
-                        <Framed className="mt-6">
-                            <div className="media-hover overflow-hidden bg-ink-900">
-                                <img
-                                    className="media block w-full h-auto"
-                                    src="/hero-image.webp"
-                                    alt="Joshua Martinez"
-                                />
-                            </div>
-                        </Framed>
+                        {/* Image and caption are one figure so the caption
+                            always sits directly beneath the portrait. No fixed
+                            height and no object-fit, so the box takes the image's
+                            own aspect ratio and the full portrait shows at every
+                            width instead of being cropped to a band. */}
+                        <figure className="flex flex-col gap-3 mt-6">
+                            <Framed>
+                                <div className="media-hover overflow-hidden bg-ink-900">
+                                    <img
+                                        className="media block w-full h-auto"
+                                        src="/hero-image.webp"
+                                        alt="Joshua Martinez"
+                                    />
+                                </div>
+                            </Framed>
 
-                        {/* mt-auto pins the caption to the bottom of the
-                            column. Where the portrait is shorter than the
-                            timeline opposite, the slack falls above this line
-                            instead of dangling beneath it, so both columns
-                            finish on the same baseline. */}
-                        <div className="flex items-center gap-3 mt-auto">
-                            <span className="micro-sm">Based in San Marcos, Texas</span>
-                        </div>
+                            <figcaption className="micro-sm">Based in San Marcos, Texas</figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
