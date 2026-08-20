@@ -665,7 +665,7 @@
     }
 
     /* ==========================================================================
-       COMPONENT: modal stagger + live marker
+       COMPONENT: modal stagger
        --------------------------------------------------------------------------
        Rather than the whole panel fading in as one slab, its blocks rise in
        sequence. Delays are small and the run is short, so it reads as the panel
@@ -682,12 +682,6 @@
     .modal-stagger > *:nth-child(3) { animation-delay: 0.20s; }
     .modal-stagger > *:nth-child(4) { animation-delay: 0.26s; }
     .modal-stagger > *:nth-child(5) { animation-delay: 0.32s; }
-
-    /* Reuses the timeline's pulse so "available" reads the same wherever it
-       appears. Applied to the leading square only. */
-    .marker-pulse span:first-child {
-        animation: timeline-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    }
 
     /* ==========================================================================
        COMPONENT: modal

@@ -27,7 +27,7 @@ export default function Resume({ variant = 'solid' }: ResumeProps) {
                             so the panel reads as part of the site. */}
                         <div className="flex items-center justify-between gap-6 px-6 py-3 border-b border-rule bg-ink-950">
                             <div className="flex items-center gap-3">
-                                <Marker haze className="marker-pulse" />
+                                <Marker haze />
                                 <span className="micro-sm">Available for work</span>
                             </div>
 
@@ -53,7 +53,7 @@ export default function Resume({ variant = 'solid' }: ResumeProps) {
                             <div className="flex flex-col gap-2 p-6 border-b border-rule">
                                 <span className="micro-sm">Resume</span>
                                 <Heading slot="title" className="display-md">Joshua Martinez</Heading>
-                                <p className="micro text-bone-200">Software Engineer &mdash; Frontend Developer</p>
+                                <p className="micro text-bone-200">Software Engineer</p>
                             </div>
 
                             <ResumeBlock index="01" label="Education" items={education} />
