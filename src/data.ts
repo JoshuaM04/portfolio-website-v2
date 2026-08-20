@@ -18,7 +18,7 @@ export const timeline = [
     {
         period: 'January 2025 — February 2026',
         title: 'AI Model Tester and Validation Analyst',
-        detail: 'Model evaluation and reproducible issue documentation at Stellar AI.'
+        detail: 'Evaluated agentic AI models across multiple test sessions at Stellar AI, authoring tailored task instructions and scoring outputs against defined success criteria to raise measured task accuracy by 18%, and documenting reproducible failure scenarios that improved AI-driven issue resolution by 20%.'
     },
     {
         period: 'December 2025',
@@ -26,14 +26,14 @@ export const timeline = [
         detail: 'Graduated from Texas State University.'
     },
     {
-        period: '2026',
-        title: 'MERN stack e-commerce build',
-        detail: 'Shipped WoodWork Creations with Stripe payment processing and dynamic catalog routing.'
+        period: 'May 2026 — Present',
+        title: 'MERN stack e-commerce app',
+        detail: 'Engineered a full-stack MERN application with dynamic REST API routing for product-isolated reviews, Stripe Checkout payment sessions, and Multer with Vercel Blob for cloud-hosted media. Deployed as a unified monorepo on Vercel with serverless API rewrites and SPA fallback routing.'
     },
     {
         period: 'Now',
         title: 'Looking for opportunities',
-        detail: 'Building accessible, responsive interfaces and expanding into back end work.'
+        detail: 'Open to frontend and full-stack roles, building accessible, WCAG-compliant interfaces while expanding into back end architecture and cloud deployment.'
     }
 ];
 

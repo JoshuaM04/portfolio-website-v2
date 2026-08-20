@@ -120,14 +120,17 @@ function PersonalOverview() {
                         {/* Fills the column beneath the prose. From lg the grid
                             row is as tall as the portrait opposite, so grow +
                             justify-between spreads the milestones down that
-                            height instead of leaving the column half empty. */}
+                            height instead of leaving the column half empty. The
+                            gap is a floor, not the spacing: space-between adds to
+                            it when there is slack, so entries never touch at
+                            widths where the text alone fills the column. */}
                         <div className="flex flex-col grow pt-6">
                             <div className="flex items-center gap-3 pb-4 border-b border-rule">
                                 <Marker small />
                                 <span className="micro-sm">Timeline</span>
                             </div>
 
-                            <ol className="timeline flex flex-col gap-8 lg:gap-0 grow lg:justify-between mt-8">
+                            <ol className="timeline flex flex-col gap-8 lg:gap-6 grow lg:justify-between mt-8">
                                 {timeline.map((item, index) => (
                                     <li key={index} className="timeline-item flex flex-col gap-1">
                                         <span className="micro-sm">{item.period}</span>
@@ -164,7 +167,12 @@ function PersonalOverview() {
                             </div>
                         </Framed>
 
-                        <div className="flex items-center gap-3">
+                        {/* mt-auto pins the caption to the bottom of the
+                            column. Where the portrait is shorter than the
+                            timeline opposite, the slack falls above this line
+                            instead of dangling beneath it, so both columns
+                            finish on the same baseline. */}
+                        <div className="flex items-center gap-3 mt-auto">
                             <span className="micro-sm">Based in San Marcos, Texas</span>
                         </div>
                     </div>
