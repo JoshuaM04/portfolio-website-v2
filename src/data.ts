@@ -1,6 +1,22 @@
 export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
 
 /**
+ * The wider toolset, kept separate from coreCompetencies so the five headline
+ * skills stay the headline. Deliberately excludes anything already listed
+ * there, since repeating them would flatten that distinction.
+ */
+export const toolsAndTechnologies = [
+    'JavaScript',
+    'Sass',
+    'React Router',
+    'Node.js',
+    'Express.js',
+    'MongoDB',
+    'Vercel',
+    'Figma'
+];
+
+/**
  * Education, laid out as the resume does it: institution and location on the
  * first line, degree and graduation on the second.
  */

@@ -6,6 +6,7 @@ import {
     projectInformationOne,
     projectInformationTwo,
     coreCompetencies,
+    toolsAndTechnologies,
     workExperience,
     contactDetails,
     socialLinks,
@@ -197,6 +198,20 @@ function PersonalOverview() {
 
                         <div className="flex flex-wrap gap-2">
                             {coreCompetencies.map((item, index) => (
+                                <span key={index} className="tag">{item}</span>
+                            ))}
+                        </div>
+
+                        {/* The wider toolset, set the same way as the block above
+                            so the two read as one list broken into headline
+                            skills and everything else. */}
+                        <div className="flex items-center gap-3 pb-4 mt-2 border-b border-rule">
+                            <Marker small />
+                            <span className="micro-sm">Tools &amp; Technologies</span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2">
+                            {toolsAndTechnologies.map((item, index) => (
                                 <span key={index} className="tag">{item}</span>
                             ))}
                         </div>
