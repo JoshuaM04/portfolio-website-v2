@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-dvh font-shareTech">
+    <div className="flex flex-col min-h-dvh bg-ink-950 font-body">
       <Header />
       <Home />
       <Footer />

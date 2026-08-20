@@ -1,52 +1,817 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+/* ==========================================================================
+   DESIGN SYSTEM — "Editorial Dark"
+   --------------------------------------------------------------------------
+   A monochrome, high-contrast editorial system. The page is near-black; the
+   type is bone-white and set in a neo-grotesque. Colour is used almost
+   nowhere — the one accent (haze) is a desaturated cool mint reserved for
+   active/hover states and micro-accents, so it reads as a signal rather than
+   as decoration. Everything structural is a hairline rule at low opacity.
+   ========================================================================== */
+
 @theme {
-    --font-shareTech: "Share Tech", sans-serif;
-    --animate-modal-fade: modal-fade 0.5s ease-in forwards;
-    --breakpoint-special: 70.875rem;
+    /* --- Typefaces ------------------------------------------------------ */
+    --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-body: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    /* --- Primary palette: ink (surfaces, darkest -> lightest) ----------- */
+    --color-ink-950: #050505;   /* page ground */
+    --color-ink-900: #0a0a0a;   /* alternating band */
+    --color-ink-850: #0f0f0f;   /* card / surface */
+    --color-ink-800: #161616;   /* raised surface, hover fill */
+    --color-ink-700: #232323;   /* strong hairline, disabled fill */
+
+    /* --- Primary palette: bone (type, lightest -> dimmest) -------------- */
+    --color-bone-50: #f4f4f1;   /* headings, primary type */
+    --color-bone-200: #cfcfc9;  /* body copy on dark */
+    --color-bone-400: #8d8d87;  /* secondary copy */
+    --color-bone-600: #7f7f7a;  /* micro-labels, meta — AA on every ground:
+                                   5.07:1 ink-950, 4.92:1 ink-900, 4.76:1 ink-850 */
+    --color-bone-800: #2e2e2c;  /* deep dividers */
+
+    /* --- Secondary / signal accent --------------------------------------
+       A cool steel blue: the one hue in an otherwise ink-and-bone palette,
+       reserved for live/active states — availability, the New badge, the
+       current timeline milestone, and hover. All three steps clear WCAG AA
+       on both ink grounds. */
+    --color-haze-300: #bdcede;  /* accent hover type      — 12.66:1 on ink-950 */
+    --color-haze-400: #8fa3b8;  /* accent: markers, nav   —  7.86:1 on ink-950 */
+    --color-haze-600: #687e93;  /* accent, dimmed         —  4.85:1 on ink-950 */
+
+    /* --- Hairlines (the structural language of the layout) -------------- */
+    --color-rule: rgba(244, 244, 241, 0.14);
+    --color-rule-soft: rgba(244, 244, 241, 0.07);
+    --color-rule-strong: rgba(244, 244, 241, 0.28);
+
+    /* --- Motion --------------------------------------------------------- */
+    --animate-modal-fade: modal-fade 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 
     @keyframes modal-fade {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+        0%   { opacity: 0; transform: translateY(0.75rem); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* Runs 175% -> -75%, not the other way round. With background-size larger
+       than the element the offset resolves to (container - image) * position,
+       which is negative, so percentages travel the image in the opposite
+       direction to the number. Descending values move the highlight top-left
+       to bottom-right. */
+    @keyframes sheen-sweep {
+        0%   { background-position: 175% 175%, 0 0; }
+        42%  { background-position: -75% -75%, 0 0; }
+        100% { background-position: -75% -75%, 0 0; }
+    }
+
+    @keyframes rise {
+        0%   { opacity: 0; transform: translateY(0.75rem); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes badge-orbit {
+        to { transform: rotate(1turn); }
+    }
+
+    @keyframes timeline-pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(143, 163, 184, 0.4); }
+        70%  { box-shadow: 0 0 0 0.5rem rgba(143, 163, 184, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(143, 163, 184, 0); }
+    }
+
+    @keyframes marquee-reverse {
+        0%   { transform: translateX(-50%); }
+        100% { transform: translateX(0); }
     }
 }
 
-.hero-container {
-    padding-top: clamp(5rem, 20vw, 27.5rem);
-    padding-bottom: clamp(5rem, 20vw, 27.5rem);
-    gap: clamp(5rem, 20vw, 12.5rem);
+@layer base {
+    /* ==========================================================================
+       BASE
+       ========================================================================== */
+
+    html {
+        background-color: var(--color-ink-950);
+        /* Clears the two-row sticky header (116px) so anchored sections
+           land fully in view rather than tucked underneath it. */
+        scroll-padding-top: 8rem;
+    }
+
+    body {
+        background-color: var(--color-ink-950);
+        color: var(--color-bone-200);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+    }
+
+    ::selection {
+        background-color: var(--color-haze-400);
+        color: var(--color-ink-950);
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: var(--color-ink-950); }
+    ::-webkit-scrollbar-thumb { background: var(--color-ink-700); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-bone-800); }
 }
 
-.featured-project, .featured-experience {
-    width: clamp(20rem, 20vw, 25.5rem);
+@layer components {
+    /* ==========================================================================
+       TYPOGRAPHY PRIMITIVES
+       --------------------------------------------------------------------------
+       Two voices only: oversized grotesque display, and a tiny tracked-out
+       uppercase "system" voice for labels, meta and navigation.
+       ========================================================================== */
+
+    .display-xl {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(2.75rem, 7.5vw, 6.5rem);
+        line-height: 0.92;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        color: var(--color-bone-50);
+    }
+
+    .display-lg {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(2rem, 4.75vw, 3.75rem);
+        line-height: 0.98;
+        letter-spacing: -0.008em;
+        text-transform: uppercase;
+        color: var(--color-bone-50);
+    }
+
+    .display-md {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: clamp(1.5rem, 2.75vw, 2.125rem);
+        line-height: 1.05;
+        letter-spacing: -0.006em;
+        text-transform: uppercase;
+        color: var(--color-bone-50);
+    }
+
+    /* The tiny tracked-out uppercase voice used for every label on the page. */
+    .micro {
+        font-family: var(--font-body);
+        font-size: 0.6875rem;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-bone-400);
+    }
+
+    .micro-sm {
+        font-family: var(--font-body);
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-bone-600);
+    }
+
+    .body-lg {
+        font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+        line-height: 1.65;
+        color: var(--color-bone-200);
+    }
+
+    .body-sm {
+        font-size: 0.8125rem;
+        line-height: 1.7;
+        color: var(--color-bone-400);
+    }
+
+    /* ==========================================================================
+       LAYOUT
+       ========================================================================== */
+
+    /* The cap is high enough that the layout keeps tracking the viewport on
+       wide screens instead of sitting in a narrow centred band, while still
+       stopping the 12-column grid from stretching prose past a readable
+       measure on ultrawide displays. */
+    .shell {
+        width: 100%;
+        max-width: 120rem;
+        margin-inline: auto;
+        padding-inline: clamp(1.25rem, 4vw, 5rem);
+    }
+
+    .section-pad {
+        padding-block: clamp(5rem, 11vw, 11rem);
+    }
+
+
+    /* ==========================================================================
+       COMPONENT: marker
+       --------------------------------------------------------------------------
+       The recurring "▪ ▪" double-square motif. It sits beside section labels and
+       inside table rows as an active indicator.
+       ========================================================================== */
+
+    .marker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3125rem;
+        flex-shrink: 0;
+    }
+
+    .marker span {
+        display: block;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background-color: var(--color-bone-50);
+    }
+
+    .marker-haze span {
+        background-color: var(--color-haze-400);
+    }
+
+    .marker-sm span {
+        width: 0.25rem;
+        height: 0.25rem;
+    }
+
+    /* ==========================================================================
+       COMPONENT: bracket link  —  [ ABOUT US ]
+       ========================================================================== */
+
+    .bracket-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-body);
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-bone-200);
+        padding: 0.6875rem 1.125rem;
+        border: 1px solid var(--color-rule);
+        transition: color 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+    }
+
+    .bracket-link::before { content: "["; color: var(--color-bone-600); }
+    .bracket-link::after  { content: "]"; color: var(--color-bone-600); }
+
+    .bracket-link:hover {
+        color: var(--color-ink-950);
+        background-color: var(--color-bone-50);
+        border-color: var(--color-bone-50);
+    }
+
+    .bracket-link:hover::before,
+    .bracket-link:hover::after {
+        color: var(--color-ink-950);
+    }
+
+    /* Ghost variant — no border, used in dense footer link columns. */
+    .bracket-link-ghost {
+        border-color: transparent;
+        padding: 0.25rem 0;
+        color: var(--color-bone-400);
+    }
+
+    .bracket-link-ghost:hover {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--color-haze-300);
+    }
+
+    .bracket-link-ghost:hover::before,
+    .bracket-link-ghost:hover::after {
+        color: var(--color-haze-600);
+    }
+
+    /* ==========================================================================
+       COMPONENT: nav link
+       --------------------------------------------------------------------------
+       Underline wipes in from the left on hover — the only nav ornament.
+       ========================================================================== */
+
+    .nav-link {
+        position: relative;
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-bone-400);
+        transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -0.4375rem;
+        width: 100%;
+        height: 1px;
+        background-color: var(--color-haze-400);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-link:hover {
+        color: var(--color-bone-50);
+    }
+
+    .nav-link:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* ==========================================================================
+       COMPONENT: marquee
+       --------------------------------------------------------------------------
+       Two counter-running ticker rails, each skewed a couple of degrees so they
+       cross. The track is duplicated inline and translated -50% for a seamless
+       loop.
+       ========================================================================== */
+
+    .marquee {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        border-block: 1px solid var(--color-rule);
+        background-color: var(--color-ink-900);
+        padding-block: 0.5rem;
+        width: 106%;
+        margin-left: -3%;
+    }
+
+    .marquee-track {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 2.5rem;
+        padding-right: 2.5rem;
+        white-space: nowrap;
+        will-change: transform;
+    }
+
+    .marquee-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 2.5rem;
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-bone-200);
+    }
+
+    /* ==========================================================================
+       COMPONENT: index cell
+       --------------------------------------------------------------------------
+       The compact uppercase label used for project, company and contact names.
+       ========================================================================== */
+
+    .index-cell {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-bone-50);
+        transition: color 0.4s ease;
+    }
+
+    /* ==========================================================================
+       COMPONENT: corner-bracketed frame
+       --------------------------------------------------------------------------
+       Four small squares pinned to the corners of an image — the registration-
+       mark motif from the reference layout.
+       ========================================================================== */
+
+    .framed {
+        position: relative;
+    }
+
+    .framed::before,
+    .framed::after {
+        content: "";
+        position: absolute;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background-color: var(--color-bone-50);
+        z-index: 2;
+    }
+
+    .framed::before { top: -0.15625rem; left: -0.15625rem; }
+    .framed::after  { top: -0.15625rem; right: -0.15625rem; }
+
+    .framed-inner::before,
+    .framed-inner::after {
+        content: "";
+        position: absolute;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background-color: var(--color-bone-50);
+        z-index: 2;
+    }
+
+    .framed-inner::before { bottom: -0.15625rem; left: -0.15625rem; }
+    .framed-inner::after  { bottom: -0.15625rem; right: -0.15625rem; }
+
+    /* ==========================================================================
+       COMPONENT: media
+       --------------------------------------------------------------------------
+       All imagery is desaturated by default and resolves toward colour on hover,
+       which keeps the grid monochrome while still rewarding attention.
+       ========================================================================== */
+
+    .media {
+        filter: grayscale(1) contrast(1.08) brightness(0.82);
+        transition: filter 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .media-hover:hover .media {
+        filter: grayscale(0.25) contrast(1) brightness(0.95);
+        transform: scale(1.02);
+    }
+
+    /* ==========================================================================
+       COMPONENT: timeline
+       --------------------------------------------------------------------------
+       A vertical rail with a marker per milestone, used to fill the overview
+       column beside the portrait. The markers are the same squares used by the
+       .marker motif, pulled left so they sit centred on the rail.
+       ========================================================================== */
+
+    .timeline {
+        position: relative;
+        border-left: 1px solid var(--color-rule);
+        padding-left: 1.75rem;
+    }
+
+    .timeline-item {
+        position: relative;
+    }
+
+    /* Rail sits 28px of padding plus its own 1px to the left of the content
+       box, so its centre is at -28.5px; offsetting a 5px square by half its
+       width lands it centred on the line. */
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -1.9375rem;
+        top: 0.375rem;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background-color: var(--color-haze-400);
+    }
+
+    /* The final milestone is the live one: a slow ring that expands and fades,
+       drawn with box-shadow so it never affects layout. */
+    .timeline-item:last-child::before {
+        animation: timeline-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* ==========================================================================
+       COMPONENT: experience entry
+       --------------------------------------------------------------------------
+       A capped tower rather than a full-bleed card. The width tracks the
+       viewport only between a floor and a ceiling, so the entry keeps a
+       consistent, readable column instead of stretching across the shell on
+       wide screens — the same constraint the previous design used. max-width
+       keeps it inside the shell on very narrow viewports, where the 20rem
+       floor would otherwise overflow.
+       ========================================================================== */
+
+    .experience-entry {
+        width: clamp(20rem, 30vw, 26rem);
+        max-width: 100%;
+    }
+
+    /* ==========================================================================
+       COMPONENT: project card
+       ========================================================================== */
+
+    .project-card {
+        background-color: var(--color-ink-850);
+        border: 1px solid var(--color-rule-soft);
+        transition: border-color 0.5s ease, background-color 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .project-card:hover {
+        border-color: var(--color-rule-strong);
+        background-color: var(--color-ink-800);
+        transform: translateY(-0.25rem);
+    }
+
+    /* ==========================================================================
+       COMPONENT: new badge
+       --------------------------------------------------------------------------
+       A dark chip with a hairline frame, lit by a highlight that orbits the
+       edge. The rotating conic gradient sits behind an opaque inner panel, so
+       only the 1px the panel does not cover reads as the moving light.
+       ========================================================================== */
+
+    .badge-new {
+        position: relative;
+        display: inline-block;
+        padding: 1px;
+        overflow: hidden;
+        background-color: var(--color-bone-800);
+    }
+
+    /* Oversized so the rotating square still covers the wider-than-tall chip
+       at every angle. */
+    .badge-new::before {
+        content: "";
+        position: absolute;
+        inset: -150%;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0 72%,
+            var(--color-bone-50) 88%,
+            transparent 100%
+        );
+        animation: badge-orbit 3s linear infinite;
+    }
+
+    .badge-new-inner {
+        position: relative;
+        display: block;
+        background-color: var(--color-ink-950);
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* ==========================================================================
+       COMPONENT: tag
+       ========================================================================== */
+
+    .tag {
+        display: inline-block;
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--color-bone-400);
+        border: 1px solid var(--color-rule);
+        padding: 0.3125rem 0.625rem;
+        transition: color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .project-card:hover .tag {
+        color: var(--color-haze-300);
+        border-color: var(--color-haze-600);
+    }
+
+    /* ==========================================================================
+       COMPONENT: button
+       ========================================================================== */
+
+    .btn-solid {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-ink-950);
+        background-color: var(--color-bone-50);
+        border: 1px solid var(--color-bone-50);
+        padding: 0.8125rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    }
+
+    /* Inverts to the outline treatment on hover, so the two button styles
+       trade places rather than introducing a colour the palette does not
+       otherwise use. */
+    .btn-solid:hover {
+        color: var(--color-bone-50);
+        background-color: transparent;
+        border-color: var(--color-bone-50);
+    }
+
+    .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        font-size: 0.625rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-bone-200);
+        background-color: transparent;
+        border: 1px solid var(--color-rule);
+        padding: 0.8125rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    }
+
+    .btn-outline:hover {
+        color: var(--color-ink-950);
+        background-color: var(--color-bone-50);
+        border-color: var(--color-bone-50);
+    }
+
+    /* ==========================================================================
+       COMPONENT: hero
+       ========================================================================== */
+
+    .hero {
+        position: relative;
+        min-height: clamp(38rem, 92vh, 60rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+
+    /* The portrait/backdrop sits behind everything, heavily graded down so the
+       type stays legible over it. */
+    .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .hero-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1) contrast(1.15) brightness(0.55);
+    }
+
+    /* Vignette: darkens the edges and the base so the headline and the footer
+       micro-copy both have ground to sit on. */
+    /* Tuned for a photographic backdrop originally, which needed heavy grading
+       to keep type legible. Against the mesh it was simply erasing it, so the
+       centre is much lighter now and only the edges and base still ground the
+       composition. */
+    .hero-veil {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+            radial-gradient(120% 80% at 50% 35%, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.3) 62%, rgba(5, 5, 5, 0.72) 100%),
+            linear-gradient(to bottom, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.08) 38%, rgba(5, 5, 5, 0.85) 100%);
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* The oversized outline statement that overlaps the hero image. */
+    /* Specular sweep, shared by both hero lines.
+       --------------------------------------------------------------------
+       Two background layers are clipped to the glyphs: a narrow bright band
+       on top, and the element's own base fill underneath. Only the band's
+       position animates — the base stays pinned at 0 0 — so the highlight
+       travels diagonally across the letterforms while the fill sits still.
+       The band is oriented at 135deg, perpendicular to its own travel, which
+       is what makes it read as light crossing a surface rather than a
+       gradient sliding sideways.
+
+       The long tail on the keyframes is deliberate: the pass takes about 42%
+       of the cycle and the rest is rest, so it glints occasionally instead of
+       strobing. */
+    .sheen {
+        background-repeat: no-repeat;
+        background-size: 220% 220%, 100% 100%;
+        background-position: 175% 175%, 0 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: sheen-sweep 15s cubic-bezier(0.4, 0, 0.3, 1) infinite;
+    }
+
+    /* The headline is painted as a gradient clipped to the glyphs rather than a
+       flat fill: near-opaque bone at the top easing to a translucent steel at
+       the baseline, so the mesh reads faintly through the lower half and the
+       type picks up a sheen instead of sitting on top as a solid slab. Set
+       after .display-xl so it wins the colour. */
+    /* Back to flat bone-50 — the same colour .display-xl paints, so the hero
+       headline matches every other heading on the page. No tint, no
+       transparency, no stroke.
+
+       The highlight has to work differently on an opaque near-white fill: a
+       white band on bone-50 can only add about 4% luminance, which is invisible.
+       So the band carries a slight darkening on either side of its bright core.
+       The glyph runs 244 -> 224 -> 252 -> 224 -> 244 as it passes, and it is
+       that dip against the peak that reads as a specular highlight rather than
+       the peak alone. */
+    .hero-heading {
+        background-image:
+            linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0) 30%,
+                rgba(0, 0, 0, 0.09) 43%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(0, 0, 0, 0.09) 57%,
+                rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient(
+                180deg,
+                rgb(244, 244, 241) 0%,
+                rgb(244, 244, 241) 100%
+            );
+    }
+
+    /* Same treatment as the headline, one step dimmer since it sits behind in
+       the hierarchy. The delay is what makes the glint read as one continuous
+       pass: the headline's sweep finishes around 2.9s, so this picks it up just
+       before that and carries it down the composition. Its own translucency is
+       baked into the fill rather than applied with mix-blend-mode, which cannot
+       be combined with a clipped background. */
+    .hero-statement {
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-size: clamp(2rem, 6vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        text-align: right;
+        background-image:
+            linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0) 30%,
+                rgba(0, 0, 0, 0.09) 43%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(0, 0, 0, 0.09) 57%,
+                rgba(0, 0, 0, 0) 70%
+            ),
+            /* Its original 0.72 bone. This was previously applied as a colour
+               plus mix-blend-mode: screen, which cannot coexist with a clipped
+               background — on this near-black ground the two are all but
+               indistinguishable. */
+            linear-gradient(
+                180deg,
+                rgba(244, 244, 241, 0.72) 0%,
+                rgba(244, 244, 241, 0.72) 100%
+            );
+        animation-delay: 5.4s;
+    }
+
+    /* ==========================================================================
+       COMPONENT: modal stagger
+       --------------------------------------------------------------------------
+       Rather than the whole panel fading in as one slab, its blocks rise in
+       sequence. Delays are small and the run is short, so it reads as the panel
+       assembling rather than as a queue of animations.
+       ========================================================================== */
+
+    .modal-stagger > * {
+        opacity: 0;
+        animation: rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .modal-stagger > *:nth-child(1) { animation-delay: 0.08s; }
+    .modal-stagger > *:nth-child(2) { animation-delay: 0.14s; }
+    .modal-stagger > *:nth-child(3) { animation-delay: 0.20s; }
+    .modal-stagger > *:nth-child(4) { animation-delay: 0.26s; }
+    .modal-stagger > *:nth-child(5) { animation-delay: 0.32s; }
+
+    /* ==========================================================================
+       COMPONENT: modal
+       ========================================================================== */
+
+    .modal-pop-up {
+        width: clamp(20rem, 50vw, 38rem);
+        max-height: 88vh;
+        overflow-y: auto;
+    }
+
+    .modal-pop-up::backdrop {
+        background-color: var(--color-ink-950);
+    }
 }
 
-h2, .personal-overview-container, .featured-projects-container, .featured-experience-container, .contact-information-container {
-    width: clamp(20rem, 65vw, 81.5rem);
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+:focus-visible {
+    outline: 1px solid var(--color-haze-400);
+    outline-offset: 3px;
 }
 
-.personal-overview-text, .personal-overview-skills {
-    width: clamp(20rem, 30vw, 38.2rem);
-}
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none !important;
+    }
 
-.featured-section {
-    padding-top: clamp(5rem, 15vw, 12.5rem);
-    padding-bottom: clamp(5rem, 15vw, 12.5rem);
-}
-
-.modal-pop-up {
-    width: clamp(20rem, 50vw, 35rem);
-}
-
-.modal-pop-up::backdrop {
-    background-color: black;
-}
-
-.contact-information {
-    gap: clamp(2rem, 10vw, 12.5rem);
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
 }

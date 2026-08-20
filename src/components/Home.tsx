@@ -1,208 +1,421 @@
 import Resume from './Resume';
-import { projectInformationOne, projectInformationTwo } from '../data';
+import { Marker, SectionLabel, Framed } from './Primitives';
+import MeshBackdrop from './MeshBackdrop';
+import {
+    projectInformationOne,
+    projectInformationTwo,
+    coreCompetencies,
+    workExperience,
+    contactDetails,
+    socialLinks,
+    timeline,
+} from '../data';
 
 export default function Main() {
-    const coreCompentencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
-
     return (
-        <main className="bg-orange-100">
-            <section id="hero" className="hero-container bg-linear-to-b from-orange-100 to-red-300 flex justify-center items-center flex-wrap pl-5 pr-5">
-                <div id="career-overview" className="flex flex-col gap-5">
-                    <p className="font-semibold text-indigo-400">Software Engineer</p>
-                    <h1 className="text-8xl max-sm:text-4xl">Joshua Martinez</h1>
-                    <p className="text-slate-500">I specialize in crafting interactive, responsive, and accessible applications.</p>
-                    
-                    <div id="cta-buttons" className="font-semibold flex gap-5">
-                        <a href="#projects" className="text-white uppercase rounded-sm bg-black pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-red-600">Projects</a>
-                        <a href="#contact" className="uppercase border-2 rounded-sm pl-6 pr-6 pt-2 pb-2 hover:cursor-pointer hover:bg-black hover:border-black hover:text-white">Contact</a>
-                        
-                        <Resume />
-                    </div>
-                </div>
+        <main>
+            <Hero />
+            <PersonalOverview />
+            <Projects />
+            <Experience />
+            <Contact />
+        </main>
+    );
+}
 
-                <div id="portrait">
-                    <img className="rounded-sm" src="/austin-texas.webp" alt="Downtown Austin" />
-                </div>
-            </section>
+/* ==========================================================================
+   HERO
+   ========================================================================== */
 
-            <section id="personal-overview" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
-                <h2 className="text-6xl font-bold">Personal Overview</h2>
+function Hero() {
+    return (
+        <section id="hero" className="hero">
+            {/* An animated node mesh stands in for a backdrop photo: it avoids
+                reusing the overview image and gives the hero some slow motion
+                without competing with the headline. */}
+            <div className="hero-media">
+                <MeshBackdrop />
+            </div>
+            <div className="hero-veil" aria-hidden="true" />
 
-                <div className="personal-overview-container flex flex-wrap gap-20">
-                    <div className="personal-overview-text flex flex-col gap-5">
-                        <p>
-                            I'm a <span className="font-bold">recent graduate</span> Software Engineer specializing in building accessible, responsive web applications using
-                            HTML, CSS, TypeScript, React, and Tailwind CSS, with a strong focus on WCAG
-                            compliant design.
-                        </p>
-                        <p>
-                            Experience enhancing AI model accuracy and optimizing development
-                            workflows through testing and validation, alongside working with non-relational databases such as MongoDB. Actively expanding into back
-                            end and full-stack development while continuously refining technical skills and workflow
-                            efficiency.
-                        </p>
+            <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-10 md:pt-24 md:pb-14">
+                {/* Headline */}
+                <div className="max-w-4xl">
+                    <div className="flex items-center gap-3 pb-6">
+                        <Marker haze />
+                        <span className="micro">Software Engineer</span>
                     </div>
 
-                    <div className="personal-overview-skills flex flex-col gap-5 bg-white border border-red-200 rounded-sm shadow-lg p-5 h-min">
-                        <div className="bg-linear-to-b from-orange-200 to-red-200 p-5 -ml-5 -mr-5 -mt-5">
-                            <p className="text-red-900 font-semibold">Core Competencies</p>
+                    <h1 className="display-xl hero-heading sheen">
+                        Building<br />
+                        accessible<br />
+                        interfaces
+                    </h1>
+                </div>
+
+                {/* Base rail: supporting copy on the left, the overlapping
+                    statement on the right. */}
+                <div className="flex flex-col gap-12 pt-20">
+                    <p className="hero-statement sheen ml-auto max-w-3xl">
+                        Clear, responsive,<br />and built to last
+                    </p>
+
+                    <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
+                        <div className="flex flex-wrap gap-x-12 gap-y-8">
+                            <p className="micro max-w-[22rem] leading-relaxed">
+                                Working across accessibility, responsive design, and frontend
+                                architecture to build applications that communicate clearly.
+                            </p>
+                            <p className="micro max-w-[16rem] leading-relaxed">
+                                Crafting interfaces that feel as intentional as they look.
+                            </p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3">
+                            <a href="#projects" className="btn-solid">Projects</a>
+                            <a href="#contact" className="btn-outline">Contact</a>
+                            <Resume variant="outline" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+/* ==========================================================================
+   PERSONAL OVERVIEW
+   ========================================================================== */
+
+function PersonalOverview() {
+    return (
+        <section id="personal-overview" className="section-pad border-t border-rule">
+            <div className="shell">
+                <SectionLabel label="Personal Overview" index="01 / 03" />
+
+                {/* Left-aligned on the shell edge, sharing a margin with the
+                    section label above and the prose below, so the whole
+                    section reads off one axis. The offset version sat in
+                    columns 6-12 and floated away from the content it
+                    introduces. max-w keeps the measure sane at display sizes. */}
+                <h2 className="display-lg max-w-4xl pt-8">
+                    Designing interfaces that feel as clear as they are memorable.
+                </h2>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-24">
+                    <div className="lg:col-span-5 flex flex-col gap-8">
+                        <p className="body-lg">
+                            I'm a <span className="text-bone-50">recent graduate</span> Software Engineer
+                            specializing in building accessible, responsive web applications using HTML, CSS,
+                            TypeScript, React, and Tailwind CSS, with a strong focus on WCAG compliant design.
+                        </p>
+                        <p className="body-lg">
+                            Experience enhancing AI model accuracy and optimizing development workflows through
+                            testing and validation, alongside working with non-relational databases such as
+                            MongoDB. Actively expanding into back end and full-stack development while
+                            continuously refining technical skills and workflow efficiency.
+                        </p>
+
+                        {/* Fills the column beneath the prose. From lg the grid
+                            row is as tall as the portrait opposite, so grow +
+                            justify-between spreads the milestones down that
+                            height instead of leaving the column half empty. The
+                            gap is a floor, not the spacing: space-between adds to
+                            it when there is slack, so entries never touch at
+                            widths where the text alone fills the column. */}
+                        <div className="flex flex-col grow pt-6">
+                            <div className="flex items-center gap-3 pb-4 border-b border-rule">
+                                <Marker small />
+                                <span className="micro-sm">Timeline</span>
+                            </div>
+
+                            <ol className="timeline flex flex-col gap-8 lg:gap-6 grow lg:justify-between mt-8">
+                                {timeline.map((item, index) => (
+                                    <li key={index} className="timeline-item flex flex-col gap-1">
+                                        <span className="micro-sm">{item.period}</span>
+                                        <p className="index-cell text-sm">{item.title}</p>
+                                        <p className="body-sm">{item.detail}</p>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">
+                        <div className="flex items-center gap-3 pb-4 border-b border-rule">
+                            <Marker small />
+                            <span className="micro-sm">Core Competencies</span>
                         </div>
 
                         <div className="flex flex-wrap gap-2">
-                            {
-                                coreCompentencies.map((item, index) => (
-                                    <p key={index} className="border border-red-400 rounded-full pl-4 pr-4 pt-1 pb-1 transition-all hover:bg-red-500/10 duration-1000 ease-out">{item}</p>
-                                ))
-                            }
+                            {coreCompetencies.map((item, index) => (
+                                <span key={index} className="tag">{item}</span>
+                            ))}
                         </div>
+
+                        {/* Image and caption are one figure so the caption
+                            always sits directly beneath the portrait. No fixed
+                            height and no object-fit, so the box takes the image's
+                            own aspect ratio and the full portrait shows at every
+                            width instead of being cropped to a band. */}
+                        <figure className="flex flex-col gap-3 mt-6">
+                            <Framed>
+                                <div className="media-hover overflow-hidden bg-ink-900">
+                                    <img
+                                        className="media block w-full h-auto"
+                                        src="/hero-image.webp"
+                                        alt="Joshua Martinez"
+                                    />
+                                </div>
+                            </Framed>
+
+                            <figcaption className="micro-sm">Based in San Marcos, Texas</figcaption>
+                        </figure>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+    );
+}
 
-            <section id="projects" className="featured-section flex flex-col items-center pt-50 pb-50 pl-5 pr-5">
-                <div className="featured-projects-container flex flex-wrap gap-10 pb-50">
-                    <h2 className="text-6xl font-bold">UI/UX Projects</h2>
-                    {
-                        projectInformationOne.map((item, index) => (
-                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer relative">
-                                <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
-                                
-                                <div className="flex flex-col justify-between gap-25 p-5">
-                                    <div className="flex flex-col gap-5">
-                                        <p className="font-semibold">{item.heading}</p>
+/* ==========================================================================
+   PROJECTS
+   ========================================================================== */
 
-                                        <p className="text-slate-500">
-                                            {item.description}
-                                        </p>
-                                    </div>
+function Projects() {
+    return (
+        <section id="projects" className="section-pad border-t border-rule">
+            <div className="shell flex flex-col gap-28">
+                <ProjectGrid
+                    label="Full-Stack Apps"
+                    index="02 / 03"
+                    heading="Full-stack apps"
+                    projects={projectInformationTwo}
+                    showNewLabel
+                />
 
-                                    <div></div>
+                <ProjectGrid
+                    label="UI / UX Projects"
+                    heading="UI / UX projects"
+                    projects={projectInformationOne}
+                />
+            </div>
+        </section>
+    );
+}
 
-                                    <div className="flex flex-col gap-5 absolute bottom-5">
-                                        <a href={item.source} className="flex items-center gap-2 hover:text-indigo-900 hover:font-bold">
-                                            Source
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                                            </svg>
+type Project = {
+    image: string;
+    link: string;
+    heading: string;
+    description: string;
+    source?: string;
+    tools: string[];
+};
+
+type ProjectGridProps = {
+    label: string;
+    index?: string;
+    heading: string;
+    projects: Project[];
+    showNewLabel?: boolean;
+};
+
+function ProjectGrid({ label, index, heading, projects, showNewLabel }: ProjectGridProps) {
+    return (
+        <div>
+            <SectionLabel label={label} index={index} />
+
+            <h2 className="display-lg pb-14">{heading}</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {projects.map((item, projectIndex) => (
+                    <article key={projectIndex} className="project-card media-hover flex flex-col relative">
+                        {showNewLabel && (
+                            <span className="badge-new absolute top-4 right-4 z-3">
+                                <span className="badge-new-inner micro-sm text-bone-50">New</span>
+                            </span>
+                        )}
+
+                        {/* The box matches the screenshots' own 2560x1230 ratio,
+                            so object-cover fills it edge to edge while cropping
+                            nothing off them. Only an off-ratio image loses
+                            anything, and then just the few percent that would
+                            otherwise show as bars. */}
+                        <a href={item.link} target="_blank" rel="noreferrer" className="block overflow-hidden bg-ink-950">
+                            <img
+                                className="media block w-full aspect-[256/123] object-cover"
+                                src={item.image}
+                                alt={`${item.heading} screenshot`}
+                            />
+                        </a>
+
+                        <div className="flex flex-col gap-5 p-6 grow border-t border-rule-soft">
+                            <h3 className="index-cell text-sm">{item.heading}</h3>
+
+                            <p className="body-sm grow">{item.description}</p>
+
+                            <div className="flex flex-wrap gap-2 pt-2">
+                                {item.tools.map((tool, toolIndex) => (
+                                    <span key={toolIndex} className="tag">{tool}</span>
+                                ))}
+                            </div>
+
+                            <div className="flex flex-wrap gap-3 pt-2">
+                                <a href={item.link} target="_blank" rel="noreferrer" className="bracket-link">
+                                    Live site
+                                </a>
+                                {item.source && (
+                                    <a href={item.source} target="_blank" rel="noreferrer" className="bracket-link">
+                                        Source
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+/* ==========================================================================
+   EXPERIENCE
+   ========================================================================== */
+
+function Experience() {
+    return (
+        <section id="experience" className="section-pad border-t border-rule bg-ink-900">
+            <div className="shell">
+                <SectionLabel label="Experience" index="03 / 03" />
+
+                {/* Laid out like the projects list rather than the two-column
+                    narrative sections: a full-width heading over a stack of
+                    entries. Each entry stays a single column at every
+                    width, capped to a tower so it never stretches with the
+                    viewport. */}
+                <h2 className="display-lg pb-14">Experience</h2>
+
+                {/* Towers wrap into a row as roles are added rather than
+                    stretching to fill the shell. Below md the project grid
+                    drops to a single column, so the capped towers centre to
+                    match it instead of hugging the left edge. */}
+                <div className="flex flex-wrap gap-6 justify-center md:justify-start">
+                    {workExperience.map((role, index) => (
+                        <article
+                            key={index}
+                            className="experience-entry bg-ink-850 border border-rule-soft p-6 md:p-8 flex flex-col gap-8"
+                        >
+                            <div className="flex flex-col gap-4">
+                                <span className="index-cell text-sm">{role.company}</span>
+
+                                <p className="micro text-bone-200">{role.role}</p>
+
+                                {/* The location is a qualifier on the period, not a
+                                    peer of it. A square bullet in the text's own
+                                    colour marks it as its own datum without pulling
+                                    focus, and the wider gap stops the two lines
+                                    reading as one broken block. */}
+                                <div className="flex flex-col gap-2">
+                                    <span className="micro-sm">{role.period}</span>
+                                    <span className="micro-sm flex items-center gap-2">
+                                        <span aria-hidden="true" className="size-1 bg-bone-600 shrink-0" />
+                                        {role.location}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* The tower caps the measure on its own, so the
+                                smaller type is back — body-lg at this width
+                                would leave only ~30 characters per line. */}
+                            <div className="flex flex-col gap-5 border-t border-rule-soft pt-8">
+                                {role.summary.map((paragraph, paragraphIndex) => (
+                                    <p key={paragraphIndex} className="body-sm">{paragraph}</p>
+                                ))}
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+
+function Contact() {
+    return (
+        <section id="contact" className="section-pad border-t border-rule">
+            <div className="shell">
+                <SectionLabel label="Contact" />
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-14 gap-x-8">
+                    <div className="lg:col-span-7 flex flex-col gap-10">
+                        <h2 className="display-lg">
+                            Let's create<br />something meaningful
+                        </h2>
+
+                        <p className="body-lg max-w-xl">
+                            Let's collaborate on your next project. Whether you need frontend engineering,
+                            accessible interface design, or a full-stack build, I'm here to help turn your
+                            ideas into reality.
+                        </p>
+
+                        <div className="flex flex-wrap gap-3">
+                            <a href="mailto:joshmartinezny08@gmail.com" className="btn-solid">Start a project</a>
+                            <Resume variant="outline" />
+                        </div>
+                    </div>
+
+                    {/* Availability and socials live here rather than in the
+                        footer, so the whole "how to reach me" story sits in one
+                        column instead of being split across two sections. */}
+                    <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-8">
+                        <div className="flex items-center gap-3">
+                            <Marker haze />
+                            <span className="micro-sm">Available for work</span>
+                        </div>
+
+                        <div className="flex flex-col">
+                            {contactDetails.map((detail, index) => (
+                                <div key={index} className="flex flex-col gap-1 py-4 border-t border-rule">
+                                    <span className="micro-sm">{detail.label}</span>
+                                    {detail.href ? (
+                                        <a
+                                            href={detail.href}
+                                            className="index-cell text-sm hover:text-haze-300 transition-colors duration-300 break-all"
+                                        >
+                                            {detail.value}
                                         </a>
+                                    ) : (
+                                        <span className="index-cell text-sm">{detail.value}</span>
+                                    )}
+                                </div>
+                            ))}
 
-                                        <div className="flex flex-wrap gap-2">
-                                            {
-                                                item.tools.map((tool, index) => (
-                                                    <p key={index} className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
+                            <div className="flex flex-col gap-1 py-4 border-t border-rule">
+                                <span className="micro-sm">Socials</span>
+                                <div className="flex flex-wrap items-center gap-x-4">
+                                    {socialLinks.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="bracket-link bracket-link-ghost"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ))}
                                 </div>
                             </div>
-                        ))
-                    }
-                </div>
-
-                <div className="featured-projects-container flex flex-wrap gap-10 pt-50">
-                    <h2 className="text-6xl font-bold">Full-Stack Apps</h2>
-                    {
-                        projectInformationTwo.map((item, index) => (
-                            <div key={index} className="featured-project bg-white rounded-sm w-120 shadow-sm transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl hover:cursor-pointer relative">
-                                <a href={item.link}><img className="rounded-t-sm border-b-2 border-red-400" src={item.image} alt={item.image} /></a>
-                                
-                                <div className="flex flex-col justify-between gap-45 p-5">
-                                    <div className="flex flex-col gap-5">
-                                        <p className="font-semibold">{item.heading}</p>
-
-                                        <p className="text-slate-500">
-                                            {item.description}
-                                        </p>
-                                    </div>
-
-                                    <div></div>
-
-                                    <div className="flex flex-col gap-5 absolute bottom-5">
-                                        <p>Tech Stack</p>
-
-                                        <div className="flex flex-wrap gap-2">
-                                            {
-                                                item.tools.map((tool, index) => (
-                                                    <p key={index} className="text-red-500/60 font-semibold bg-orange-100 rounded-full pl-4 pr-4 pt-1 pb-1">{tool}</p>
-                                                ))
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="new-label" className="text-black bg-white border-2 border-black rounded-full p-1 absolute top-1 right-1">
-                                    <p className="text-sm uppercase font-bold">new</p>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </section>
-
-            <section id="experience" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
-                <div className="featured-experience-container flex flex-wrap gap-10">
-                    <h2 className="text-6xl font-bold">Experience</h2>
-
-                    <div className="featured-experience flex flex-col gap-5 bg-white border border-red-200 p-5 shadow-lg rounded-sm">
-                        <div className="bg-linear-to-b from-orange-200 to-red-200 p-5 -ml-5 -mr-5 -mt-5">
-                            <p className="text-red-900 text-lg font-bold">Stellar AI</p>
-                            <p className="font-semibold text-red-500/60">AI Tester and Validation</p>
-                        </div>
-
-                        <div className="text-slate-500 flex flex-col gap-5">
-                            <div className="text-red-900">
-                                <p>2025 - 2025</p>
-                                <p>Remote</p>
-                            </div>
-                            
-                            <p>
-                                Executed performance and accuracy evaluations on machine learning models
-                                using Python, boosting model accuracy by 15%, and analyzed sample batches to
-                                document reproducible scenarios that improved AI-driven GitHub issue resolution
-                                speed and accuracy by 20%.
-                            </p>
-                            <p>
-                                Authored detailed technical specifications for 10+ GitHub issues, enabling AI
-                                models to reliably reproduce complex virtualized-environment bugs and
-                                streamline automated troubleshooting workflows.
-                            </p>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section id="contact" className="featured-section flex flex-col items-center gap-10 pt-50 pb-50 pl-5 pr-5">
-                <div className="contact-information-container flex flex-col gap-10">
-                    <h2 className="text-6xl font-bold">Contact</h2>
-
-                    <div className="bg-orange-500/10 p-10 rounded-sm border border-red-500">
-                        <div className="contact-information flex flex-wrap gap-50">
-                            <div>
-                                <p className="uppercase font-bold">email</p>
-                                <p>joshmartinezny08@gmail.com</p>
-                            </div>
-                            <div>
-                                <p className="uppercase font-bold">phone</p>
-                                <p>+1 737-213-6739</p>
-                            </div>
-                            <div>
-                                <p className="uppercase font-bold">location</p>
-                                <p>San Marcos, TX</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-5">
-                        <a href="https://github.com/JoshuaM04">
-                            <svg fill="#000000" width="40px" height="40px" viewBox="0 0 24.00 24.00" xmlns="http://www.w3.org/2000/svg" stroke="#000000" strokeWidth="0.00024000000000000003" transform="rotate(0)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.192"></g><g id="SVGRepo_iconCarrier"> <g data-name="Layer 2"> <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect> <path d="M12 1A10.89 10.89 0 0 0 1 11.77 10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11 2.37 2.37 0 0 0 3.2.89 2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91 3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.68 10.68 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77 10.89 10.89 0 0 0 12 1" data-name="github"></path> </g> </g></svg>
-                        </a>
-                        <a href="https://www.linkedin.com/in/joshua-martinez-1aa853212/">
-                            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.72 3.99997H5.37C5.19793 3.99191 5.02595 4.01786 4.86392 4.07635C4.70189 4.13484 4.55299 4.22471 4.42573 4.34081C4.29848 4.45692 4.19537 4.59699 4.12232 4.75299C4.04927 4.909 4.0077 5.07788 4 5.24997V18.63C4.01008 18.9901 4.15766 19.3328 4.41243 19.5875C4.6672 19.8423 5.00984 19.9899 5.37 20H18.72C19.0701 19.9844 19.4002 19.8322 19.6395 19.5761C19.8788 19.32 20.0082 18.9804 20 18.63V5.24997C20.0029 5.08247 19.9715 4.91616 19.9078 4.76122C19.8441 4.60629 19.7494 4.466 19.6295 4.34895C19.5097 4.23191 19.3672 4.14059 19.2108 4.08058C19.0544 4.02057 18.8874 3.99314 18.72 3.99997ZM9 17.34H6.67V10.21H9V17.34ZM7.89 9.12997C7.72741 9.13564 7.5654 9.10762 7.41416 9.04768C7.26291 8.98774 7.12569 8.89717 7.01113 8.78166C6.89656 8.66615 6.80711 8.5282 6.74841 8.37647C6.6897 8.22474 6.66301 8.06251 6.67 7.89997C6.66281 7.73567 6.69004 7.57169 6.74995 7.41854C6.80986 7.26538 6.90112 7.12644 7.01787 7.01063C7.13463 6.89481 7.2743 6.80468 7.42793 6.74602C7.58157 6.68735 7.74577 6.66145 7.91 6.66997C8.07259 6.66431 8.2346 6.69232 8.38584 6.75226C8.53709 6.8122 8.67431 6.90277 8.78887 7.01828C8.90344 7.13379 8.99289 7.27174 9.05159 7.42347C9.1103 7.5752 9.13699 7.73743 9.13 7.89997C9.13719 8.06427 9.10996 8.22825 9.05005 8.3814C8.99014 8.53456 8.89888 8.6735 8.78213 8.78931C8.66537 8.90513 8.5257 8.99526 8.37207 9.05392C8.21843 9.11259 8.05423 9.13849 7.89 9.12997ZM17.34 17.34H15V13.44C15 12.51 14.67 11.87 13.84 11.87C13.5822 11.8722 13.3313 11.9541 13.1219 12.1045C12.9124 12.2549 12.7546 12.4664 12.67 12.71C12.605 12.8926 12.5778 13.0865 12.59 13.28V17.34H10.29V10.21H12.59V11.21C12.7945 10.8343 13.0988 10.5225 13.4694 10.3089C13.84 10.0954 14.2624 9.98848 14.69 9.99997C16.2 9.99997 17.34 11 17.34 13.13V17.34Z" fill="#000000"></path> </g></svg>
-                        </a>
-                    </div>
-                </div>
-            </section>
-        </main>
+            </div>
+        </section>
     );
 }

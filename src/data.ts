@@ -1,9 +1,64 @@
+export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
+
+/**
+ * Education, laid out as the resume does it: institution and location on the
+ * first line, degree and graduation on the second.
+ */
+export const education = [
+    {
+        institution: 'Texas State University',
+        location: 'San Marcos, TX',
+        degree: 'B.S. in Computer Science',
+        detail: 'Graduation Date: December 2025',
+        awards: ['National Society of Collegiate Scholars', 'Phi Theta Kappa', "Dean's List"]
+    }
+];
+
+/*
+ * The resume modal's experience block reads from workExperience below rather
+ * than a second copy of the same role, so the title, period and location cannot
+ * drift between the modal and the experience section.
+ */
+
+/** Rails that run across the page as ticker strips. */
+export const marqueeItems = [
+    'Interactive',
+    'Responsive',
+    'Accessible',
+    'Software Engineer',
+    'Frontend Developer',
+];
+
+/** Milestones for the overview timeline, oldest first. */
+export const timeline = [
+    {
+        period: 'January 2025 — February 2026',
+        title: 'AI Model Tester and Validation Analyst',
+        detail: 'Evaluated agentic AI models across multiple test sessions at Stellar AI, authoring tailored task instructions and scoring outputs against defined success criteria to raise measured task accuracy by 18%, and documenting reproducible failure scenarios that improved AI-driven issue resolution by 20%.'
+    },
+    {
+        period: 'December 2025',
+        title: 'B.S. Computer Science',
+        detail: 'Graduated from Texas State University.'
+    },
+    {
+        period: 'May 2026 — Present',
+        title: 'MERN stack e-commerce app',
+        detail: 'Engineered a full-stack MERN application with dynamic REST API routing for product-isolated reviews, Stripe Checkout payment sessions, and Multer with Vercel Blob for cloud-hosted media. Deployed as a unified monorepo on Vercel with serverless API rewrites and SPA fallback routing.'
+    },
+    {
+        period: 'Now',
+        title: 'Looking for opportunities',
+        detail: 'Primarily a frontend developer, building accessible, WCAG-compliant interfaces, and expanding into back end architecture and full-stack development.'
+    }
+];
+
 export const projectInformationOne = [
     {
         image: '/loopStudiosDesktop.png',
         link: 'https://loop-studios-landing-page-kohl.vercel.app/',
         heading: 'LoopStudios Landing Page',
-        description: 'An animation-driven landing page that showcases VR technology. Crafted with React to organize contents of the page into functional components, Tailwind CSS to enhance type-writer effects via the theme directive, and TypeScript for static typing.', 
+        description: 'An animation-driven landing page that showcases VR technology. Crafted with React to organize contents of the page into functional components, Tailwind CSS to enhance type-writer effects via the theme directive, and TypeScript for static typing.',
         source: 'https://github.com/JoshuaM04/LoopStudios-Landing-Page',
         tools: ['React', 'TypeScript', 'Tailwind CSS']
     },
@@ -51,10 +106,36 @@ export const projectInformationOne = [
 
 export const projectInformationTwo = [
     {
-        image: '../woodworkCreations.png',
+        image: '/carpentry-hero.webp',
         link: 'https://woodwork-creations.com/',
         heading: 'WoodWork Creations',
-        description: 'An E-Commerce website utilizing the MERN tech stack. This website hosts a catalog of hand-made furniture items that are apart of a family-run business and utilizes the Stripe API for payment processing. The backend utilizes dynamic routing for each catalog page to host reviews unique to each catalog item that is stored in the database.',
-        tools: ['MongoDB', 'Express.JS', 'React', 'Node.JS', 'TypeScript', 'Tailwind CSS', 'Stripe API']
+        description: 'Engineered a full-stack MERN e-commerce application for a family-run furniture business, with dynamic REST API routing for product-isolated user reviews, Multer and Vercel Blob for cloud-hosted media uploads, and the Stripe Checkout API processing catalog attributes and prices into secure payment sessions. Deployed as a unified monorepo on Vercel with serverless API rewrites, SPA fallback routing, and AI-assisted backend middleware optimization.',
+        source: 'https://github.com/JoshuaM04/carpentry-website',
+        tools: ['MongoDB', 'Express.JS', 'React', 'Node.JS', 'TypeScript', 'Tailwind CSS', 'Stripe API', 'Multer', 'Vercel']
     }
+];
+
+export const workExperience = [
+    {
+        company: 'Stellar AI',
+        role: 'AI Model Tester and Validation Analyst',
+        period: 'January 2025 — February 2026',
+        location: 'Remote',
+        summary: [
+            'Evaluated agentic AI models across multiple test sessions, authoring tailored task instructions and scoring outputs against defined success criteria to raise measured task accuracy by 18%.',
+            'Analyzed sample batches and documented reproducible failure scenarios, improving AI-driven GitHub issue resolution speed and accuracy by 20%.',
+            'Authored technical specifications for 10+ GitHub issues, enabling AI models to reliably reproduce complex virtualized-environment bugs and streamline automated troubleshooting.'
+        ]
+    }
+];
+
+export const contactDetails = [
+    { label: 'Email', value: 'joshmartinezny08@gmail.com', href: 'mailto:joshmartinezny08@gmail.com' },
+    { label: 'Phone', value: '+1 737-213-6739', href: 'tel:+17372136739' },
+    { label: 'Location', value: 'San Marcos, TX', href: null }
+];
+
+export const socialLinks = [
+    { label: 'GitHub', href: 'https://github.com/JoshuaM04' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/joshua-martinez-1aa853212/' }
 ];
