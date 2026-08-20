@@ -18,19 +18,29 @@ type Node = {
     y: number;
     vx: number;
     vy: number;
+    /** 0.45-1. Scales size and opacity so the field reads with depth rather
+        than as one flat plane of identical dots. */
+    depth: number;
+    /** Offsets each node's twinkle so they never brighten in unison. */
+    phase: number;
 };
 
 /* --- Tunables ---------------------------------------------------------- */
 /** Links only draw between nodes closer than this (CSS px). */
-const LINK_DISTANCE = 155;
+const LINK_DISTANCE = 170;
 /** One node per this many square px of hero, before the cap. */
-const AREA_PER_NODE = 15000;
-const MAX_NODES = 90;
+const AREA_PER_NODE = 13000;
+const MAX_NODES = 110;
 /** Drift speed in px per frame — deliberately slow. */
-const SPEED = 0.05;
-/** Peak opacity of a link at zero distance, and of a node. */
-const LINK_ALPHA = 0.22;
-const NODE_ALPHA = 0.38;
+const SPEED = 0.055;
+/** Peak opacity of a link at zero distance, and of a node at full depth. */
+const LINK_ALPHA = 0.4;
+const NODE_ALPHA = 0.85;
+/** Node square edge in px at full depth. */
+const NODE_SIZE = 3.2;
+/** Twinkle: how far opacity swings, and how fast, in cycles per second. */
+const TWINKLE_DEPTH = 0.3;
+const TWINKLE_SPEED = 0.55;
 /** haze-400 (steel) and bone-50 from the design tokens. */
 const LINK_RGB = '143, 163, 184';
 const NODE_RGB = '244, 244, 241';
@@ -71,13 +81,18 @@ export default function MeshBackdrop() {
                 y: Math.random() * height,
                 vx: (Math.random() - 0.5) * 2 * SPEED,
                 vy: (Math.random() - 0.5) * 2 * SPEED,
+                depth: 0.45 + Math.random() * 0.55,
+                phase: Math.random() * Math.PI * 2,
             }));
         };
 
         const draw = () => {
             ctx.clearRect(0, 0, width, height);
+            const time = performance.now() / 1000;
 
-            // Links first, so nodes sit on top of the web.
+            // Links first, so nodes sit on top of the web. A link takes the
+            // depth of its dimmer end, which keeps far pairs from drawing
+            // bright lines between faint dots.
             for (let i = 0; i < nodes.length; i++) {
                 for (let j = i + 1; j < nodes.length; j++) {
                     const dx = nodes[i].x - nodes[j].x;
@@ -85,7 +100,9 @@ export default function MeshBackdrop() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance >= LINK_DISTANCE) continue;
 
-                    ctx.strokeStyle = `rgba(${LINK_RGB}, ${(1 - distance / LINK_DISTANCE) * LINK_ALPHA})`;
+                    const proximity = 1 - distance / LINK_DISTANCE;
+                    const depth = Math.min(nodes[i].depth, nodes[j].depth);
+                    ctx.strokeStyle = `rgba(${LINK_RGB}, ${proximity * LINK_ALPHA * depth})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
                     ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -94,9 +111,13 @@ export default function MeshBackdrop() {
                 }
             }
 
-            ctx.fillStyle = `rgba(${NODE_RGB}, ${NODE_ALPHA})`;
+            // Nodes carry the brightness. Each one breathes on its own phase,
+            // so the field shimmers slowly instead of sitting inert.
             for (const node of nodes) {
-                ctx.fillRect(node.x - 1, node.y - 1, 2.5, 2.5);
+                const twinkle = 1 - TWINKLE_DEPTH + TWINKLE_DEPTH * Math.sin(time * TWINKLE_SPEED + node.phase);
+                const size = NODE_SIZE * node.depth;
+                ctx.fillStyle = `rgba(${NODE_RGB}, ${NODE_ALPHA * node.depth * twinkle})`;
+                ctx.fillRect(node.x - size / 2, node.y - size / 2, size, size);
             }
         };
 

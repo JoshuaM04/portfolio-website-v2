@@ -46,7 +46,7 @@ function Hero() {
                         <span className="micro">Software Engineer</span>
                     </div>
 
-                    <h1 className="display-xl">
+                    <h1 className="display-xl hero-heading">
                         Building<br />
                         interfaces that<br />
                         move

@@ -49,7 +49,7 @@ export const timeline = [
     {
         period: 'Now',
         title: 'Looking for opportunities',
-        detail: 'Open to frontend and full-stack roles, building accessible, WCAG-compliant interfaces while expanding into back end architecture and cloud deployment.'
+        detail: 'Primarily a frontend developer, building accessible, WCAG-compliant interfaces, and expanding into back end architecture and full-stack development.'
     }
 ];
 
