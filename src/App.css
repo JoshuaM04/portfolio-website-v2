@@ -408,6 +408,42 @@
     }
 
     /* ==========================================================================
+       COMPONENT: timeline
+       --------------------------------------------------------------------------
+       A vertical rail with a marker per milestone, used to fill the overview
+       column beside the portrait. The markers are the same squares used by the
+       .marker motif, pulled left so they sit centred on the rail.
+       ========================================================================== */
+
+    .timeline {
+        position: relative;
+        border-left: 1px solid var(--color-rule);
+        padding-left: 1.75rem;
+    }
+
+    .timeline-item {
+        position: relative;
+    }
+
+    /* Rail sits 28px of padding plus its own 1px to the left of the content
+       box, so its centre is at -28.5px; offsetting a 5px square by half its
+       width lands it centred on the line. */
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -1.9375rem;
+        top: 0.375rem;
+        width: 0.3125rem;
+        height: 0.3125rem;
+        background-color: var(--color-haze-400);
+    }
+
+    /* The final milestone reads as the live one. */
+    .timeline-item:last-child::before {
+        outline: 3px solid rgba(168, 191, 178, 0.18);
+    }
+
+    /* ==========================================================================
        COMPONENT: experience entry
        --------------------------------------------------------------------------
        A capped tower rather than a full-bleed card. The width tracks the

@@ -8,6 +8,7 @@ import {
     workExperience,
     contactDetails,
     socialLinks,
+    timeline,
 } from '../data';
 
 export default function Main() {
@@ -115,6 +116,27 @@ function PersonalOverview() {
                             MongoDB. Actively expanding into back end and full-stack development while
                             continuously refining technical skills and workflow efficiency.
                         </p>
+
+                        {/* Fills the column beneath the prose. From lg the grid
+                            row is as tall as the portrait opposite, so grow +
+                            justify-between spreads the milestones down that
+                            height instead of leaving the column half empty. */}
+                        <div className="flex flex-col grow pt-6">
+                            <div className="flex items-center gap-3 pb-4 border-b border-rule">
+                                <Marker small />
+                                <span className="micro-sm">Trajectory</span>
+                            </div>
+
+                            <ol className="timeline flex flex-col gap-8 lg:gap-0 grow lg:justify-between mt-8">
+                                {timeline.map((item, index) => (
+                                    <li key={index} className="timeline-item flex flex-col gap-1">
+                                        <span className="micro-sm">{item.period}</span>
+                                        <p className="index-cell text-sm">{item.title}</p>
+                                        <p className="body-sm">{item.detail}</p>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
                     </div>
 
                     <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">

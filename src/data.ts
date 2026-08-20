@@ -13,6 +13,36 @@ export const marqueeItems = [
     'Frontend Developer',
 ];
 
+/**
+ * Milestones for the overview timeline.
+ *
+ * NOTE: the periods below are placeholders inferred from the rest of the site
+ * (the Stellar AI role is dated 2025, the project years run 2024-2026). Confirm
+ * or correct them before this goes public.
+ */
+export const timeline = [
+    {
+        period: '2026',
+        title: 'B.S. Computer Science',
+        detail: 'Texas State University.'
+    },
+    {
+        period: '2025',
+        title: 'AI Tester and Validation',
+        detail: 'Model evaluation and reproducible issue documentation at Stellar AI.'
+    },
+    {
+        period: '2026',
+        title: 'Full-stack delivery',
+        detail: 'Shipped WoodWork Creations on the MERN stack with Stripe payments.'
+    },
+    {
+        period: 'Now',
+        title: 'Open to opportunities',
+        detail: 'Building accessible, responsive interfaces and expanding into back end work.'
+    }
+];
+
 export const projectInformationOne = [
     {
         image: '/loopStudiosDesktop.png',
