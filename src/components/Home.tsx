@@ -89,16 +89,14 @@ function PersonalOverview() {
             <div className="shell">
                 <SectionLabel label="Personal Overview" index="01 / 03" />
 
-                {/* The oversized thesis statement, offset to the right the way
-                    the reference sets its section openers. */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-8">
-                    {/* Offset via col-start rather than an empty spacer div: a
-                        spacer collapses to a zero-height row below lg but still
-                        pays the row-gap, which pushed the heading down. */}
-                    <h2 className="lg:col-span-7 lg:col-start-6 display-lg">
-                        Designing interfaces that feel as clear as they are memorable.
-                    </h2>
-                </div>
+                {/* Left-aligned on the shell edge, sharing a margin with the
+                    section label above and the prose below, so the whole
+                    section reads off one axis. The offset version sat in
+                    columns 6-12 and floated away from the content it
+                    introduces. max-w keeps the measure sane at display sizes. */}
+                <h2 className="display-lg max-w-4xl pt-8">
+                    Designing interfaces that feel as clear as they are memorable.
+                </h2>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-24">
                     <div className="lg:col-span-5 flex flex-col gap-8">
