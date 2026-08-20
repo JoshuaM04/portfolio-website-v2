@@ -315,9 +315,17 @@ function Experience() {
 
                                 <p className="micro text-bone-200">{role.role}</p>
 
-                                <div className="flex flex-col gap-1">
+                                {/* The location is a qualifier on the period, not a
+                                    peer of it. A square bullet in the text's own
+                                    colour marks it as its own datum without pulling
+                                    focus, and the wider gap stops the two lines
+                                    reading as one broken block. */}
+                                <div className="flex flex-col gap-2">
                                     <span className="micro-sm">{role.period}</span>
-                                    <span className="micro-sm">{role.location}</span>
+                                    <span className="micro-sm flex items-center gap-2">
+                                        <span aria-hidden="true" className="size-1 bg-bone-600 shrink-0" />
+                                        {role.location}
+                                    </span>
                                 </div>
                             </div>
 
