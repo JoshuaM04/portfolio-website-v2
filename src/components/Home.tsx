@@ -124,7 +124,7 @@ function PersonalOverview() {
                         <div className="flex flex-col grow pt-6">
                             <div className="flex items-center gap-3 pb-4 border-b border-rule">
                                 <Marker small />
-                                <span className="micro-sm">Trajectory</span>
+                                <span className="micro-sm">Timeline</span>
                             </div>
 
                             <ol className="timeline flex flex-col gap-8 lg:gap-0 grow lg:justify-between mt-8">

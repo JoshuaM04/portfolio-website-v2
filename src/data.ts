@@ -2,7 +2,7 @@ export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 
 
 export const education = ['B.S. Computer Science @ Texas State University'];
 
-export const experience = ['AI Tester and Validation @ Stellar AI'];
+export const experience = ['AI Model Tester and Validation Analyst @ Stellar AI'];
 
 /** Rails that run across the page as ticker strips. */
 export const marqueeItems = [
@@ -13,32 +13,26 @@ export const marqueeItems = [
     'Frontend Developer',
 ];
 
-/**
- * Milestones for the overview timeline.
- *
- * NOTE: the periods below are placeholders inferred from the rest of the site
- * (the Stellar AI role is dated 2025, the project years run 2024-2026). Confirm
- * or correct them before this goes public.
- */
+/** Milestones for the overview timeline, oldest first. */
 export const timeline = [
     {
-        period: '2026',
-        title: 'B.S. Computer Science',
-        detail: 'Texas State University.'
-    },
-    {
-        period: '2025',
-        title: 'AI Tester and Validation',
+        period: 'January 2025 — February 2026',
+        title: 'AI Model Tester and Validation Analyst',
         detail: 'Model evaluation and reproducible issue documentation at Stellar AI.'
     },
     {
+        period: 'December 2025',
+        title: 'B.S. Computer Science',
+        detail: 'Graduated from Texas State University.'
+    },
+    {
         period: '2026',
-        title: 'Full-stack delivery',
-        detail: 'Shipped WoodWork Creations on the MERN stack with Stripe payments.'
+        title: 'MERN stack e-commerce build',
+        detail: 'Shipped WoodWork Creations with Stripe payment processing and dynamic catalog routing.'
     },
     {
         period: 'Now',
-        title: 'Open to opportunities',
+        title: 'Looking for opportunities',
         detail: 'Building accessible, responsive interfaces and expanding into back end work.'
     }
 ];
@@ -122,8 +116,8 @@ export const projectInformationTwo = [
 export const workExperience = [
     {
         company: 'Stellar AI',
-        role: 'AI Tester and Validation',
-        period: '2025 — 2025',
+        role: 'AI Model Tester and Validation Analyst',
+        period: 'January 2025 — February 2026',
         location: 'Remote',
         summary: [
             'Executed performance and accuracy evaluations on machine learning models using Python, boosting model accuracy by 15%, and analyzed sample batches to document reproducible scenarios that improved AI-driven GitHub issue resolution speed and accuracy by 20%.',
