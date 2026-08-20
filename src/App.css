@@ -628,6 +628,16 @@
        COMPONENT: hero
        ========================================================================== */
 
+    /* Sized in svh, not vh. On mobile browsers vh resolves against the large
+       viewport — the one you get with the URL bar collapsed — so a hero sized
+       in vh runs underneath the browser chrome and clips whatever sits at its
+       bottom edge. svh is the small viewport, measured with that chrome fully
+       expanded, so the actions are always reachable.
+
+       svh rather than dvh deliberately: dvh tracks the chrome as it collapses
+       and expands during a scroll, which would resize the hero underneath the
+       reader. svh never changes. The vh line is a fallback for browsers that
+       do not know the newer units. */
     .hero {
         position: relative;
         min-height: clamp(38rem, 92vh, 60rem);
@@ -635,6 +645,15 @@
         flex-direction: column;
         justify-content: space-between;
         overflow: hidden;
+    }
+
+    /* Written as @supports rather than two min-height declarations in the same
+       rule: the minifier treats the second as redundant and drops the first,
+       which would leave nothing behind for browsers without svh. */
+    @supports (height: 1svh) {
+        .hero {
+            min-height: clamp(38rem, 92svh, 60rem);
+        }
     }
 
     /* The portrait/backdrop sits behind everything, heavily graded down so the
@@ -790,6 +809,14 @@
         width: clamp(20rem, 50vw, 38rem);
         max-height: 88vh;
         overflow-y: auto;
+    }
+
+    /* Same reasoning as the hero: capped against the small viewport so the panel
+       cannot extend behind mobile browser chrome. */
+    @supports (height: 1svh) {
+        .modal-pop-up {
+            max-height: 88svh;
+        }
     }
 
     .modal-pop-up::backdrop {
