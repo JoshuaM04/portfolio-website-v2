@@ -747,6 +747,30 @@
         }
     }
 
+    /* From md up the hero fills exactly what the sticky header leaves of the
+       viewport, so the section below it is never in frame on landing. The
+       header publishes its own height as --header-h, so this stays right if
+       the header ever changes size.
+
+       Phones keep the clamped height above: filling the viewport there would
+       undo the clearance that keeps the actions out from under browser
+       chrome. */
+    @media (min-width: 48rem) {
+        .hero {
+            min-height: calc(100vh - var(--header-h, 7.25rem));
+        }
+    }
+
+    /* Tablets in this range still have collapsing chrome, so prefer the small
+       viewport where it is understood. On a desktop the two are identical. */
+    @supports (height: 1svh) {
+        @media (min-width: 48rem) {
+            .hero {
+                min-height: calc(100svh - var(--header-h, 7.25rem));
+            }
+        }
+    }
+
     /* The portrait/backdrop sits behind everything, heavily graded down so the
        type stays legible over it. */
     .hero-media {
@@ -777,9 +801,39 @@
             linear-gradient(to bottom, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.08) 38%, rgba(5, 5, 5, 0.85) 100%);
     }
 
+    /* Vertical rhythm lives here rather than as utilities in the markup, so the
+       md rules below can override it without a specificity fight. */
     .hero-content {
         position: relative;
         z-index: 2;
+        padding-top: 4rem;
+        padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+    }
+
+    /* The gap between the headline and the base rail. Phones need it, because
+       there the hero is taller than its content and the two blocks would
+       otherwise drift apart; from md the hero is sized to the viewport and
+       space-between already does this work, so the padding only steals room. */
+    .hero-base {
+        padding-top: 5rem;
+        row-gap: 3rem;
+    }
+
+    /* From md the hero has a fixed budget: the viewport less the header. The
+       headline, statement and actions are close to that budget on their own,
+       so the spacing between them scales with viewport height instead of
+       staying fixed, which is what keeps the actions above the fold on a short
+       laptop screen rather than pushing them under it. */
+    @media (min-width: 48rem) {
+        .hero-content {
+            padding-top: clamp(1.5rem, 3.5vh, 5rem);
+            padding-bottom: clamp(1.5rem, 2.75vh, 3.5rem);
+        }
+
+        .hero-base {
+            padding-top: 0;
+            row-gap: clamp(0.75rem, 2.25vh, 3rem);
+        }
     }
 
     /* The oversized outline statement that overlaps the hero image. */
@@ -822,6 +876,11 @@
        that dip against the peak that reads as a specular highlight rather than
        the peak alone. */
     .hero-heading {
+        /* min() adds a height ceiling to the width-driven size. On a short, wide
+           screen the headline would otherwise hold its full width-based size and
+           push the actions under the fold. Narrow screens are unaffected: there
+           the vw term is always the smaller of the two. */
+        font-size: clamp(2.75rem, min(7.5vw, 12.5vh), 6.5rem);
         background-image:
             linear-gradient(
                 135deg,
@@ -847,7 +906,8 @@
     .hero-statement {
         font-family: var(--font-display);
         font-weight: 400;
-        font-size: clamp(2rem, 6vw, 5rem);
+        /* Height ceiling, same reasoning as the headline. */
+        font-size: clamp(2rem, min(6vw, 9.5vh), 5rem);
         line-height: 0.95;
         letter-spacing: -0.02em;
         text-transform: uppercase;

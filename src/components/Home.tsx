@@ -81,7 +81,7 @@ function Hero() {
             </div>
             <div className="hero-veil" aria-hidden="true" />
 
-            <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pt-24 md:pb-14">
+            <div className="hero-content shell flex flex-col justify-between grow">
                 {/* Headline */}
                 <div className="max-w-4xl">
                     <div className="flex items-center gap-3 pb-6">
@@ -98,7 +98,7 @@ function Hero() {
 
                 {/* Base rail: supporting copy on the left, the overlapping
                     statement on the right. */}
-                <div className="flex flex-col gap-12 pt-20">
+                <div className="hero-base flex flex-col">
                     <p className="hero-statement sheen ml-auto max-w-3xl">
                         Clear, responsive,<br />and built to last
                     </p>
