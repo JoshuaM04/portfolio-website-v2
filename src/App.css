@@ -27,7 +27,8 @@
     --color-bone-50: #f4f4f1;   /* headings, primary type */
     --color-bone-200: #cfcfc9;  /* body copy on dark */
     --color-bone-400: #8d8d87;  /* secondary copy */
-    --color-bone-600: #7a7a75;  /* micro-labels, meta — 4.7:1 on ink-950 (WCAG AA) */
+    --color-bone-600: #7f7f7a;  /* micro-labels, meta — AA on every ground:
+                                   5.07:1 ink-950, 4.92:1 ink-900, 4.76:1 ink-850 */
     --color-bone-800: #2e2e2c;  /* deep dividers */
 
     /* --- Secondary / signal accent --------------------------------------
