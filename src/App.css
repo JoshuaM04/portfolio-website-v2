@@ -57,10 +57,15 @@
         100% { transform: translateX(-50%); }
     }
 
+    /* Runs 175% -> -75%, not the other way round. With background-size larger
+       than the element the offset resolves to (container - image) * position,
+       which is negative, so percentages travel the image in the opposite
+       direction to the number. Descending values move the highlight top-left
+       to bottom-right. */
     @keyframes sheen-sweep {
-        0%   { background-position: -75% -75%, 0 0; }
-        42%  { background-position: 175% 175%, 0 0; }
-        100% { background-position: 175% 175%, 0 0; }
+        0%   { background-position: 175% 175%, 0 0; }
+        42%  { background-position: -75% -75%, 0 0; }
+        100% { background-position: -75% -75%, 0 0; }
     }
 
     @keyframes rise {
@@ -678,11 +683,11 @@
     .sheen {
         background-repeat: no-repeat;
         background-size: 220% 220%, 100% 100%;
-        background-position: -75% -75%, 0 0;
+        background-position: 175% 175%, 0 0;
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        animation: sheen-sweep 7s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+        animation: sheen-sweep 11s cubic-bezier(0.4, 0, 0.3, 1) infinite;
     }
 
     /* The headline is painted as a gradient clipped to the glyphs rather than a
@@ -692,17 +697,26 @@
        after .display-xl so it wins the colour. */
     .hero-heading {
         background-image:
+            /* Glass highlight: a wide, soft band with shoulders either side of
+               a modest peak, rather than one hot white line. Light diffusing
+               through a thick edge, not a chrome flash. */
             linear-gradient(
                 135deg,
-                rgba(244, 244, 241, 0) 44%,
-                rgba(255, 255, 255, 0.92) 50%,
-                rgba(244, 244, 241, 0) 56%
+                rgba(255, 255, 255, 0) 36%,
+                rgba(226, 236, 245, 0.12) 44%,
+                rgba(255, 255, 255, 0.42) 50%,
+                rgba(226, 236, 245, 0.12) 56%,
+                rgba(255, 255, 255, 0) 64%
             ),
+            /* Glass body: cool, fairly even translucency that lifts again at
+               the baseline the way a bevelled edge catches light, instead of
+               fading out linearly. */
             linear-gradient(
-                170deg,
-                rgba(244, 244, 241, 0.97) 0%,
-                rgba(244, 244, 241, 0.88) 42%,
-                rgba(189, 206, 222, 0.66) 100%
+                168deg,
+                rgba(247, 249, 251, 0.94) 0%,
+                rgba(223, 232, 240, 0.8) 32%,
+                rgba(189, 206, 222, 0.66) 62%,
+                rgba(214, 226, 238, 0.83) 100%
             );
     }
 
@@ -723,16 +737,19 @@
         background-image:
             linear-gradient(
                 135deg,
-                rgba(244, 244, 241, 0) 44%,
-                rgba(255, 255, 255, 0.8) 50%,
-                rgba(244, 244, 241, 0) 56%
+                rgba(255, 255, 255, 0) 36%,
+                rgba(226, 236, 245, 0.1) 44%,
+                rgba(255, 255, 255, 0.34) 50%,
+                rgba(226, 236, 245, 0.1) 56%,
+                rgba(255, 255, 255, 0) 64%
             ),
             linear-gradient(
-                170deg,
-                rgba(244, 244, 241, 0.82) 0%,
+                168deg,
+                rgba(236, 242, 247, 0.8) 0%,
+                rgba(200, 214, 228, 0.62) 55%,
                 rgba(189, 206, 222, 0.55) 100%
             );
-        animation-delay: 2.4s;
+        animation-delay: 3.9s;
     }
 
     /* ==========================================================================
