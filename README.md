@@ -4,12 +4,12 @@ A personal portfolio for a frontend-leaning software engineer. Read the work, sc
 
 **Live:** [joshuam-portfolio.vercel.app](https://joshuam-portfolio.vercel.app/)
 
-![The portfolio hero: the words Building Accessible Interfaces set large over a slowly drifting node mesh, with Clear, Responsive, And Built To Last set opposite](docs/screenshots/hero.png)
+![The portfolio hero: the words Building Accessible Interfaces set large over a slowly drifting node mesh, with Clear, Responsive, And Built To Last set opposite](docs/screenshots/after-hero.png)
 
 <details>
 <summary>See the full page</summary>
 
-![The complete page: hero, personal overview with a milestone timeline, full-stack and UI/UX project grids, experience, and contact](docs/screenshots/home-full.png)
+![The complete page: hero, personal overview with a milestone timeline, full-stack and UI/UX project grids, experience, and contact](docs/screenshots/after-full.png)
 
 </details>
 
@@ -84,13 +84,22 @@ What I'd do differently next time:
 
 ## What AI tooling helped with
 
-I used [Claude Code](https://claude.com/claude-code) for a visual overhaul, on a branch and merged by pull request.
+**The first version was built without any.** It was designed from scratch, working from other software engineers' portfolios as reference for what the genre does well: how much work to show before asking for attention, where the resume belongs, how long an about section should run. Every design decision, every bug fix, and all of the responsive behaviour in that version was mine.
 
-**The overhaul was a re-skin, not a rebuild.** The brief was a design reference and one constraint: keep the mechanics. The sticky header, the anchor navigation, the native smooth scrolling, and the React Aria resume modal all came through unchanged, because those were working and the problem was the surface. What changed was the design language underneath them, from ad-hoc utility classes to a documented token system with a type scale, hairline structure, and reusable component classes. The section order, the navigation model, and the content hierarchy from the first version were carried over deliberately: the previous design's UX decisions were sound, and re-deciding them would have made the diff impossible to review.
+A few things about how it was written are worth naming, because they are what the current version inherited:
 
-It also caught things I had not gone looking for. A project image path was relative, so it broke anywhere but the root. The mobile navigation overflowed the viewport. `scroll-padding-top` did not clear the sticky header, so anchored sections landed underneath it. The resume modal duplicated its own markup in the header. A colour token failed WCAG AA on a card surface. Every rendered text node on the page now clears AA, which was not true before.
+- **Fluid sizing rather than breakpoints.** Widths and spacing were set with `clamp()` in plain CSS classes: `.hero-container`, `.featured-project`, `.featured-section`, `.modal-pop-up`. Each interpolated between a floor and a ceiling instead of stepping at a media query, so the layout moved continuously with the viewport rather than jumping. The current design system is built the same way, and the capped experience card is a direct descendant of `.featured-project { width: clamp(20rem, 20vw, 25.5rem) }`.
+- **A shared measure applied by grouping selectors.** One rule gave every section container the same width, so the page held a single column edge without repeating the value in five places.
+- **Tailwind v4's `@theme` block used for real tokens.** A custom font family, a named keyframe animation for the modal, and a custom breakpoint at `70.875rem` — a specific enough number that it was clearly measured against the actual content rather than picked off a scale.
+- **Data separated from markup.** Project details lived in `data.ts` and were rendered with a `.map()`, which the commit history shows was a deliberate refactor away from hand-writing the TSX for each card.
+- **Accessible dialog semantics from the start.** The resume modal used React Aria Components rather than a hand-rolled overlay, with `::backdrop` styled in CSS.
+- **Anchor navigation with no JavaScript.** Section IDs plus `scroll-smooth` on `<html>`, which is still how the navigation works today.
 
-**The project card hover states.** The subtle hover behaviour on the project cards came out of the same pass: the card lifts slightly and its border brightens, the screenshot desaturates back toward colour, and the technology tags pick up the accent. Each is a small transition on its own, but they are timed and eased together so the card responds as one object rather than four independent effects firing at once.
+**The one exception was the project card hover.** The lift on hover — `transition-all duration-1000 ease-out hover:translate-y-[-3%] hover:shadow-xl` — was the single place AI tooling contributed to that version: a slow ease-out rise with the shadow deepening underneath it, plus the matching tint on the core competency pills. That behaviour survived the overhaul in spirit, retimed and restyled to suit a darker surface.
+
+**Then the visual overhaul, with [Claude Code](https://claude.com/claude-code).** On a branch, merged by pull request. The brief was a design reference and one constraint: keep the mechanics. The sticky header, the anchor navigation, the smooth scrolling, and the resume modal all came through unchanged, because they worked and the problem was the surface. What changed underneath was the design language, from ad-hoc utility classes to a documented token system with a type scale, hairline structure, and reusable component classes. The section order, the navigation model, and the content hierarchy were carried over on purpose: those UX decisions were sound, and re-deciding them would have made the diff impossible to review.
+
+It also caught things I had not gone looking for. A project image path was relative, so it broke anywhere but the root. The mobile navigation overflowed the viewport. `scroll-padding-top` did not clear the sticky header, so anchored sections landed underneath it. The resume modal duplicated its own markup in the header, and its experience block had drifted out of sync with the experience section. A colour token failed WCAG AA on a card surface. Every rendered text node on the page now clears AA, which was not true before.
 
 The tool did the sweep. The direction, and roughly forty rounds of "that is not quite right, try this instead," stayed mine, which is most of what the commit history after the merge actually is.
 
