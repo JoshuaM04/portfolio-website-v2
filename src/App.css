@@ -101,7 +101,7 @@
     .display-xl {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(2.75rem, 7.5vw, 8rem);
+        font-size: clamp(2.75rem, 7.5vw, 6.5rem);
         line-height: 0.92;
         letter-spacing: -0.03em;
         text-transform: uppercase;
@@ -111,7 +111,7 @@
     .display-lg {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(2rem, 4.75vw, 4.5rem);
+        font-size: clamp(2rem, 4.75vw, 3.75rem);
         line-height: 0.98;
         letter-spacing: -0.025em;
         text-transform: uppercase;
@@ -121,7 +121,7 @@
     .display-md {
         font-family: var(--font-display);
         font-weight: 500;
-        font-size: clamp(1.5rem, 2.75vw, 2.5rem);
+        font-size: clamp(1.5rem, 2.75vw, 2.125rem);
         line-height: 1.05;
         letter-spacing: -0.02em;
         text-transform: uppercase;
@@ -164,11 +164,15 @@
        LAYOUT
        ========================================================================== */
 
+    /* The cap is high enough that the layout keeps tracking the viewport on
+       wide screens instead of sitting in a narrow centred band, while still
+       stopping the 12-column grid from stretching prose past a readable
+       measure on ultrawide displays. */
     .shell {
         width: 100%;
-        max-width: 96rem;
+        max-width: 120rem;
         margin-inline: auto;
-        padding-inline: clamp(1.25rem, 4vw, 4rem);
+        padding-inline: clamp(1.25rem, 4vw, 5rem);
     }
 
     .section-pad {
@@ -553,7 +557,7 @@
     .hero-statement {
         font-family: var(--font-display);
         font-weight: 400;
-        font-size: clamp(2rem, 6vw, 6.5rem);
+        font-size: clamp(2rem, 6vw, 5rem);
         line-height: 0.95;
         letter-spacing: -0.03em;
         text-transform: uppercase;
