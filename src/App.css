@@ -687,7 +687,7 @@
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        animation: sheen-sweep 11s cubic-bezier(0.4, 0, 0.3, 1) infinite;
+        animation: sheen-sweep 15s cubic-bezier(0.4, 0, 0.3, 1) infinite;
     }
 
     /* The headline is painted as a gradient clipped to the glyphs rather than a
@@ -695,29 +695,27 @@
        the baseline, so the mesh reads faintly through the lower half and the
        type picks up a sheen instead of sitting on top as a solid slab. Set
        after .display-xl so it wins the colour. */
+    /* Neutral bone throughout — no steel stops. The tinted version read blue
+       against the flat bone headings elsewhere on the page, which is what made
+       it stand out. Legibility now comes from the stroke rather than the fill,
+       so the interior can drop far enough to let the mesh show through.
+       paint-order keeps the stroke behind the fill so it frames the glyph
+       instead of eating into it. */
     .hero-heading {
         background-image:
-            /* Glass highlight: a wide, soft band with shoulders either side of
-               a modest peak, rather than one hot white line. Light diffusing
-               through a thick edge, not a chrome flash. */
             linear-gradient(
                 135deg,
-                rgba(255, 255, 255, 0) 36%,
-                rgba(226, 236, 245, 0.12) 44%,
-                rgba(255, 255, 255, 0.42) 50%,
-                rgba(226, 236, 245, 0.12) 56%,
-                rgba(255, 255, 255, 0) 64%
+                rgba(255, 255, 255, 0) 38%,
+                rgba(255, 255, 255, 0.28) 50%,
+                rgba(255, 255, 255, 0) 62%
             ),
-            /* Glass body: cool, fairly even translucency that lifts again at
-               the baseline the way a bevelled edge catches light, instead of
-               fading out linearly. */
             linear-gradient(
-                168deg,
-                rgba(247, 249, 251, 0.94) 0%,
-                rgba(223, 232, 240, 0.8) 32%,
-                rgba(189, 206, 222, 0.66) 62%,
-                rgba(214, 226, 238, 0.83) 100%
+                180deg,
+                rgba(244, 244, 241, 0.34) 0%,
+                rgba(244, 244, 241, 0.2) 100%
             );
+        -webkit-text-stroke: 1.5px rgba(244, 244, 241, 0.9);
+        paint-order: stroke fill;
     }
 
     /* Same treatment as the headline, one step dimmer since it sits behind in
@@ -737,19 +735,20 @@
         background-image:
             linear-gradient(
                 135deg,
-                rgba(255, 255, 255, 0) 36%,
-                rgba(226, 236, 245, 0.1) 44%,
-                rgba(255, 255, 255, 0.34) 50%,
-                rgba(226, 236, 245, 0.1) 56%,
-                rgba(255, 255, 255, 0) 64%
+                rgba(255, 255, 255, 0) 38%,
+                rgba(255, 255, 255, 0.24) 50%,
+                rgba(255, 255, 255, 0) 62%
             ),
             linear-gradient(
-                168deg,
-                rgba(236, 242, 247, 0.8) 0%,
-                rgba(200, 214, 228, 0.62) 55%,
-                rgba(189, 206, 222, 0.55) 100%
+                180deg,
+                rgba(244, 244, 241, 0.3) 0%,
+                rgba(244, 244, 241, 0.18) 100%
             );
-        animation-delay: 3.9s;
+        /* Lighter stroke than the headline — this line sits behind it in the
+           hierarchy and a matching weight would flatten the two together. */
+        -webkit-text-stroke: 1px rgba(244, 244, 241, 0.62);
+        paint-order: stroke fill;
+        animation-delay: 5.4s;
     }
 
     /* ==========================================================================
