@@ -141,14 +141,20 @@ function PersonalOverview() {
                     Designing interfaces that feel as clear as they are memorable.
                 </h2>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-24">
+                {/* The heading needs air on desktop, where it sits beside a tall
+                    column; on a phone the two stack and 96px reads as a hole. */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-10 md:pt-24">
                     <div className="lg:col-span-5 flex flex-col gap-8">
-                        <p className="body-lg">
+                        {/* Lead and supporting paragraph rather than two equal
+                            slabs: the first is larger, the second steps down in
+                            both size and tone, and a hairline separates them. The
+                            wording is untouched — the hierarchy is doing the work. */}
+                        <p className="lead">
                             I'm a <span className="text-bone-50">recent graduate</span> Software Engineer
                             specializing in building accessible, responsive web applications using HTML, CSS,
                             TypeScript, React, and Tailwind CSS, with a strong focus on WCAG compliant design.
                         </p>
-                        <p className="body-lg">
+                        <p className="body-lg text-bone-400 border-t border-rule-soft pt-8">
                             Experience enhancing AI model accuracy and optimizing development workflows through
                             testing and validation, alongside working with non-relational databases such as
                             MongoDB. Actively expanding into back end and full-stack development while
