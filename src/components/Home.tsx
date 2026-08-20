@@ -1,5 +1,6 @@
 import Resume from './Resume';
 import { Marker, SectionLabel, Framed } from './Primitives';
+import MeshBackdrop from './MeshBackdrop';
 import {
     projectInformationOne,
     projectInformationTwo,
@@ -28,9 +29,12 @@ export default function Main() {
 function Hero() {
     return (
         <section id="hero" className="hero">
-            {/* Backdrop image intentionally absent for now — the veil keeps the
-                graded ground so a replacement can drop straight into
-                .hero-media without any other change. */}
+            {/* An animated node mesh stands in for a backdrop photo: it avoids
+                reusing the overview image and gives the hero some slow motion
+                without competing with the headline. */}
+            <div className="hero-media">
+                <MeshBackdrop />
+            </div>
             <div className="hero-veil" aria-hidden="true" />
 
             <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-10 md:pt-24 md:pb-14">
@@ -209,13 +213,14 @@ function ProjectGrid({ label, index, heading, projects, showNewLabel }: ProjectG
                             </span>
                         )}
 
-                        {/* The box matches the screenshots' own 2560x1230 ratio
-                            and uses object-contain, so every shot is shown whole
-                            rather than cropped to fit. Anything off-ratio letterboxes
-                            against the ink ground instead of losing its edges. */}
+                        {/* The box matches the screenshots' own 2560x1230 ratio,
+                            so object-cover fills it edge to edge while cropping
+                            nothing off them. Only an off-ratio image loses
+                            anything, and then just the few percent that would
+                            otherwise show as bars. */}
                         <a href={item.link} target="_blank" rel="noreferrer" className="block overflow-hidden bg-ink-950">
                             <img
-                                className="media block w-full aspect-[256/123] object-contain"
+                                className="media block w-full aspect-[256/123] object-cover"
                                 src={item.image}
                                 alt={`${item.heading} screenshot`}
                             />
