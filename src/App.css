@@ -404,6 +404,22 @@
     }
 
     /* ==========================================================================
+       COMPONENT: experience entry
+       --------------------------------------------------------------------------
+       A capped tower rather than a full-bleed card. The width tracks the
+       viewport only between a floor and a ceiling, so the entry keeps a
+       consistent, readable column instead of stretching across the shell on
+       wide screens — the same constraint the previous design used. max-width
+       keeps it inside the shell on very narrow viewports, where the 20rem
+       floor would otherwise overflow.
+       ========================================================================== */
+
+    .experience-entry {
+        width: clamp(20rem, 30vw, 26rem);
+        max-width: 100%;
+    }
+
+    /* ==========================================================================
        COMPONENT: project card
        ========================================================================== */
 

@@ -267,16 +267,18 @@ function Experience() {
 
                 {/* Laid out like the projects list rather than the two-column
                     narrative sections: a full-width heading over a stack of
-                    entries. Each entry stays a single column at every width,
-                    with the prose held to a readable measure so the card can
-                    span the shell without the lines running long. */}
+                    entries. Each entry stays a single column at every
+                    width, capped to a tower so it never stretches with the
+                    viewport. */}
                 <h2 className="display-lg pb-14">Experience</h2>
 
-                <div className="flex flex-col gap-6">
+                {/* Towers wrap into a row as roles are added rather than
+                    stretching to fill the shell. */}
+                <div className="flex flex-wrap gap-6">
                     {workExperience.map((role, index) => (
                         <article
                             key={index}
-                            className="bg-ink-850 border border-rule-soft p-6 md:p-10 flex flex-col gap-8"
+                            className="experience-entry bg-ink-850 border border-rule-soft p-6 md:p-8 flex flex-col gap-8"
                         >
                             <div className="flex flex-col gap-4">
                                 <div className="flex items-center gap-3">
@@ -293,13 +295,12 @@ function Experience() {
                                 </div>
                             </div>
 
-                            {/* body-lg rather than body-sm: at 13px the old 768px
-                                measure ran ~112 characters per line, well past
-                                comfortable. Larger type on a tighter measure
-                                brings it to ~80 and matches the overview prose. */}
-                            <div className="flex flex-col gap-5 max-w-2xl border-t border-rule-soft pt-8">
+                            {/* The tower caps the measure on its own, so the
+                                smaller type is back — body-lg at this width
+                                would leave only ~30 characters per line. */}
+                            <div className="flex flex-col gap-5 border-t border-rule-soft pt-8">
                                 {role.summary.map((paragraph, paragraphIndex) => (
-                                    <p key={paragraphIndex} className="body-lg">{paragraph}</p>
+                                    <p key={paragraphIndex} className="body-sm">{paragraph}</p>
                                 ))}
                             </div>
                         </article>
