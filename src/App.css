@@ -83,6 +83,25 @@
         to { transform: rotate(1turn); }
     }
 
+    /* The rail drawing itself downward. */
+    @keyframes timeline-grow {
+        0%   { transform: scaleY(0); }
+        100% { transform: scaleY(1); }
+    }
+
+    /* A milestone arriving behind the rail. */
+    @keyframes timeline-in {
+        0%   { opacity: 0; transform: translateY(0.5rem); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* The marker landing, with enough overshoot to read as a pop at 5px. */
+    @keyframes marker-pop {
+        0%   { transform: scale(0); }
+        65%  { transform: scale(1.45); }
+        100% { transform: scale(1); }
+    }
+
     @keyframes timeline-pulse {
         0%   { box-shadow: 0 0 0 0 rgba(143, 163, 184, 0.4); }
         70%  { box-shadow: 0 0 0 0.5rem rgba(143, 163, 184, 0); }
@@ -102,9 +121,12 @@
 
     html {
         background-color: var(--color-ink-950);
-        /* Clears the two-row sticky header (116px) so anchored sections
-           land fully in view rather than tucked underneath it. */
-        scroll-padding-top: 8rem;
+        /* Exactly the sticky header height, published by the header itself as
+           --header-h. An anchored section then lands with its top border flush
+           against the header's bottom border rather than leaving a strip of
+           background between the two. A hard-coded value drifts the moment the
+           header changes height; the fallback only covers the first paint. */
+        scroll-padding-top: var(--header-h, 7.25rem);
     }
 
     body {
@@ -451,15 +473,40 @@
        .marker motif, pulled left so they sit centred on the rail.
        ========================================================================== */
 
+    /* The border is transparent and the visible rail is a pseudo-element, so it
+       can be scaled from nothing without changing the 1px it occupies in
+       layout. Resting state is fully drawn, which is what a reader gets with
+       reduced motion or before the reveal arms. */
     .timeline {
         position: relative;
-        border-left: 1px solid var(--color-rule);
+        border-left: 1px solid transparent;
         padding-left: 1.75rem;
+    }
+
+    .timeline::before {
+        content: "";
+        position: absolute;
+        left: -1px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background-color: var(--color-rule);
+        transform-origin: top;
     }
 
     .timeline-item {
         position: relative;
     }
+
+    /* Each milestone's place in the sequence. The rail passes a marker at
+       roughly its own delay, so the entries appear to be drawn on as the line
+       reaches them rather than on a timer of their own. */
+    .timeline-item:nth-child(1) { --milestone-delay: 0.15s; }
+    .timeline-item:nth-child(2) { --milestone-delay: 0.48s; }
+    .timeline-item:nth-child(3) { --milestone-delay: 0.81s; }
+    .timeline-item:nth-child(4) { --milestone-delay: 1.14s; }
+    .timeline-item:nth-child(5) { --milestone-delay: 1.47s; }
+    .timeline-item:nth-child(6) { --milestone-delay: 1.80s; }
 
     /* Rail sits 28px of padding plus its own 1px to the left of the content
        box, so its centre is at -28.5px; offsetting a 5px square by half its
@@ -478,6 +525,50 @@
        drawn with box-shadow so it never affects layout. */
     .timeline-item:last-child::before {
         animation: timeline-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* --- Scroll reveal ---------------------------------------------------
+       `reveal` is added on mount and holds the entrance state; `is-visible`
+       arrives when the timeline scrolls into view and plays it. Splitting the
+       two means the held state is never visible as a flash before the
+       observer reports. */
+
+    .timeline.reveal::before {
+        transform: scaleY(0);
+    }
+
+    .timeline.reveal .timeline-item {
+        opacity: 0;
+    }
+
+    .timeline.reveal .timeline-item::before {
+        transform: scale(0);
+        animation: none;
+    }
+
+    /* The rail draws itself down the column, and each milestone follows it. */
+    .timeline.reveal.is-visible::before {
+        animation: timeline-grow 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .timeline.reveal.is-visible .timeline-item {
+        animation: timeline-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: var(--milestone-delay, 0s);
+    }
+
+    .timeline.reveal.is-visible .timeline-item::before {
+        animation: marker-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: var(--milestone-delay, 0s);
+    }
+
+    /* The live marker pops with the rest, then picks its pulse back up once it
+       has landed. Two animations on one element: the pop owns transform, the
+       pulse owns box-shadow, so they never fight over a property. */
+    .timeline.reveal.is-visible .timeline-item:last-child::before {
+        animation:
+            marker-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both,
+            timeline-pulse 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation-delay: var(--milestone-delay, 0s), calc(var(--milestone-delay, 0s) + 0.45s);
     }
 
     /* ==========================================================================

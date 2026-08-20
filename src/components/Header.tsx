@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import Resume from './Resume';
 import { Marker } from './Primitives';
 
@@ -9,8 +10,37 @@ const navItems = [
 ];
 
 export default function Header() {
+    const headerRef = useRef<HTMLElement>(null);
+
+    /**
+     * Publishes the header's measured height as --header-h, which is what
+     * scroll-padding-top uses. A hard-coded value drifts the moment the header
+     * changes height — different type size, a wrapped nav — and any drift shows
+     * as a strip of background between the header's bottom border and the
+     * border of the section an anchor lands on.
+     */
+    useEffect(() => {
+        const element = headerRef.current;
+        if (!element) return;
+
+        const publish = () => {
+            document.documentElement.style.setProperty(
+                '--header-h',
+                `${element.getBoundingClientRect().height}px`
+            );
+        };
+
+        publish();
+        const observer = new ResizeObserver(publish);
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <header className="sticky top-0 z-30 border-b border-rule bg-ink-950/85 backdrop-blur-md">
+        <header
+            ref={headerRef}
+            className="sticky top-0 z-30 border-b border-rule bg-ink-950/85 backdrop-blur-md"
+        >
             <div className="shell">
                 {/* Top rail: status, wordmark, resume. The wordmark is centred
                     optically by giving the flanking columns equal basis. */}

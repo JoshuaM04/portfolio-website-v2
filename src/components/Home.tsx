@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import Resume from './Resume';
 import { Marker, SectionLabel, Framed } from './Primitives';
 import MeshBackdrop from './MeshBackdrop';
@@ -10,6 +11,48 @@ import {
     socialLinks,
     timeline,
 } from '../data';
+
+/**
+ * Holds an entrance state on an element and releases it when the element
+ * scrolls into view, so CSS owns the animation and this owns only the timing.
+ *
+ * Starts armed rather than at rest: arming inside the effect would render one
+ * frame of finished content before hiding it again, which reads as a flash.
+ * Under prefers-reduced-motion it jumps straight to shown, leaving the resting
+ * appearance untouched.
+ */
+function useReveal<T extends HTMLElement>(threshold = 0.2) {
+    const ref = useRef<T>(null);
+
+    // Reduced motion is known before the first paint, so it seeds the initial
+    // state rather than being set from the effect, which would render once in
+    // the held state and then again to release it.
+    const [shown, setShown] = useState(
+        () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+
+    useEffect(() => {
+        const element = ref.current;
+        if (!element || shown) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!entry.isIntersecting) return;
+                setShown(true);
+                observer.disconnect();
+            },
+            { threshold }
+        );
+
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, [threshold, shown]);
+
+    // A tuple rather than an object: returning { ref, className } makes the
+    // hooks lint rule read the whole return value as a ref and flag the
+    // className as a ref access during render.
+    return [ref, shown ? 'reveal is-visible' : 'reveal'] as const;
+}
 
 export default function Main() {
     return (
@@ -38,7 +81,7 @@ function Hero() {
             </div>
             <div className="hero-veil" aria-hidden="true" />
 
-            <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-10 md:pt-24 md:pb-14">
+            <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pt-24 md:pb-14">
                 {/* Headline */}
                 <div className="max-w-4xl">
                     <div className="flex items-center gap-3 pb-6">
@@ -82,6 +125,8 @@ function Hero() {
    ========================================================================== */
 
 function PersonalOverview() {
+    const [timelineRef, timelineRevealClass] = useReveal<HTMLOListElement>();
+
     return (
         <section id="personal-overview" className="section-pad border-t border-rule">
             <div className="shell">
@@ -123,7 +168,10 @@ function PersonalOverview() {
                                 <span className="micro-sm">Timeline</span>
                             </div>
 
-                            <ol className="timeline flex flex-col gap-8 lg:gap-6 grow lg:justify-between mt-8">
+                            <ol
+                                ref={timelineRef}
+                                className={`timeline ${timelineRevealClass} flex flex-col gap-8 lg:gap-6 grow lg:justify-between mt-8`}
+                            >
                                 {timeline.map((item, index) => (
                                     <li key={index} className="timeline-item flex flex-col gap-1">
                                         <span className="micro-sm">{item.period}</span>
