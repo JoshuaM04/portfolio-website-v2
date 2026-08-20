@@ -1,8 +1,24 @@
 export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
 
-export const education = ['B.S. Computer Science @ Texas State University'];
+/**
+ * Education, laid out as the resume does it: institution and location on the
+ * first line, degree and graduation on the second.
+ */
+export const education = [
+    {
+        institution: 'Texas State University',
+        location: 'San Marcos, TX',
+        degree: 'B.S. in Computer Science',
+        detail: 'Graduation Date: December 2025',
+        awards: ['National Society of Collegiate Scholars', 'Phi Theta Kappa', "Dean's List"]
+    }
+];
 
-export const experience = ['AI Model Tester and Validation Analyst @ Stellar AI'];
+/*
+ * The resume modal's experience block reads from workExperience below rather
+ * than a second copy of the same role, so the title, period and location cannot
+ * drift between the modal and the experience section.
+ */
 
 /** Rails that run across the page as ticker strips. */
 export const marqueeItems = [

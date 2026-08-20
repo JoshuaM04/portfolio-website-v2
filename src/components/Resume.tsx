@@ -2,7 +2,7 @@ import { DialogTrigger } from 'react-aria-components/Modal';
 import { Modal } from 'react-aria-components/Modal';
 import { Dialog, Heading } from 'react-aria-components/Modal';
 import { Button } from 'react-aria-components/Modal';
-import { coreCompetencies, education, experience, socialLinks } from '../data';
+import { coreCompetencies, education, workExperience, socialLinks } from '../data';
 import { Marker, Framed } from './Primitives';
 
 type ResumeProps = {
@@ -56,9 +56,38 @@ export default function Resume({ variant = 'solid' }: ResumeProps) {
                                 <p className="micro text-bone-200">Software Engineer</p>
                             </div>
 
-                            <ResumeBlock index="01" label="Education" items={education} />
-                            <ResumeBlock index="02" label="Experience" items={experience} />
-                            <ResumeBlock index="03" label="Core Competencies" items={coreCompetencies} inline />
+                            <ResumeBlock index="01" label="Education">
+                                {education.map((item, index) => (
+                                    <ResumeEntry
+                                        key={index}
+                                        title={item.institution}
+                                        titleAside={item.location}
+                                        subtitle={item.degree}
+                                        subtitleAside={item.detail}
+                                        awards={item.awards}
+                                    />
+                                ))}
+                            </ResumeBlock>
+
+                            <ResumeBlock index="02" label="Experience">
+                                {workExperience.map((item, index) => (
+                                    <ResumeEntry
+                                        key={index}
+                                        title={item.company}
+                                        titleAside={item.period}
+                                        subtitle={item.role}
+                                        subtitleAside={item.location}
+                                    />
+                                ))}
+                            </ResumeBlock>
+
+                            <ResumeBlock index="03" label="Core Competencies">
+                                <div className="flex flex-wrap gap-2">
+                                    {coreCompetencies.map((item, index) => (
+                                        <span key={index} className="tag">{item}</span>
+                                    ))}
+                                </div>
+                            </ResumeBlock>
 
                             {/* Action bar: the download sits with the profile
                                 links rather than floating at the end of the copy. */}
@@ -107,12 +136,10 @@ type ResumeBlockProps = {
     /** Two-digit index, matching the numbering the page sections use. */
     index: string;
     label: string;
-    items: string[];
-    /** Lay the items out as a wrapping row of tags rather than stacked lines. */
-    inline?: boolean;
+    children: React.ReactNode;
 };
 
-function ResumeBlock({ index, label, items, inline }: ResumeBlockProps) {
+function ResumeBlock({ index, label, children }: ResumeBlockProps) {
     return (
         <div className="flex flex-col gap-4 p-6 border-b border-rule-soft last:border-b-0">
             <div className="flex items-center gap-3">
@@ -121,15 +148,53 @@ function ResumeBlock({ index, label, items, inline }: ResumeBlockProps) {
                 <span className="micro-sm">{label}</span>
             </div>
 
-            <div className={inline ? 'flex flex-wrap gap-2' : 'flex flex-col gap-2'}>
-                {items.map((item, itemIndex) =>
-                    inline ? (
-                        <span key={itemIndex} className="tag">{item}</span>
-                    ) : (
-                        <p key={itemIndex} className="body-sm text-bone-200">{item}</p>
-                    )
-                )}
+            {children}
+        </div>
+    );
+}
+
+type ResumeEntryProps = {
+    title: string;
+    titleAside: string;
+    subtitle: string;
+    subtitleAside: string;
+    awards?: string[];
+};
+
+/**
+ * One resume line item, set the way the printed resume sets it: the
+ * organisation and its dates on the first line, the role and its location on
+ * the second, each pair pushed to opposite edges. The asides drop under their
+ * pair rather than colliding when the panel is too narrow to hold both.
+ */
+function ResumeEntry({ title, titleAside, subtitle, subtitleAside, awards }: ResumeEntryProps) {
+    return (
+        <div className="flex flex-col gap-2">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <span className="index-cell text-sm">{title}</span>
+                <span className="micro-sm">{titleAside}</span>
             </div>
+
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <span className="body-sm text-bone-200">{subtitle}</span>
+                <span className="micro-sm">{subtitleAside}</span>
+            </div>
+
+            {awards && awards.length > 0 && (
+                <div className="flex flex-col gap-2 pt-2 mt-1 border-t border-rule-soft">
+                    <span className="micro-sm">Awards &amp; Honors</span>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        {awards.map((award, index) => (
+                            <span key={award} className="flex items-center gap-3">
+                                {index > 0 && (
+                                    <span aria-hidden="true" className="w-px h-3 bg-rule-strong" />
+                                )}
+                                <span className="body-sm text-bone-200">{award}</span>
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
