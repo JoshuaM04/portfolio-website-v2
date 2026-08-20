@@ -92,7 +92,7 @@ export default function Resume({ variant = 'solid' }: ResumeProps) {
                             {/* Action bar: the download sits with the profile
                                 links rather than floating at the end of the copy. */}
                             <div className="flex flex-wrap items-center justify-between gap-4 p-6 bg-ink-950 border-t border-rule">
-                                <a href="/Computer Science Resume.pdf" download className="btn-solid">
+                                <a href="/documents/Joshua-Martinez-Resume.pdf" download className="btn-solid">
                                     Download PDF
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"

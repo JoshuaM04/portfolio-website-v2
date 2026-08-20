@@ -55,7 +55,7 @@ export const timeline = [
 
 export const projectInformationOne = [
     {
-        image: '/loopStudiosDesktop.png',
+        image: '/images/projects/loop-studios.png',
         link: 'https://loop-studios-landing-page-kohl.vercel.app/',
         heading: 'LoopStudios Landing Page',
         description: 'An animation-driven landing page that showcases VR technology. Crafted with React to organize contents of the page into functional components, Tailwind CSS to enhance type-writer effects via the theme directive, and TypeScript for static typing.',
@@ -63,7 +63,7 @@ export const projectInformationOne = [
         tools: ['React', 'TypeScript', 'Tailwind CSS']
     },
     {
-        image: '/tipCalculatorDesktop.png',
+        image: '/images/projects/tip-calculator.png',
         link: 'https://tip-calculator-app-brown-three.vercel.app/',
         heading: 'Tip Calculator App',
         description: 'A web application powered by React that uses useState() React hooks to store any active states (e.g. the tip button option that is selected). Furthermore, it utilizes a modular approach to organizing the parts of the webpage into different functional components.',
@@ -71,7 +71,7 @@ export const projectInformationOne = [
         tools: ['React', 'JavaScript', 'Tailwind CSS']
     },
     {
-        image: '/contactFormDesktop.png',
+        image: '/images/projects/contact-form.png',
         link: 'https://contact-form-eosin-psi.vercel.app/',
         heading: 'Contact Form',
         description: 'A interative contact form using custom-built regex classifications for user input. This customized approach allows dynamic styling for error states pertaining to input fields. Furthermore, the application is powered by React.',
@@ -79,7 +79,7 @@ export const projectInformationOne = [
         tools: ['HTML5', 'CSS3', 'JavaScript']
     },
     {
-        image: '/timeTrackingDashboardDesktop.png',
+        image: '/images/projects/time-tracking-dashboard.png',
         link: 'https://time-tracking-dashboard-zeta-plum.vercel.app/',
         heading: 'Time Tracking Dashboard',
         description: 'A multi-component web application that features a responsive design, allowing the components to be organized differently within a grid. The information showcased is dynamically rendered to the webpage via user input when selecting an option such as \'Daily\', \'Weekly\', or \'Monthly\' which is fetched from an external data.json file.',
@@ -87,7 +87,7 @@ export const projectInformationOne = [
         tools: ['HTML5', 'CSS3', 'JavaScript']
     },
     {
-        image: '/newsHomepageDesktop.png',
+        image: '/images/projects/news-homepage.png',
         link: 'https://news-homepage-seven-sooty.vercel.app/',
         heading: 'News Homepage',
         description: 'A website application that showcases sections tailored to different types of media. The application applies a unique navigation menu on mobile resolutions which uses a modal pop-up which is activated via user-input and a navigation list on desktop resolutions.',
@@ -95,7 +95,7 @@ export const projectInformationOne = [
         tools: ['HTML5', 'CSS3']
     },
     {
-        image: '/interactiveRatingComponentDesktop.png',
+        image: '/images/projects/interactive-rating-component.png',
         link: 'https://interactive-rating-component-azure-seven.vercel.app/',
         heading: 'Interactive Rating Component',
         description: 'An interactive rating component that uses React to store the rating via user-input. The rating is determined by user-selection amongst an array of buttons that are rendered via a .map() callback function. Upon submission, the state variable that contains the rating is then displayed to the user in a pop-over dialog.',
@@ -106,7 +106,7 @@ export const projectInformationOne = [
 
 export const projectInformationTwo = [
     {
-        image: '/carpentry-hero.webp',
+        image: '/images/projects/carpentry-hero.webp',
         link: 'https://woodwork-creations.com/',
         heading: 'WoodWork Creations',
         description: 'Engineered a full-stack MERN e-commerce application for a family-run furniture business, with dynamic REST API routing for product-isolated user reviews, Multer and Vercel Blob for cloud-hosted media uploads, and the Stripe Checkout API processing catalog attributes and prices into secure payment sessions. Deployed as a unified monorepo on Vercel with serverless API rewrites, SPA fallback routing, and AI-assisted backend middleware optimization.',

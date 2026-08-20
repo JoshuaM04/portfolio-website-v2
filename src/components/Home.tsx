@@ -164,7 +164,7 @@ function PersonalOverview() {
                                 <div className="media-hover overflow-hidden bg-ink-900">
                                     <img
                                         className="media block w-full h-auto"
-                                        src="/hero-image.webp"
+                                        src="/images/hero-image.webp"
                                         alt="Joshua Martinez"
                                     />
                                 </div>
