@@ -6,6 +6,7 @@ import {
     coreCompetencies,
     workExperience,
     contactDetails,
+    socialLinks,
 } from '../data';
 
 export default function Main() {
@@ -27,9 +28,9 @@ export default function Main() {
 function Hero() {
     return (
         <section id="hero" className="hero">
-            <div className="hero-media">
-                <img src="/hero-image.webp" alt="" aria-hidden="true" />
-            </div>
+            {/* Backdrop image intentionally absent for now — the veil keeps the
+                graded ground so a replacement can drop straight into
+                .hero-media without any other change. */}
             <div className="hero-veil" aria-hidden="true" />
 
             <div className="hero-content shell flex flex-col justify-between grow pt-16 pb-10 md:pt-24 md:pb-14">
@@ -91,9 +92,10 @@ function PersonalOverview() {
                 {/* The oversized thesis statement, offset to the right the way
                     the reference sets its section openers. */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8 pt-8">
-                    <div className="lg:col-span-5" />
-
-                    <h2 className="lg:col-span-7 display-lg">
+                    {/* Offset via col-start rather than an empty spacer div: a
+                        spacer collapses to a zero-height row below lg but still
+                        pays the row-gap, which pushed the heading down. */}
+                    <h2 className="lg:col-span-7 lg:col-start-6 display-lg">
                         Designing interfaces that feel as clear as they are memorable.
                     </h2>
                 </div>
@@ -125,12 +127,15 @@ function PersonalOverview() {
                             ))}
                         </div>
 
+                        {/* No fixed height and no object-fit: the box takes the
+                            image's own aspect ratio, so the full portrait shows
+                            at every width instead of being cropped to a band. */}
                         <Framed className="mt-6">
                             <div className="media-hover overflow-hidden bg-ink-900">
                                 <img
-                                    className="media w-full h-64 object-cover"
+                                    className="media block w-full h-auto"
                                     src="/hero-image.webp"
-                                    alt="Downtown Austin, Texas"
+                                    alt="Joshua Martinez"
                                 />
                             </div>
                         </Framed>
@@ -206,9 +211,13 @@ function ProjectGrid({ label, index, heading, projects, showNewLabel }: ProjectG
                             </span>
                         )}
 
-                        <a href={item.link} target="_blank" rel="noreferrer" className="block overflow-hidden">
+                        {/* The box matches the screenshots' own 2560x1230 ratio
+                            and uses object-contain, so every shot is shown whole
+                            rather than cropped to fit. Anything off-ratio letterboxes
+                            against the ink ground instead of losing its edges. */}
+                        <a href={item.link} target="_blank" rel="noreferrer" className="block overflow-hidden bg-ink-950">
                             <img
-                                className="media w-full aspect-16/10 object-cover object-top"
+                                className="media block w-full aspect-[256/123] object-contain"
                                 src={item.image}
                                 alt={`${item.heading} screenshot`}
                             />
@@ -316,7 +325,15 @@ function Contact() {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-10">
+                    {/* Availability and socials live here rather than in the
+                        footer, so the whole "how to reach me" story sits in one
+                        column instead of being split across two sections. */}
+                    <div className="lg:col-span-4 lg:col-start-9 flex flex-col gap-8">
+                        <div className="flex items-center gap-3">
+                            <Marker haze />
+                            <span className="micro-sm">Available for work</span>
+                        </div>
+
                         <div className="flex flex-col">
                             {contactDetails.map((detail, index) => (
                                 <div key={index} className="flex flex-col gap-1 py-4 border-t border-rule">
@@ -333,6 +350,23 @@ function Contact() {
                                     )}
                                 </div>
                             ))}
+
+                            <div className="flex flex-col gap-1 py-4 border-t border-rule">
+                                <span className="micro-sm">Socials</span>
+                                <div className="flex flex-wrap items-center gap-x-4">
+                                    {socialLinks.map((link) => (
+                                        <a
+                                            key={link.href}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="bracket-link bracket-link-ghost"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
