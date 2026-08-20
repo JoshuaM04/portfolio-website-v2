@@ -209,8 +209,6 @@ type Project = {
     image: string;
     link: string;
     heading: string;
-    category: string;
-    year: string;
     description: string;
     source?: string;
     tools: string[];
@@ -235,8 +233,8 @@ function ProjectGrid({ label, index, heading, projects, showNewLabel }: ProjectG
                 {projects.map((item, projectIndex) => (
                     <article key={projectIndex} className="project-card media-hover flex flex-col relative">
                         {showNewLabel && (
-                            <span className="absolute top-4 right-4 z-3 micro-sm text-ink-950 bg-haze-400 px-2 py-1">
-                                New
+                            <span className="badge-new absolute top-4 right-4 z-3">
+                                <span className="badge-new-inner micro-sm text-bone-50">New</span>
                             </span>
                         )}
 
@@ -254,10 +252,7 @@ function ProjectGrid({ label, index, heading, projects, showNewLabel }: ProjectG
                         </a>
 
                         <div className="flex flex-col gap-5 p-6 grow border-t border-rule-soft">
-                            <div className="flex items-start justify-between gap-4">
-                                <h3 className="index-cell text-sm">{item.heading}</h3>
-                                <span className="micro-sm shrink-0">{item.year}</span>
-                            </div>
+                            <h3 className="index-cell text-sm">{item.heading}</h3>
 
                             <p className="body-sm grow">{item.description}</p>
 
@@ -320,9 +315,8 @@ function Experience() {
 
                                 <p className="micro text-bone-200">{role.role}</p>
 
-                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                <div className="flex flex-col gap-1">
                                     <span className="micro-sm">{role.period}</span>
-                                    <span className="micro-sm" aria-hidden="true">&mdash;</span>
                                     <span className="micro-sm">{role.location}</span>
                                 </div>
                             </div>

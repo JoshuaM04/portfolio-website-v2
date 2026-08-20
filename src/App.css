@@ -53,6 +53,10 @@
         100% { transform: translateX(-50%); }
     }
 
+    @keyframes badge-orbit {
+        to { transform: rotate(1turn); }
+    }
+
     @keyframes timeline-pulse {
         0%   { box-shadow: 0 0 0 0 rgba(168, 191, 178, 0.4); }
         70%  { box-shadow: 0 0 0 0.5rem rgba(168, 191, 178, 0); }
@@ -483,6 +487,44 @@
     }
 
     /* ==========================================================================
+       COMPONENT: new badge
+       --------------------------------------------------------------------------
+       A dark chip with a hairline frame, lit by a highlight that orbits the
+       edge. The rotating conic gradient sits behind an opaque inner panel, so
+       only the 1px the panel does not cover reads as the moving light.
+       ========================================================================== */
+
+    .badge-new {
+        position: relative;
+        display: inline-block;
+        padding: 1px;
+        overflow: hidden;
+        background-color: var(--color-bone-800);
+    }
+
+    /* Oversized so the rotating square still covers the wider-than-tall chip
+       at every angle. */
+    .badge-new::before {
+        content: "";
+        position: absolute;
+        inset: -150%;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0 72%,
+            var(--color-bone-50) 88%,
+            transparent 100%
+        );
+        animation: badge-orbit 3s linear infinite;
+    }
+
+    .badge-new-inner {
+        position: relative;
+        display: block;
+        background-color: var(--color-ink-950);
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* ==========================================================================
        COMPONENT: tag
        ========================================================================== */
 
@@ -524,9 +566,13 @@
         transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
     }
 
+    /* Inverts to the outline treatment on hover, so the two button styles
+       trade places rather than introducing a colour the palette does not
+       otherwise use. */
     .btn-solid:hover {
-        background-color: var(--color-haze-400);
-        border-color: var(--color-haze-400);
+        color: var(--color-bone-50);
+        background-color: transparent;
+        border-color: var(--color-bone-50);
     }
 
     .btn-outline {
