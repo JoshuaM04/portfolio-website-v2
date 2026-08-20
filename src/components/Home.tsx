@@ -62,12 +62,12 @@ function Hero() {
 
                     <div className="flex flex-wrap items-end justify-between gap-x-12 gap-y-8">
                         <div className="flex flex-wrap gap-x-12 gap-y-8">
-                            <p className="micro max-w-[16rem] leading-relaxed">
-                                Crafting interfaces that feel as intentional as they look.
-                            </p>
                             <p className="micro max-w-[22rem] leading-relaxed">
                                 Working across accessibility, responsive design, and frontend
                                 architecture to build applications that communicate clearly.
+                            </p>
+                            <p className="micro max-w-[16rem] leading-relaxed">
+                                Crafting interfaces that feel as intentional as they look.
                             </p>
                         </div>
 
