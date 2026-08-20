@@ -4,7 +4,7 @@ A personal portfolio for a frontend-leaning software engineer. Read the work, sc
 
 **Live:** [joshuam-portfolio.vercel.app](https://joshuam-portfolio.vercel.app/)
 
-![The portfolio hero: the words Building Accessible Interfaces set large over a slowly drifting node mesh, with Clear, Responsive, And Built To Last set opposite](docs/screenshots/after-hero.png)
+![The portfolio hero: the words Building Accessible Interfaces set large over a faint grid mesh with a wave rippling across it, and Clear, Responsive, And Built To Last set opposite at the base](docs/screenshots/after-hero.png)
 
 <details>
 <summary>See the full page</summary>
@@ -40,7 +40,9 @@ A single-page site, deliberately. Everything is one route with anchor navigation
 
 **React Aria for the one interactive component.** The resume modal is the only real widget on the site. Focus trapping, escape handling, scroll locking, and the labelling relationship between the dialog and its heading are all things I would have got subtly wrong by hand.
 
-**Motion that yields.** There are three animations: a node mesh behind the hero, a highlight that travels across the headlines, and a light orbiting the "new" badge. The mesh pauses when it scrolls out of view and paints a single static frame under `prefers-reduced-motion`; the others are covered by a reduced-motion block that neutralises them globally. Nothing animates that a visitor cannot opt out of.
+**Motion that yields.** Four animations: a grid behind the hero with a wave crossing it, a highlight travelling across the headlines, the timeline drawing itself in as it scrolls into view, and a light orbiting the "new" badge. The grid pauses when the hero scrolls out of view and paints a single static frame under `prefers-reduced-motion`; the timeline's resting state *is* its finished state, so anything that never arms simply sees it drawn; the rest are neutralised by a global reduced-motion block. Nothing animates that a visitor cannot opt out of.
+
+**One measurement, published once.** The header measures itself and publishes its height as `--header-h`, which `scroll-padding-top` consumes. Hard-coding it meant the value drifted the moment the header changed, and the drift showed as a strip of background between the header's bottom border and the border of whichever section an anchor landed on. The hero also sizes itself against it, so it fills exactly what the header leaves of the viewport.
 
 **Contrast checked against the surface, not the page.** Type sits on three different grounds here. A token verified against the darkest one is not automatically safe on a lighter card, which is exactly how a label ended up at 4.44:1 on the experience surface while passing everywhere else.
 
@@ -52,9 +54,11 @@ A single-page site, deliberately. Everything is one route with anchor navigation
 
 **A phantom gap that moved between breakpoints.** An offset heading was positioned with an empty spacer `div` in a grid. Below the breakpoint the grid collapsed to one column, and the spacer became a zero-height row that still paid the row gap, pushing the heading down by an extra 48px. Positioning with `col-start` instead of an empty element removed both the gap and the element.
 
-**Percentages that travel backwards.** The highlight sweeping across the hero ran the wrong way. When `background-size` is larger than the element, the offset resolves to `(container - image) * position`, and that term is negative, so a percentage moves the image opposite to the number. The fix was counting down instead of up.
+**A highlight that ran backwards, then vanished.** The sweep across the hero headlines went wrong twice. First it travelled the wrong way: when `background-size` is larger than the element, the offset resolves to `(container - image) * position`, and that term is negative, so a percentage moves the image opposite to the number. Counting down instead of up fixed it. Then, once the headline went back to solid bone, it disappeared — bone is already 244 of 255, so a white band can only add about 4% luminance. It reads now because the band carries a slight darkening either side of its core, and it is the dip against the peak that the eye registers as a highlight rather than the peak itself.
 
-**A highlight with no headroom.** Once the headline went back to solid bone, the sweep vanished. Bone is already 244 of 255, so a white band can only add about 4% luminance. It reads now because the band carries a slight darkening on either side of its core, and it is that dip against the peak that the eye registers as a highlight.
+**Viewport units that measure the wrong viewport.** On mobile, `vh` resolves against the viewport with the browser's URL bar collapsed, so a hero sized in `vh` runs underneath that bar and clips whatever sits at its bottom edge — here, the three calls to action. `svh` is the small viewport, measured with the chrome expanded, and fixes it. `svh` rather than `dvh` deliberately: `dvh` tracks the bar as it collapses during a scroll, which would resize the hero underneath the reader. The `vh` fallback also needed writing as `@supports` rather than two declarations in one rule, because the minifier reads the second as redundant and drops the first — leaving nothing at all for browsers without the newer units.
+
+**A scrollbar that appeared for 300ms.** Opening the resume panel flashed a scrollbar down its right edge. Its entrance animated each block from 12px below its final position, and the last one pushed past the bottom of the dialog, which is a scroll container — so its scrollable area grew and then shrank again. Animating from *above* instead solved it: overflow past the block-start edge of a scroll container is unreachable, so it never produces a scrollbar.
 
 **Filling a column without knowing its height.** The timeline sits beside a portrait whose height depends on the viewport. Rather than guessing, it uses `justify-between` inside a growing flex column, so it distributes across whatever height the image sets. When the entries later grew long enough to consume the column, the gap had to become a floor rather than the spacing, or they touched.
 
@@ -68,7 +72,7 @@ A single-page site, deliberately. Everything is one route with anchor navigation
 
 **Accessibility is measurable, so measure it.** Contrast is arithmetic, not taste. Every text style on the page was checked against the surface it actually renders on, and two of them failed on a surface they had never been checked against.
 
-**Animation is cheap to add and expensive to get right.** Three small animations took more iterations than the entire layout.
+**Animation is cheap to add and expensive to get right.** Four small animations took more iterations than the entire layout, and almost none of the difficulty was in the animating. It was in what the motion disturbed around it: a transform that grew a scroll container, an entrance that had to stay in step with a line drawing itself, a highlight with no luminance left to work with.
 
 What I'd do differently next time:
 
