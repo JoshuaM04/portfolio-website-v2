@@ -58,11 +58,6 @@ export default function Footer() {
                 </div>
             </div>
 
-            {/* The oversized outlined wordmark that closes the page. */}
-            <div className="shell pb-6">
-                <p className="wordmark" aria-hidden="true">joshua martinez</p>
-            </div>
-
             <div className="shell border-t border-rule-soft py-6 flex flex-wrap items-center justify-between gap-4">
                 <span className="micro-sm">&copy; {new Date().getFullYear()} Joshua Martinez</span>
                 <span className="micro-sm">All rights reserved</span>

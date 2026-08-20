@@ -16,7 +16,6 @@ export default function Main() {
             <Hero />
             <TickerRails />
             <PersonalOverview />
-            <SelectedWork />
             <Projects />
             <Experience />
             <Contact />
@@ -104,7 +103,7 @@ function PersonalOverview() {
     return (
         <section id="personal-overview" className="section-pad border-t border-rule">
             <div className="shell">
-                <SectionLabel label="Personal Overview" index="01 / 04" />
+                <SectionLabel label="Personal Overview" index="01 / 03" />
 
                 {/* The oversized thesis statement, offset to the right the way
                     the reference sets its section openers. */}
@@ -167,53 +166,6 @@ function PersonalOverview() {
 }
 
 /* ==========================================================================
-   SELECTED WORK — the tabular index
-   ========================================================================== */
-
-function SelectedWork() {
-    const allWork = [...projectInformationTwo, ...projectInformationOne];
-
-    return (
-        <section className="section-pad border-t border-rule bg-ink-900">
-            <div className="shell">
-                <SectionLabel label="Selected Work" index="02 / 04" />
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-10 gap-x-8">
-                    <h2 className="lg:col-span-4 display-lg">Selected work</h2>
-
-                    <div className="lg:col-span-8 flex flex-col">
-                        {/* Column headings mirror the row grid so the index
-                            reads as a table rather than a list. */}
-                        <div className="index-row index-head">
-                            <span className="micro-sm">Project</span>
-                            <span className="micro-sm">Discipline</span>
-                            <span className="micro-sm">Year</span>
-                        </div>
-
-                        {allWork.map((item, index) => (
-                            <a
-                                key={index}
-                                href={item.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="index-row group"
-                            >
-                                <span className="index-cell flex items-center gap-3">
-                                    <Marker small className="index-marker" />
-                                    {item.heading}
-                                </span>
-                                <span className="index-meta">{item.category}</span>
-                                <span className="index-meta">{item.year}</span>
-                            </a>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
-
-/* ==========================================================================
    PROJECTS
    ========================================================================== */
 
@@ -223,7 +175,7 @@ function Projects() {
             <div className="shell flex flex-col gap-28">
                 <ProjectGrid
                     label="Full-Stack Apps"
-                    index="03 / 04"
+                    index="02 / 03"
                     heading="Full-stack apps"
                     projects={projectInformationTwo}
                     showNewLabel
@@ -322,7 +274,7 @@ function Experience() {
     return (
         <section id="experience" className="section-pad border-t border-rule bg-ink-900">
             <div className="shell">
-                <SectionLabel label="Experience" index="04 / 04" />
+                <SectionLabel label="Experience" index="03 / 03" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 gap-x-8">
                     <h2 className="lg:col-span-4 display-lg">Experience</h2>

@@ -335,50 +335,10 @@
     }
 
     /* ==========================================================================
-       COMPONENT: work index row
+       COMPONENT: index cell
        --------------------------------------------------------------------------
-       The tabular "selected work" list. Rows are hairline-separated; on hover the
-       row inverts to bone-on-ink and the marker slides in.
+       The compact uppercase label used for project, company and contact names.
        ========================================================================== */
-
-    .index-row {
-        display: grid;
-        grid-template-columns: 1.6fr 1fr auto;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.9375rem 1rem;
-        border-top: 1px solid var(--color-rule-soft);
-        transition: background-color 0.4s ease, color 0.4s ease, padding-left 0.4s ease;
-    }
-
-    .index-row:last-child {
-        border-bottom: 1px solid var(--color-rule-soft);
-    }
-
-    .index-row:hover {
-        background-color: var(--color-bone-50);
-        color: var(--color-ink-950);
-        padding-left: 1.75rem;
-    }
-
-    .index-row:hover .index-cell,
-    .index-row:hover .index-meta {
-        color: var(--color-ink-950);
-    }
-
-    .index-row:hover .marker span {
-        background-color: var(--color-ink-950);
-    }
-
-    /* Column headings: same track sizing as a row, but inert. */
-    .index-head {
-        border-top: 0;
-    }
-
-    .index-head:hover {
-        background-color: transparent;
-        padding-left: 1rem;
-    }
 
     .index-cell {
         font-size: 0.6875rem;
@@ -387,25 +347,6 @@
         text-transform: uppercase;
         color: var(--color-bone-50);
         transition: color 0.4s ease;
-    }
-
-    .index-meta {
-        font-size: 0.6875rem;
-        font-weight: 400;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--color-bone-400);
-        transition: color 0.4s ease;
-    }
-
-    /* The marker inside a row only appears on hover. */
-    .index-row .index-marker {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-
-    .index-row:hover .index-marker {
-        opacity: 1;
     }
 
     /* ==========================================================================
@@ -603,23 +544,6 @@
         color: rgba(244, 244, 241, 0.72);
         text-align: right;
         mix-blend-mode: screen;
-    }
-
-    /* ==========================================================================
-       COMPONENT: oversized footer wordmark
-       ========================================================================== */
-
-    .wordmark {
-        font-family: var(--font-display);
-        font-weight: 600;
-        font-size: clamp(3.5rem, 17vw, 17rem);
-        line-height: 0.78;
-        letter-spacing: -0.045em;
-        text-transform: lowercase;
-        color: transparent;
-        -webkit-text-stroke: 1px var(--color-rule-strong);
-        user-select: none;
-        white-space: nowrap;
     }
 
     /* ==========================================================================
