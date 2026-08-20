@@ -709,12 +709,17 @@
                 rgba(255, 255, 255, 0.28) 50%,
                 rgba(255, 255, 255, 0) 62%
             ),
+            /* Fully transparent: the letterforms are hollow, so the mesh shows
+               straight through them and the only thing that ever fills a glyph
+               is the highlight passing over it. Kept as a layer rather than
+               deleted so the two-layer background-position in the keyframes
+               still lines up. */
             linear-gradient(
                 180deg,
-                rgba(244, 244, 241, 0.34) 0%,
-                rgba(244, 244, 241, 0.2) 100%
+                rgba(244, 244, 241, 0) 0%,
+                rgba(244, 244, 241, 0) 100%
             );
-        -webkit-text-stroke: 1.5px rgba(244, 244, 241, 0.9);
+        -webkit-text-stroke: 1px rgba(244, 244, 241, 0.9);
         paint-order: stroke fill;
     }
 
@@ -741,12 +746,12 @@
             ),
             linear-gradient(
                 180deg,
-                rgba(244, 244, 241, 0.3) 0%,
-                rgba(244, 244, 241, 0.18) 100%
+                rgba(244, 244, 241, 0) 0%,
+                rgba(244, 244, 241, 0) 100%
             );
         /* Lighter stroke than the headline — this line sits behind it in the
            hierarchy and a matching weight would flatten the two together. */
-        -webkit-text-stroke: 1px rgba(244, 244, 241, 0.62);
+        -webkit-text-stroke: 0.75px rgba(244, 244, 241, 0.62);
         paint-order: stroke fill;
         animation-delay: 5.4s;
     }
