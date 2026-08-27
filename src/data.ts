@@ -1,18 +1,38 @@
-export const coreCompetencies = ['HTML5', 'CSS3', 'TypeScript', 'Tailwind CSS', 'React'];
-
 /**
- * The wider toolset, kept separate from coreCompetencies so the five headline
- * skills stay the headline. Deliberately excludes anything already listed
- * there, since repeating them would flatten that distinction.
+ * Technical skills, split the way the resume splits them. The previous pairing
+ * of "core competencies" and "tools and technologies" divided by importance
+ * rather than by kind, which put languages beside frameworks in one list and a
+ * design tool beside a database in the other. Splitting by kind means every
+ * entry has one obvious home, and it matches what a reader finds on the resume.
+ *
+ * Both the overview section and the resume modal render from this, so a skill
+ * is written once and cannot drift between the two.
  */
-export const toolsAndTechnologies = [
-    'Sass',
-    'React Router',
-    'Node.js',
-    'Express.js',
-    'MongoDB',
-    'Vercel',
-    'Figma'
+export const technicalSkills = [
+    {
+        label: 'Languages',
+        items: ['HTML5', 'CSS3', 'SASS/SCSS', 'TypeScript']
+    },
+    {
+        label: 'Frameworks & Libraries',
+        items: [
+            'React',
+            'Next.js',
+            'React Router',
+            'Tailwind CSS',
+            'shadcn/ui',
+            'React Aria',
+            'Node.js',
+            'Express.js',
+            'Stripe API'
+        ]
+    },
+    {
+        // MongoDB is a database rather than a tool, but it belongs here far
+        // more than under languages or frameworks.
+        label: 'Tools & Platforms',
+        items: ['Git', 'GitHub', 'MongoDB', 'Vercel', 'Jest', 'Figma']
+    }
 ];
 
 /**

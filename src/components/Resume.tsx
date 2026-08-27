@@ -2,7 +2,7 @@ import { DialogTrigger } from 'react-aria-components/Modal';
 import { Modal } from 'react-aria-components/Modal';
 import { Dialog, Heading } from 'react-aria-components/Modal';
 import { Button } from 'react-aria-components/Modal';
-import { coreCompetencies, education, workExperience, socialLinks } from '../data';
+import { technicalSkills, education, workExperience, socialLinks } from '../data';
 import { Marker, Framed } from './Primitives';
 
 type ResumeProps = {
@@ -81,10 +81,18 @@ export default function Resume({ variant = 'solid' }: ResumeProps) {
                                 ))}
                             </ResumeBlock>
 
-                            <ResumeBlock index="03" label="Core Competencies">
-                                <div className="flex flex-wrap gap-2">
-                                    {coreCompetencies.map((item, index) => (
-                                        <span key={index} className="tag">{item}</span>
+                            <ResumeBlock index="03" label="Technical Skills">
+                                <div className="flex flex-col gap-5">
+                                    {technicalSkills.map((group) => (
+                                        <div key={group.label} className="flex flex-col gap-2">
+                                            <span className="micro-sm">{group.label}</span>
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {group.items.map((item) => (
+                                                    <span key={item} className="tag">{item}</span>
+                                                ))}
+                                            </div>
+                                        </div>
                                     ))}
                                 </div>
                             </ResumeBlock>
