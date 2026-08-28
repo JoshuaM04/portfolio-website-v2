@@ -150,7 +150,7 @@ function PersonalOverview() {
                             both size and tone, and a hairline separates them. The
                             wording is untouched — the hierarchy is doing the work. */}
                         <p className="lead">
-                            I'm a software engineer and <span className="text-bone-50">recent computer science graduate</span> 
+                            I'm a software engineer and <span className="text-bone-50">recent computer science graduate </span> 
                             specializing in building accessible, responsive web applications using HTML, CSS,
                             TypeScript, React, Next.js, and Tailwind CSS, with a strong focus on WCAG compliant design.
                         </p>
