@@ -152,7 +152,7 @@ function PersonalOverview() {
                         <p className="lead">
                             I'm a software engineer and <span className="text-bone-50">recent computer science graduate</span> 
                             specializing in building accessible, responsive web applications using HTML, CSS,
-                            TypeScript, React, and Tailwind CSS, with a strong focus on WCAG compliant design.
+                            TypeScript, React, Next.js, and Tailwind CSS, with a strong focus on WCAG compliant design.
                         </p>
                         <p className="body-lg text-bone-400 border-t border-rule-soft pt-8">
                             Experience enhancing AI model accuracy and optimizing development workflows through
